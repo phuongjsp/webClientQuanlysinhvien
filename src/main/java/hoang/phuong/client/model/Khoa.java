@@ -2,21 +2,26 @@ package hoang.phuong.client.model;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.annotate.JsonProperty;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name="khoa")
+@JsonSerialize(include=JsonSerialize.Inclusion.ALWAYS)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Khoa {
-    @JsonProperty(value="id")
+    @JsonProperty(value = "id")
     private Integer id;
-    @JsonProperty(value="tenKhoa")
+    @JsonProperty(value = "tenKhoa")
     private String tenKhoa;
-    @JsonProperty(value="maKhoa")
+    @JsonProperty(value = "maKhoa")
     private String maKhoa;
-    @JsonProperty(value="namHoc")
+    @JsonProperty(value = "namHoc")
     private String namHoc;
-    @JsonProperty(value="ghiChu")
+    @JsonProperty(value = "ghiChu")
     private String ghiChu;
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -24,7 +29,7 @@ public class Khoa {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int o) {
         this.id = id;
     }
 
@@ -62,12 +67,12 @@ public class Khoa {
 
     @Override
     public String toString() {
-        return "Khoa{" +
+        return "{khoa:{" +
                 "id=" + id +
                 ", tenKhoa='" + tenKhoa + '\'' +
                 ", maKhoa='" + maKhoa + '\'' +
                 ", namHoc='" + namHoc + '\'' +
                 ", ghiChu='" + ghiChu + '\'' +
-                '}';
+                 "}}";
     }
 }

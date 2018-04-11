@@ -34,6 +34,7 @@ public class Thongtingiadinh {
     public void setQuanHe(String quanHe) {
         this.quanHe = quanHe;
     }
+
     public String getTen() {
         return ten;
     }

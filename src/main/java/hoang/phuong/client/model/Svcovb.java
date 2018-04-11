@@ -9,6 +9,7 @@ public class Svcovb {
     private int loaiVb;
     private String tenThuocTinh;
     private String thuocTinh;
+
     public int getId() {
         return id;
     }

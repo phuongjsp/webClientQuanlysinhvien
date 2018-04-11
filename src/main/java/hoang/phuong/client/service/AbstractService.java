@@ -3,48 +3,72 @@ package hoang.phuong.client.service;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.*;
 import org.springframework.http.converter.FormHttpMessageConverter;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
-import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class AbstractService< T> {
+public abstract class AbstractService<T> {
     private final String uriServer = "http://localhost:9966/";
     private final Class<T> persistentClass;
+
+    private RestTemplate restTemplate = new RestTemplate();
+
+    private GsonBuilder gsonb = new GsonBuilder();
+    private Gson gson = gsonb.create();
+
     public AbstractService() {
-        this.persistentClass =  (Class<T>) ((ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments()[0];;
+//        List<HttpMessageConverter<?>> messageConverter = new ArrayList<HttpMessageConverter<?>>();
+//        messageConverter.add(new FormHttpMessageConverter());
+//        messageConverter.add(new StringHttpMessageConverter());
+//        this.restTemplate.setMessageConverters(messageConverter);
+        this.persistentClass = (Class<T>) ((ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+        ;
     }
-    protected GsonBuilder gsonb = new GsonBuilder();
-   protected Gson gson = gsonb.create();
-    protected RestTemplate restTemplate = new RestTemplate();
-//@Autowired
-//GsonBuilder gsonBuilder;
-//    @Autowired
-//    Gson gson;
-//    @Autowired
-//    RestTemplate restTemplate;
-    protected String EventAsString(String path){
-        List<HttpMessageConverter<?>> messageConverter = new ArrayList<HttpMessageConverter<?>>();
-        messageConverter.add(new FormHttpMessageConverter());
-        messageConverter.add(new StringHttpMessageConverter());
-        restTemplate.setMessageConverters(messageConverter);
-        return restTemplate.getForObject(path, String.class);
-//       restTemplate.setRequestFactory(new CommonsClientHttpRequestFactory());
+
+
+    T getObject(String path) {
+
+        return gson.fromJson(restTemplate.getForObject(uriServer + path, String.class), persistentClass);
     }
-T getObject(String path){
-path = uriServer+path;
-       return gson.fromJson(EventAsString(path),persistentClass);
-}
-List<T> getListEntity(String path){
-    path = uriServer+path;
-    Type listType = new TypeToken<ArrayList<T>>(){}.getType();
-return new Gson().fromJson(EventAsString(path), listType);
-}
+
+    List<T> getListEntity(String path) {
+        Type listType = new TypeToken<ArrayList<T>>() {
+        }.getType();
+        return gson.fromJson(restTemplate.getForObject(uriServer + path, String.class), listType);
+    }
+
+    boolean save(String path, T entity) {
+
+//set your headers
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.setContentType(MediaType.APPLICATION_JSON);
+//
+////set your entity to send
+//        HttpEntity entit = new HttpEntity(entity,headers);
+
+// send it!
+//      restTemplate.exchange(uriServer+path, HttpMethod.POST, entit
+//                , persistentClass);
+//        ResponseEntity<?>  res = restTemplate.postForEntity(uriServer + path, gson.fromJson(gson.toJson(entity),persistentClass), persistentClass);
+//        System.out.println("res is :"+res);
+        Type listType = new TypeToken<Boolean>() {
+        }.getType();
+        return gson.fromJson(String.valueOf(restTemplate.postForEntity(uriServer+path,entity,persistentClass)), listType);
+    }
+     void delete(String path){
+           restTemplate.delete(uriServer+path);
+    }
+    void update(String path,T entity){
+        restTemplate.put(uriServer+path,entity);
+    }
 }
