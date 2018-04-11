@@ -50,20 +50,21 @@ public abstract class AbstractService<T> {
     boolean save(String path, T entity) {
 
 //set your headers
-//        HttpHeaders headers = new HttpHeaders();
-//        headers.setContentType(MediaType.APPLICATION_JSON);
-//
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
 ////set your entity to send
-//        HttpEntity entit = new HttpEntity(entity,headers);
+        HttpEntity entit = new HttpEntity(entity,headers);
 
 // send it!
-//      restTemplate.exchange(uriServer+path, HttpMethod.POST, entit
-//                , persistentClass);
+      restTemplate.exchange(uriServer+path, HttpMethod.POST, entit
+                , persistentClass);
 //        ResponseEntity<?>  res = restTemplate.postForEntity(uriServer + path, gson.fromJson(gson.toJson(entity),persistentClass), persistentClass);
 //        System.out.println("res is :"+res);
-        Type listType = new TypeToken<Boolean>() {
-        }.getType();
-        return gson.fromJson(String.valueOf(restTemplate.postForEntity(uriServer+path,entity,persistentClass)), listType);
+//        Type listType = new TypeToken<Boolean>() {
+//        }.getType();
+//        return gson.fromJson(String.valueOf(restTemplate.postForEntity(uriServer+path,entity,persistentClass)), listType);
+    return true;
     }
      void delete(String path){
            restTemplate.delete(uriServer+path);
