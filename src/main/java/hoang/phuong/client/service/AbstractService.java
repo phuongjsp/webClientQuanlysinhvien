@@ -3,6 +3,7 @@ package hoang.phuong.client.service;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import org.codehaus.jackson.map.util.JSONPObject;
 import org.springframework.http.*;
 import org.springframework.http.converter.FormHttpMessageConverter;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -16,6 +17,7 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public abstract class AbstractService<T> {
     private final String uriServer = "http://localhost:9966/";
@@ -27,6 +29,7 @@ public abstract class AbstractService<T> {
     private Gson gson = gsonb.create();
 
     public AbstractService() {
+
 //        List<HttpMessageConverter<?>> messageConverter = new ArrayList<HttpMessageConverter<?>>();
 //        messageConverter.add(new FormHttpMessageConverter());
 //        messageConverter.add(new StringHttpMessageConverter());
@@ -37,7 +40,6 @@ public abstract class AbstractService<T> {
 
 
     T getObject(String path) {
-
         return gson.fromJson(restTemplate.getForObject(uriServer + path, String.class), persistentClass);
     }
 
@@ -46,7 +48,12 @@ public abstract class AbstractService<T> {
         }.getType();
         return gson.fromJson(restTemplate.getForObject(uriServer + path, String.class), listType);
     }
+List<T> getListByProperties(String path,Map<String,String> map){
+    Type listType = new TypeToken<ArrayList<T>>() {
+    }.getType();
+    return gson.fromJson(restTemplate.postForObject(uriServer + path,map, String.class), listType);
 
+}
     boolean save(String path, T entity) {
 
 //set your headers
