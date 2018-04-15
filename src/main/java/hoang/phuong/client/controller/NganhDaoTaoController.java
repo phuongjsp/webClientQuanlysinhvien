@@ -38,28 +38,32 @@ public class NganhDaoTaoController {
         model.addAttribute("nganhdaotao", nganhDaoTaoService.listNganhDT());
         return "nganhdaotao/index";
     }
+
     @RequestMapping(path = {"/del/{maNganh}"}, method = RequestMethod.GET)
-    public String del(Model model,@PathVariable("maNganh") String maNganh) {
+    public String del(Model model, @PathVariable("maNganh") String maNganh) {
         nganhDaoTaoService.deleteNganh(maNganh);
         return "redirect:/nganhdaotao/";
     }
+
     @RequestMapping(path = {"/update/{maNganh}"}, method = RequestMethod.GET)
-    public String update(Model model,@PathVariable("maNganh") String maNganh) {
+    public String update(Model model, @PathVariable("maNganh") String maNganh) {
         Nganhdaotao nganhdaotao = nganhDaoTaoService.getByMaNganh(maNganh);
         model.addAttribute("nganhdaotao", nganhdaotao);
         return "nganhdaotao/formAddNganhDaoTao";
     }
+
     @RequestMapping(path = {"/update/{maNganh}"}, method = RequestMethod.POST)
     public String updateSuccess(Model model, @ModelAttribute("nganhdaotao") @Validated Nganhdaotao nganhdaotao) {
         nganhDaoTaoService.updateNganh(nganhdaotao);
         return "redirect:/nganhdaotao/";
     }
+
     @RequestMapping(path = {"/maNganh/{maNganh}"}, method = RequestMethod.GET)
-    public String getKhoa(Model model,@PathVariable("maNganh") String maNganh) {
+    public String getKhoa(Model model, @PathVariable("maNganh") String maNganh) {
         List<Nganhdaotao> lst = new ArrayList<>();
         lst.add(nganhDaoTaoService.getByMaNganh(maNganh));
         model.addAttribute("nganhdaotao", lst);
-        model.addAttribute("model","showOnly");
+        model.addAttribute("model", "showOnly");
         return "nganhdaotao/index";
     }
 }

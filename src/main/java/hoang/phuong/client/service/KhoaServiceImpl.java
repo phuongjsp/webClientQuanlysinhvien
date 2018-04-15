@@ -13,7 +13,7 @@ public class KhoaServiceImpl extends AbstractService<Khoa> implements KhoaServic
 
     @Override
     public Khoa getKhoaByMaKhoa(String maKhoa) {
-        return getObject("/khoa/maKhoa-"+maKhoa);
+        return getObject("/khoa/maKhoa-" + maKhoa);
     }
 
     @Override
@@ -24,16 +24,16 @@ public class KhoaServiceImpl extends AbstractService<Khoa> implements KhoaServic
     @Override
     public boolean saveKhoa(Khoa khoa) {
         khoa.setId(null);
-       return save("khoa", khoa);
+        return save("khoa", khoa);
     }
 
     @Override
     public void deleteKhoa(int id) {
-        delete("khoa/"+id);
+        delete("khoa/" + id);
     }
 
     @Override
     public void update(Khoa khoa) {
-        update("khoa/"+khoa.getId(),khoa);
+        update("khoa/" + khoa.getId(), khoa);
     }
 }

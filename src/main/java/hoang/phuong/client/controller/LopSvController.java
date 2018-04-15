@@ -38,28 +38,32 @@ public class LopSvController {
         model.addAttribute("lopsv", lopService.listLop());
         return "lopsv/index";
     }
+
     @RequestMapping(path = {"/del/{maLop}"}, method = RequestMethod.GET)
-    public String del(Model model,@PathVariable("maLop") String maLop) {
+    public String del(Model model, @PathVariable("maLop") String maLop) {
         lopService.deleteLop(maLop);
         return "redirect:/lopsv";
     }
+
     @RequestMapping(path = {"/update/{maLop}"}, method = RequestMethod.GET)
-    public String update(Model model,@PathVariable("maLop") String maLop) {
+    public String update(Model model, @PathVariable("maLop") String maLop) {
         Lopsv lopsv = lopService.getByMaLop(maLop);
         model.addAttribute("lopsv", lopsv);
         return "lopsv/formAddLopSv";
     }
+
     @RequestMapping(path = {"/update/{maLop}"}, method = RequestMethod.POST)
     public String updateSuccess(Model model, @ModelAttribute("lopsv") @Validated Lopsv lopsv) {
         lopService.updateLop(lopsv);
         return "redirect:/lopsv";
     }
+
     @RequestMapping(path = {"/maLop/{maLop}"}, method = RequestMethod.GET)
-    public String getKhoa(Model model,@PathVariable("maLop") String maLop) {
+    public String getKhoa(Model model, @PathVariable("maLop") String maLop) {
         List<Lopsv> lst = new ArrayList<>();
         lst.add(lopService.getByMaLop(maLop));
         model.addAttribute("lopsv", lst);
-        model.addAttribute("model","showOnly");
+        model.addAttribute("model", "showOnly");
         return "lopsv/index";
     }
 }

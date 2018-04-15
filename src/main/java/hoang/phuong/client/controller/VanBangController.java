@@ -39,28 +39,32 @@ public class VanBangController {
         model.addAttribute("vanbang", vanBangService.lsitVB());
         return "vanbang/index";
     }
+
     @RequestMapping(path = {"/del/{maVanBang}"}, method = RequestMethod.GET)
-    public String del(Model model,@PathVariable("maVanBang") String maVanBang) {
+    public String del(Model model, @PathVariable("maVanBang") String maVanBang) {
         vanBangService.deleteVanBang(maVanBang);
         return "redirect:/vanbang/";
     }
+
     @RequestMapping(path = {"/update/{maVanBang}"}, method = RequestMethod.GET)
-    public String update(Model model,@PathVariable("maVanBang") String maVanBang) {
+    public String update(Model model, @PathVariable("maVanBang") String maVanBang) {
         Vanbang vanbang = vanBangService.getByMaVanBang(maVanBang);
         model.addAttribute("vanbang", vanbang);
         return "vanbang/formAddVanBang";
     }
+
     @RequestMapping(path = {"/update/{maVanBang}"}, method = RequestMethod.POST)
     public String updateSuccess(Model model, @ModelAttribute("vanbang") @Validated Vanbang vanbang) {
         vanBangService.updateVangBang(vanbang);
         return "redirect:/vanbang//";
     }
+
     @RequestMapping(path = {"/maVanBang/{maVanBang}"}, method = RequestMethod.GET)
-    public String getKhoa(Model model,@PathVariable("maVanBang") String maVanBang) {
+    public String getKhoa(Model model, @PathVariable("maVanBang") String maVanBang) {
         List<Vanbang> lst = new ArrayList<>();
         lst.add(vanBangService.getByMaVanBang(maVanBang));
         model.addAttribute("vanbang", lst);
-        model.addAttribute("model","showOnly");
+        model.addAttribute("model", "showOnly");
         return "vanbang/index";
     }
 }

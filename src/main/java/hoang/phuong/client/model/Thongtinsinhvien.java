@@ -2,7 +2,8 @@ package hoang.phuong.client.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import java.util.Date;
+import java.sql.Date;
+
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Thongtinsinhvien {
@@ -11,15 +12,60 @@ public class Thongtinsinhvien {
     private String ho;
     private String ten;
     private Date ngayVaoHoc;
-    private Khoa khoaHoc;
+    private Integer khoaHoc;
     private Date ngaySinh;
     private Integer nganhDk;
     private String anhThe;
     private Byte gioiTinh;
     private String danToc;
-    private Diachi noiSinh;
-    private Diachi hoKhauThuongChu;
-    private Lopsv lop;
+    private Integer noiSinh;
+    private Integer hoKhauThuongChu;
+    private Integer lop;
+    private Khoa khoaByKhoaHoc;
+    private Nganhdaotao nganhdaotaoByNganhDk;
+    private Diachi diachiByNoiSinh;
+    private Diachi diachiByHoKhauThuongChu;
+    private Lopsv lopsvByLop;
+
+    public Khoa getKhoaByKhoaHoc() {
+        return khoaByKhoaHoc;
+    }
+
+    public void setKhoaByKhoaHoc(Khoa khoaByKhoaHoc) {
+        this.khoaByKhoaHoc = khoaByKhoaHoc;
+    }
+
+    public Nganhdaotao getNganhdaotaoByNganhDk() {
+        return nganhdaotaoByNganhDk;
+    }
+
+    public void setNganhdaotaoByNganhDk(Nganhdaotao nganhdaotaoByNganhDk) {
+        this.nganhdaotaoByNganhDk = nganhdaotaoByNganhDk;
+    }
+
+    public Diachi getDiachiByNoiSinh() {
+        return diachiByNoiSinh;
+    }
+
+    public void setDiachiByNoiSinh(Diachi diachiByNoiSinh) {
+        this.diachiByNoiSinh = diachiByNoiSinh;
+    }
+
+    public Diachi getDiachiByHoKhauThuongChu() {
+        return diachiByHoKhauThuongChu;
+    }
+
+    public void setDiachiByHoKhauThuongChu(Diachi diachiByHoKhauThuongChu) {
+        this.diachiByHoKhauThuongChu = diachiByHoKhauThuongChu;
+    }
+
+    public Lopsv getLopsvByLop() {
+        return lopsvByLop;
+    }
+
+    public void setLopsvByLop(Lopsv lopsvByLop) {
+        this.lopsvByLop = lopsvByLop;
+    }
 
     public Integer getId() {
         return id;
@@ -61,11 +107,11 @@ public class Thongtinsinhvien {
         this.ngayVaoHoc = ngayVaoHoc;
     }
 
-    public Khoa getKhoaHoc() {
+    public Integer getKhoaHoc() {
         return khoaHoc;
     }
 
-    public void setKhoaHoc(Khoa khoaHoc) {
+    public void setKhoaHoc(Integer khoaHoc) {
         this.khoaHoc = khoaHoc;
     }
 
@@ -109,27 +155,27 @@ public class Thongtinsinhvien {
         this.danToc = danToc;
     }
 
-    public Diachi getNoiSinh() {
+    public Integer getNoiSinh() {
         return noiSinh;
     }
 
-    public void setNoiSinh(Diachi noiSinh) {
+    public void setNoiSinh(Integer noiSinh) {
         this.noiSinh = noiSinh;
     }
 
-    public Diachi getHoKhauThuongChu() {
+    public Integer getHoKhauThuongChu() {
         return hoKhauThuongChu;
     }
 
-    public void setHoKhauThuongChu(Diachi hoKhauThuongChu) {
+    public void setHoKhauThuongChu(Integer hoKhauThuongChu) {
         this.hoKhauThuongChu = hoKhauThuongChu;
     }
 
-    public Lopsv getLop() {
+    public Integer getLop() {
         return lop;
     }
 
-    public void setLop(Lopsv lop) {
+    public void setLop(Integer lop) {
         this.lop = lop;
     }
 

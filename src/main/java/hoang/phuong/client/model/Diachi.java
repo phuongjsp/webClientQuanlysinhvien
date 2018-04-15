@@ -83,12 +83,6 @@ public class Diachi {
 
     @Override
     public String toString() {
-        return "Diachi{" +
-                "id=" + id +
-                ", tinh='" + tinh + '\'' +
-                ", quanHuyen='" + quanHuyen + '\'' +
-                ", xaPhuong='" + xaPhuong + '\'' +
-                ", thonXom='" + thonXom + '\'' +
-                '}';
+        return getTinh() + " - " + getQuanHuyen() + " - " + getXaPhuong() + " - " + getThonXom();
     }
 }

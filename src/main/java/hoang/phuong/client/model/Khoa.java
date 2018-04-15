@@ -6,8 +6,8 @@ import org.codehaus.jackson.map.annotate.JsonSerialize;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name="khoa")
-@JsonSerialize(include=JsonSerialize.Inclusion.ALWAYS)
+@XmlRootElement(name = "khoa")
+@JsonSerialize(include = JsonSerialize.Inclusion.ALWAYS)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Khoa {
     @JsonProperty(value = "id")
@@ -73,6 +73,6 @@ public class Khoa {
                 ", maKhoa='" + maKhoa + '\'' +
                 ", namHoc='" + namHoc + '\'' +
                 ", ghiChu='" + ghiChu + '\'' +
-                 "}}";
+                "}}";
     }
 }

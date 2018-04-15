@@ -6,8 +6,12 @@ import java.util.List;
 
 public interface VanBangService {
     void saveVanBang(Vanbang vanbang);
+
     void deleteVanBang(String maVanBang);
+
     void updateVangBang(Vanbang vanbang);
+
     Vanbang getByMaVanBang(String maVanBang);
+
     List<Vanbang> lsitVB();
 }
