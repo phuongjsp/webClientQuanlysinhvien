@@ -14,5 +14,6 @@ public interface ThongTinSinhVienService {
 
     Thongtinsinhvien getByMaSv(String maSv);
 
+    Thongtinsinhvien getbyId(int id);
     List<Thongtinsinhvien> listOrderBy(List<Map<String, Object>> mapOrder, int min, int max);
 }

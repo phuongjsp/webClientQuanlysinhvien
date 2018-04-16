@@ -86,6 +86,11 @@ public class ThongTinSinhVienServiceImpl extends AbstractService<Thongtinsinhvie
     }
 
     @Override
+    public Thongtinsinhvien getbyId(int id) {
+        return getObject("thongtinthem/" + id);
+    }
+
+    @Override
     public List<Thongtinsinhvien> listOrderBy(List<Map<String, Object>> mapOrder, int min, int max) {
         return getListByListProperties("thongtinsinhvien/fliter/" + min + "/" + max, mapOrder);
     }

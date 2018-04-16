@@ -8,7 +8,15 @@ public class Thongtinthem {
     private int idSv;
     private String tenThongTin;
     private String thongTin;
+    private Thongtinsinhvien thongtinsinhvien;
 
+    public Thongtinsinhvien getThongtinsinhvien() {
+        return thongtinsinhvien;
+    }
+
+    public void setThongtinsinhvien(Thongtinsinhvien thongtinsinhvien) {
+        this.thongtinsinhvien = thongtinsinhvien;
+    }
 
     public int getId() {
         return id;
