@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="f" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+
 <%@ page language="java" pageEncoding="UTF-8" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <!DOCTYPE html>
@@ -30,19 +31,28 @@
 
 <%--${khoa.tenKhoa}--%>
 
-<a href="/thongtinthem//add">Them Khoa</a> <br>
+<a href="/khoa/add">Them Khoa</a> <br>
 
-<c:forEach items="${thongtinthem}" var="t">
+<c:forEach items="${khoa}" var="k">
     <ul>
-        <li>Giay to : ${t.tenThongTin} </li>
-        <li> Thong tin :
-            ${t.thongTin}
+        <li>Ma Khoa ${k.maKhoa} </li>
+        <li> Ten Khoa
+                ${k.tenKhoa}
         <li>
-        <li><a href="/thongtinthem/update/${t.thongtinsinhvien.maSv}-${t.id}">Update</a>
+        <li> Nam Hoc
+                ${k.namHoc}
         <li>
-        <li><a href="/thongtinthem/del/${t.thongtinsinhvien.maSv}-${t.id}">Delete</a>
+        <li> Ghi CHu
+                ${k.ghiChu}
         <li>
-
+        <li><a href="/khoa/update/${k.maKhoa}">Update</a>
+        <li>
+        <li><a href="/khoa/del/${k.maKhoa}">Delete</a>
+        <li>
+            <c:if test="${model == null }">
+        <li><a href="/khoa/maKhoa/${k.maKhoa}">Show Only</a>
+        <li>
+            </c:if>
     </ul>
 </c:forEach>
 <c:if test="${model == 'showOnly' }">

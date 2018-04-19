@@ -78,7 +78,7 @@ public abstract class AbstractService<T> {
         headers.setContentType(MediaType.APPLICATION_JSON);
 
 ////set your entity to send
-        HttpEntity entit = new HttpEntity(entity, headers);
+        HttpEntity<T> entit = new HttpEntity<>(entity, headers);
 
 // send it!
         restTemplate.exchange(uriServer + path, HttpMethod.POST, entit

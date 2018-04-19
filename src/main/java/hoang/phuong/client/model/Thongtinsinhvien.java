@@ -16,7 +16,7 @@ public class Thongtinsinhvien {
     private Date ngaySinh;
     private Integer nganhDk;
     private String anhThe;
-    private Byte gioiTinh;
+    private Integer gioiTinh;
     private String danToc;
     private Integer noiSinh;
     private Integer hoKhauThuongChu;
@@ -139,11 +139,11 @@ public class Thongtinsinhvien {
         this.anhThe = anhThe;
     }
 
-    public Byte getGioiTinh() {
+    public Integer getGioiTinh() {
         return gioiTinh;
     }
 
-    public void setGioiTinh(Byte gioiTinh) {
+    public void setGioiTinh(Integer gioiTinh) {
         this.gioiTinh = gioiTinh;
     }
 
