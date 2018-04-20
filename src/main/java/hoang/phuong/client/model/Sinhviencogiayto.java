@@ -16,6 +16,16 @@ public class Sinhviencogiayto {
     private int idSv;
     @JsonProperty(value = "idGiayTo")
     private int idGiayTo;
+    @JsonProperty(value = "thongtin")
+    private String thongtin;
+
+    public String getThongtin() {
+        return thongtin;
+    }
+
+    public void setThongtin(String thongtin) {
+        this.thongtin = thongtin;
+    }
 
     public int getId() {
         return id;
