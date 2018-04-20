@@ -11,14 +11,16 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-    <title>Form add Khoa</title>
+    <title>Form add Thong tin gia dinh</title>
 </head>
 <body>
-<f:form method="POST" modelAttribute="thongtinthem" name="thongtinthem">
+<f:form method="POST" modelAttribute="thongtingiadinh" name="thongtingiadinh">
     <f:hidden path="id"/>
     <f:hidden path="idSv"/>
-    giay to <f:input path="tenThongTin"/> <br>
-    thong tin <f:input path="thongTin"/> <br>
+    Quan He <f:input path="quanHe"/> <br>
+    Ten <f:input path="ten"/> <br>
+    sdt <f:input path="sdt"/> <br>
+    nghe Nghiep <f:input path="ngheNghiep"/> <br>
     <input type="submit" value="Save"/>
 </f:form>
 </body>

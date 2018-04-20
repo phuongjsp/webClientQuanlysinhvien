@@ -20,7 +20,7 @@ import java.util.Map;
 @RequestMapping(path = "thongtinsinhvien")
 public class ThongTinSinhVienController {
     @Autowired
-    private ThongTinSinhVienService ttsvService;
+    private ThongtingiadinhService thongtingiadinhService;
     @Autowired
     private DiaChiService diaChiService;
     @Autowired
@@ -31,7 +31,8 @@ public class ThongTinSinhVienController {
     private LopService lopService;
     @Autowired
     private ThongTinSinhVienService thongTinSinhVienService;
-
+    @Autowired
+    private ThongTinThemService thongTinThemService;
     @RequestMapping(path = {"/add"}, method = RequestMethod.GET)
     public String addKhoa(Model model) {
         Diachi diachi = new Diachi();
@@ -82,7 +83,42 @@ public class ThongTinSinhVienController {
         map.put("order", "desc");
         map.put("property", "id");
         listCall.add(map);
-        model.addAttribute("thongtinsinhvien", thongTinSinhVienService.listOrderBy(listCall, 0, 0));
+        List<Thongtinsinhvien> thongtinsinhvienList = new ArrayList<>();
+        thongtinsinhvienList = thongTinSinhVienService.listOrderBy(listCall, 0, 0);
+        model.addAttribute("listTTT", thongTinThemService.list());
+        model.addAttribute("thongtinsinhvien", thongtinsinhvienList);
+        return "thongtinsinhvien/index";
+    }
+
+    /*
+    *
+    {
+        "property": "ten",
+        "type": "eq",
+        "value": "nhu"
+    },
+    {
+        "property": "maSv",
+        "order": "desc"
+    }
+    * */
+    @RequestMapping(path = {"/maSv/{maSv}"}, method = RequestMethod.GET)
+    public String getOnly(Model model, @PathVariable("maSv") String maSv) {
+        List<Map<String, Object>> listCall = new ArrayList<>();
+        Map<String, Object> map = new HashMap<>();
+        map.put("order", "desc");
+        map.put("property", "id");
+        Map<String, Object> map2 = new HashMap<>();
+        map2.put("property", "maSv");
+        map2.put("type", "eq");
+        map2.put("value", maSv);
+        listCall.add(map);
+        List<Thongtinsinhvien> thongtinsinhvienList = new ArrayList<>();
+        thongtinsinhvienList = thongTinSinhVienService.listOrderBy(listCall, 0, 0);
+        model.addAttribute("listTTT", thongTinThemService.listByMaSv(maSv));
+        model.addAttribute("listTTGD", thongtingiadinhService.listByIdSv(thongTinSinhVienService.getByMaSv(maSv).getId()));
+        model.addAttribute("thongtinsinhvien", thongtinsinhvienList);
+        model.addAttribute("model", "only");
         return "thongtinsinhvien/index";
     }
 //    @RequestMapping(path = {"/del/{maVanBang}"}, method = RequestMethod.GET)

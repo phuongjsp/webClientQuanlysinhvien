@@ -20,45 +20,46 @@ public class KhoaController {
     @Autowired
     private KhoaService khoaService;
 
-    @RequestMapping(path = {"/add"}, method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    //, produces = "application/json;charset=UTF-8"
+    @RequestMapping(path = {"/add"}, method = RequestMethod.GET)
     public String addKhoa(Model model) {
         Khoa khoa = new Khoa();
         model.addAttribute("khoa", khoa);
         return "khoa/formAddKhoa";
     }
 
-    @RequestMapping(path = {"/add"}, method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    @RequestMapping(path = {"/add"}, method = RequestMethod.POST)
     public String addSuccess(Model model, @ModelAttribute("khoa") @Validated Khoa khoa) {
         System.out.println(khoa.getTenKhoa());
         khoaService.saveKhoa(khoa);
         return "redirect:/khoa/";
     }
 
-    @RequestMapping(path = {""}, method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    @RequestMapping(path = {""}, method = RequestMethod.GET)
     public String sayHello(Model model) {
         model.addAttribute("khoa", khoaService.getListKhoa());
         return "khoa/index";
     }
 
-    @RequestMapping(path = {"/del/{maKhoa}"}, method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    @RequestMapping(path = {"/del/{maKhoa}"}, method = RequestMethod.GET)
     public String del(Model model, @PathVariable("maKhoa") String maKhoa) {
         khoaService.deleteKhoa(khoaService.getKhoaByMaKhoa(maKhoa).getId());
         return "redirect:/khoa/";
     }
 
-    @RequestMapping(path = {"/update/{maKhoa}"}, method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    @RequestMapping(path = {"/update/{maKhoa}"}, method = RequestMethod.GET)
     public String update(Model model, @PathVariable("maKhoa") String maKhoa) {
         model.addAttribute("khoa", khoaService.getKhoaByMaKhoa(maKhoa));
         return "khoa/formAddKhoa";
     }
 
-    @RequestMapping(path = {"/update/{maKhoa}"}, method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    @RequestMapping(path = {"/update/{maKhoa}"}, method = RequestMethod.POST)
     public String updateSuccess(Model model, @ModelAttribute("maKhoa") @Validated Khoa khoa) {
         khoaService.update(khoa);
         return "redirect:/khoa/";
     }
 
-    @RequestMapping(path = {"/maKhoa/{maKhoa}"}, method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    @RequestMapping(path = {"/maKhoa/{maKhoa}"}, method = RequestMethod.GET)
     public String getKhoa(Model model, @PathVariable("maKhoa") String maKhoa) {
         List<Khoa> lst = new ArrayList<>();
         lst.add(khoaService.getKhoaByMaKhoa(maKhoa));

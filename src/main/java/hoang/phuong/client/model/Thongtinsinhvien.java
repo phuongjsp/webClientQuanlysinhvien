@@ -3,6 +3,8 @@ package hoang.phuong.client.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -26,6 +28,15 @@ public class Thongtinsinhvien {
     private Diachi diachiByNoiSinh;
     private Diachi diachiByHoKhauThuongChu;
     private Lopsv lopsvByLop;
+    private List<Thongtinthem> thongtinthemList = new ArrayList<>();
+
+    public List<Thongtinthem> getThongtinthemList() {
+        return thongtinthemList;
+    }
+
+    public void setThongtinthemList(List<Thongtinthem> thongtinthemList) {
+        this.thongtinthemList = thongtinthemList;
+    }
 
     public Khoa getKhoaByKhoaHoc() {
         return khoaByKhoaHoc;
