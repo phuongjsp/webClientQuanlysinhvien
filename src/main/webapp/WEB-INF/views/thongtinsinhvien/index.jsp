@@ -67,6 +67,7 @@
                 <li>nghe Nghie : ${listttgd.ngheNghiep}</li>
             </c:if>
         </c:forEach>
+        <li><a href="/SvCoVb/maSv-${t.maSv}">Van Bang</a></li>
         <li><a href="/thongtinsinhvien/update/${t.maSv}">Update</a></li>
 
         <li><a href="/thongtinsinhvien/del/${t.maSv}">Delete</a></li>
