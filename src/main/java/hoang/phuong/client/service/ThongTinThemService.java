@@ -5,11 +5,11 @@ import hoang.phuong.client.model.Thongtinthem;
 import java.util.List;
 
 public interface ThongTinThemService {
-    void saveTTT(Thongtinthem thongtinthem);
+    Thongtinthem saveTTT(Thongtinthem thongtinthem);
 
-    void updateTTT(Thongtinthem thongtinthem);
+    boolean updateTTT(Thongtinthem thongtinthem);
 
-    void deleteTTT(int id);
+    boolean deleteTTT(int id);
 
     Thongtinthem getbyId(int id);
 

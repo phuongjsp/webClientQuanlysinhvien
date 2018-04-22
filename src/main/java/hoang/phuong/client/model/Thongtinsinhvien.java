@@ -1,27 +1,42 @@
 package hoang.phuong.client.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.codehaus.jackson.annotate.JsonProperty;
 
-import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Thongtinsinhvien {
+    @JsonProperty(value = "id")
     private Integer id;
+    @JsonProperty(value = "maSv")
     private String maSv;
+    @JsonProperty(value = "ho")
     private String ho;
+    @JsonProperty(value = "ten")
     private String ten;
+    @JsonProperty(value = "ngayVaoHoc")
     private Date ngayVaoHoc;
+    @JsonProperty(value = "khoaHoc")
     private Integer khoaHoc;
+    @JsonProperty(value = "ngaySinh")
     private Date ngaySinh;
+    @JsonProperty(value = "nganhDk")
     private Integer nganhDk;
+    @JsonProperty(value = "anhThe")
     private String anhThe;
+    @JsonProperty(value = "gioiTinh")
     private Integer gioiTinh;
+    @JsonProperty(value = "ngaySinh")
     private String danToc;
+    @JsonProperty(value = "noiSinh")
     private Integer noiSinh;
+    @JsonProperty(value = "hoKhauThuongChu")
     private Integer hoKhauThuongChu;
+    @JsonProperty(value = "lop")
     private Integer lop;
     private Khoa khoaByKhoaHoc;
     private Nganhdaotao nganhdaotaoByNganhDk;

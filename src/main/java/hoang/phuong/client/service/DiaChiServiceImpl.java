@@ -17,13 +17,13 @@ public class DiaChiServiceImpl extends AbstractService<Diachi> implements DiaChi
     }
 
     @Override
-    public void updateDiaChi(Diachi diachi) {
-        update("diachi/" + diachi.getId(), diachi);
+    public boolean updateDiaChi(Diachi diachi) {
+        return update("diachi/" + diachi.getId(), diachi);
     }
 
     @Override
-    public void deleteDiaChi(int id) {
-        delete("diachi/" + id);
+    public boolean deleteDiaChi(int id) {
+        return delete("diachi/" + id);
     }
 
     @Override

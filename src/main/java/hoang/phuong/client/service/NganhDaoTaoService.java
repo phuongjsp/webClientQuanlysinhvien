@@ -5,11 +5,11 @@ import hoang.phuong.client.model.Nganhdaotao;
 import java.util.List;
 
 public interface NganhDaoTaoService {
-    void saveNganh(Nganhdaotao nganhdaotao);
+    Nganhdaotao saveNganh(Nganhdaotao nganhdaotao);
 
-    void updateNganh(Nganhdaotao nganhdaotao);
+    boolean updateNganh(Nganhdaotao nganhdaotao);
 
-    void deleteNganh(String maNganh);
+    boolean deleteNganh(String maNganh);
 
     Nganhdaotao getByMaNganh(String maNganh);
 

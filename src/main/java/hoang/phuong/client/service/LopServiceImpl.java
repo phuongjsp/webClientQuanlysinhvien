@@ -10,19 +10,24 @@ import java.util.List;
 @Transactional(readOnly = true)
 public class LopServiceImpl extends AbstractService<Lopsv> implements LopService {
     @Override
-    public void saveLop(Lopsv lopsv) {
+    public Lopsv saveLop(Lopsv lopsv) {
         lopsv.setId(null);
-        save("lopsv", lopsv);
+        return saveAndReturnId("lopsv", lopsv);
     }
 
     @Override
-    public void deleteLop(String maLop) {
-        delete("lopsv/maLop-" + maLop);
+    public Lopsv getbyId(int id) {
+        return getObject("lopsv/" + id);
     }
 
     @Override
-    public void updateLop(Lopsv lopsv) {
-        update("lopsv/maLop-" + lopsv.getMaLop(), lopsv);
+    public boolean deleteLop(String maLop) {
+        return delete("lopsv/maLop-" + maLop);
+    }
+
+    @Override
+    public boolean updateLop(Lopsv lopsv) {
+        return update("lopsv/maLop-" + lopsv.getMaLop(), lopsv);
     }
 
 

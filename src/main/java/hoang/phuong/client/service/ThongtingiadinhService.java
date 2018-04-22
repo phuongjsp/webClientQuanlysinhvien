@@ -5,11 +5,11 @@ import hoang.phuong.client.model.Thongtingiadinh;
 import java.util.List;
 
 public interface ThongtingiadinhService {
-    void saveTTGD(Thongtingiadinh thongtingiadinh);
+    Thongtingiadinh saveTTGD(Thongtingiadinh thongtingiadinh);
 
-    void updateTTGD(Thongtingiadinh thongtingiadinh);
+    boolean updateTTGD(Thongtingiadinh thongtingiadinh);
 
-    void deleteTTGD(int id);
+    boolean deleteTTGD(int id);
 
     List<Thongtingiadinh> listByIdSv(int idSv);
 

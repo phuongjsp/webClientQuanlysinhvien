@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="f" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page language="java" pageEncoding="UTF-8" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <!DOCTYPE html>
@@ -32,8 +33,6 @@
     </style>
 </head>
 <body>
-
-
 <%--${khoa.tenKhoa}--%>
 
 <a href="/thongtinsinhvien/add">Them Khoa</a> <br>
@@ -44,9 +43,11 @@
         <li>Ho : ${t.ho}</li>
         <li>Ten : ${t.ten}</li>
         <li><img id="andthe" src="${t.anhThe}" alt="${t.maSv}"></li>
-        <li>Gioi tinh : ${t.gioiTinh==0 ?'nam':'nu'}</li>
+        <li>Gioi tinh : ${t.gioiTinh==1?'nam':'nu'}</li>
         <li>Dan toc : ${t.danToc}</li>
-        <li>Ngay Sinh : ${t.ngaySinh}</li>
+        <li>Ngay Sinh :
+            <fmt:formatDate value="${t.ngaySinh}" pattern="dd - MM - yyyy"/>
+        </li>
         <li>noi sinh : ${t.diachiByNoiSinh.tinh} -${t.diachiByNoiSinh.quanHuyen}
             -${t.diachiByNoiSinh.xaPhuong}-${t.diachiByNoiSinh.thonXom}</li>
         <li>Ho Khau thuong chu : ${t.diachiByHoKhauThuongChu.tinh} -${t.diachiByHoKhauThuongChu.quanHuyen}
@@ -71,6 +72,7 @@
         <li><a href="/thongtinsinhvien/update/${t.maSv}">Update</a></li>
 
         <li><a href="/thongtinsinhvien/del/${t.maSv}">Delete</a></li>
+        <li><a href="/sinhviencogiayto/maSv-${t.maSv}">Thong tin giay to</a></li>
         <li><a href="/thongtinthem/add/${t.maSv}">Them thong tin</a></li>
 
     </ul>

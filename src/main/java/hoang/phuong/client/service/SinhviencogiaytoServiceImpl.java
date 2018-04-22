@@ -21,23 +21,12 @@ public class SinhviencogiaytoServiceImpl extends AbstractService<Sinhviencogiayt
 
     @Override
     public boolean update(Sinhviencogiayto sinhviencogiayto) {
-        try {
-            update("sinhviencogiayto", sinhviencogiayto);
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
+        return update("sinhviencogiayto", sinhviencogiayto);
     }
 
     @Override
     public boolean delete(int id) {
-        try {
-            delete("sinhviencogiayto/" + id);
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
-
+        return delete("sinhviencogiayto/" + id);
     }
 
     @Override

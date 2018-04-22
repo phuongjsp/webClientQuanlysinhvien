@@ -7,9 +7,9 @@ import java.util.List;
 public interface DiaChiService {
     Diachi saveDiaChi(Diachi diachi);
 
-    void updateDiaChi(Diachi diachi);
+    boolean updateDiaChi(Diachi diachi);
 
-    void deleteDiaChi(int id);
+    boolean deleteDiaChi(int id);
 
     Diachi getByIdDiaChi(int id);
 

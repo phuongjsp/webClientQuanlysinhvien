@@ -22,18 +22,18 @@ public class KhoaServiceImpl extends AbstractService<Khoa> implements KhoaServic
     }
 
     @Override
-    public boolean saveKhoa(Khoa khoa) {
+    public Khoa saveKhoa(Khoa khoa) {
         khoa.setId(null);
-        return save("khoa", khoa);
+        return saveAndReturnId("khoa", khoa);
     }
 
     @Override
-    public void deleteKhoa(int id) {
-        delete("khoa/" + id);
+    public boolean deleteKhoa(int id) {
+        return delete("khoa/" + id);
     }
 
     @Override
-    public void update(Khoa khoa) {
-        update("khoa/" + khoa.getId(), khoa);
+    public boolean update(Khoa khoa) {
+        return update("khoa/" + khoa.getId(), khoa);
     }
 }

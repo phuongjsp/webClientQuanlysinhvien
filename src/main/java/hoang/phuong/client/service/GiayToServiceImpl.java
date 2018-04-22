@@ -16,22 +16,12 @@ public class GiayToServiceImpl extends AbstractService<Giayto> implements GiayTo
 
     @Override
     public boolean updateGiayto(Giayto giayto) {
-        try {
-            update("giayto", giayto);
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
+        return update("giayto", giayto);
     }
 
     @Override
     public boolean deleteGiayto(int id) {
-        try {
-            delete("giayto/" + id);
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
+        return delete("giayto/" + id);
     }
 
     @Override

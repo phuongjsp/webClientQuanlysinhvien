@@ -6,11 +6,13 @@ import java.util.List;
 import java.util.Map;
 
 public interface ThongTinSinhVienService {
-    void saveTT(Map<String, String> map);
+    Thongtinsinhvien saveTT(Map<String, String> map);
 
-    void updateTT(Map<String, String> map);
+    Thongtinsinhvien saveTTSV(Thongtinsinhvien thongtinsinhvien);
 
-    void deleteByMaSv(String maSv);
+    boolean updateTT(Map<String, String> map);
+
+    boolean deleteByMaSv(String maSv);
 
     Thongtinsinhvien getByMaSv(String maSv);
 

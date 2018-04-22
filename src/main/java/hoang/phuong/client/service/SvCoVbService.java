@@ -5,11 +5,11 @@ import hoang.phuong.client.model.Svcovb;
 import java.util.List;
 
 public interface SvCoVbService {
-    void saveSvCoVb(Svcovb svcovb);
+    Svcovb saveSvCoVb(Svcovb svcovb);
 
-    void deleteSvCoVb(int id);
+    boolean deleteSvCoVb(int id);
 
-    void updateSvCoVb(Svcovb svcovb);
+    boolean updateSvCoVb(Svcovb svcovb);
 
     Svcovb getById(int id);
 

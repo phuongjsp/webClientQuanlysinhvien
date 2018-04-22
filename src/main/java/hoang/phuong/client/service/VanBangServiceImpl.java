@@ -10,18 +10,18 @@ import java.util.List;
 @Transactional(readOnly = true)
 public class VanBangServiceImpl extends AbstractService<Vanbang> implements VanBangService {
     @Override
-    public void saveVanBang(Vanbang vanbang) {
-        save("vanbang", vanbang);
+    public Vanbang saveVanBang(Vanbang vanbang) {
+        return saveAndReturnId("vanbang", vanbang);
     }
 
     @Override
-    public void deleteVanBang(String maVanBang) {
-        delete("vanbang/maVB-" + maVanBang);
+    public boolean deleteVanBang(String maVanBang) {
+        return delete("vanbang/maVB-" + maVanBang);
     }
 
     @Override
-    public void updateVangBang(Vanbang vanbang) {
-        update("vanbang/update", vanbang);
+    public boolean updateVangBang(Vanbang vanbang) {
+        return update("vanbang/update", vanbang);
     }
 
     @Override

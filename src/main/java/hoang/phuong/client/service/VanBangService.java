@@ -5,11 +5,11 @@ import hoang.phuong.client.model.Vanbang;
 import java.util.List;
 
 public interface VanBangService {
-    void saveVanBang(Vanbang vanbang);
+    Vanbang saveVanBang(Vanbang vanbang);
 
-    void deleteVanBang(String maVanBang);
+    boolean deleteVanBang(String maVanBang);
 
-    void updateVangBang(Vanbang vanbang);
+    boolean updateVangBang(Vanbang vanbang);
 
     Vanbang getByMaVanBang(String maVanBang);
 

@@ -10,18 +10,18 @@ import java.util.List;
 @Transactional(readOnly = true)
 public class NganhDaoTaoServiceImpl extends AbstractService<Nganhdaotao> implements NganhDaoTaoService {
     @Override
-    public void saveNganh(Nganhdaotao nganhdaotao) {
-        save("nganhdaotao", nganhdaotao);
+    public Nganhdaotao saveNganh(Nganhdaotao nganhdaotao) {
+        return saveAndReturnId("nganhdaotao", nganhdaotao);
     }
 
     @Override
-    public void updateNganh(Nganhdaotao nganhdaotao) {
-        update("nganhdaotao/id-" + nganhdaotao.getId(), nganhdaotao);
+    public boolean updateNganh(Nganhdaotao nganhdaotao) {
+        return update("nganhdaotao/id-" + nganhdaotao.getId(), nganhdaotao);
     }
 
     @Override
-    public void deleteNganh(String maNganh) {
-        delete("nganhdaotao/maNganh-" + maNganh);
+    public boolean deleteNganh(String maNganh) {
+        return delete("nganhdaotao/maNganh-" + maNganh);
     }
 
     @Override

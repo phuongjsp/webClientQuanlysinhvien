@@ -11,18 +11,18 @@ import java.util.List;
 @Transactional(readOnly = true)
 public class SvCoVbServiceImpl extends AbstractService<Svcovb> implements SvCoVbService {
     @Override
-    public void saveSvCoVb(Svcovb svcovb) {
-        save("svcovb", svcovb);
+    public Svcovb saveSvCoVb(Svcovb svcovb) {
+        return saveAndReturnId("svcovb", svcovb);
     }
 
     @Override
-    public void deleteSvCoVb(int id) {
-        delete("svcovb/" + id);
+    public boolean deleteSvCoVb(int id) {
+        return delete("svcovb/" + id);
     }
 
     @Override
-    public void updateSvCoVb(Svcovb svcovb) {
-        update("svcovb/" + svcovb.getId(), svcovb);
+    public boolean updateSvCoVb(Svcovb svcovb) {
+        return update("svcovb/" + svcovb.getId(), svcovb);
     }
 
     @Override

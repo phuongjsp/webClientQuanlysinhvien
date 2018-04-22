@@ -1,12 +1,6 @@
 package hoang.phuong.client.service;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
+import com.google.gson.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.lang.reflect.ParameterizedType;
@@ -25,85 +19,81 @@ public abstract class AbstractService<T> {
 
     public AbstractService() {
 
-//        List<HttpMessageConverter<?>> messageConverter = new ArrayList<HttpMessageConverter<?>>();
-//        messageConverter.add(new FormHttpMessageConverter());
-//        messageConverter.add(new StringHttpMessageConverter());
-//        this.restTemplate.setMessageConverters(messageConverter);
         this.persistentClass = (Class<T>) ((ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments()[0];
         ;
     }
 
 
-    T getObject(String path) {
+    protected T getObject(String path) {
 
         return gson.fromJson(restTemplate.getForObject(uriServer + path, String.class), persistentClass);
     }
 
-    List<T> getListEntity(String path) {
-        Type listType = new TypeToken<ArrayList<T>>() {
-        }.getType();
-        return gson.fromJson(restTemplate.getForObject(uriServer + path, String.class), listType);
+    protected List<T> getListEntity(String path) {
+        String jsonString = restTemplate.getForObject(uriServer + path, String.class);
+        return listTByJsonString(jsonString);
     }
 
-    List<T> getListByProperties(String path, Map<String, String> map) {
-        Type listType = new TypeToken<ArrayList<T>>() {
-        }.getType();
-        return gson.fromJson(restTemplate.postForObject(uriServer + path, map, String.class), listType);
-
-    }
-
-    List<T> getListByListProperties(String path, List<Map<String, Object>> map) {
-        Type listType = new TypeToken<ArrayList<T>>() {
-        }.getType();
-        return gson.fromJson(restTemplate.postForObject(uriServer + path, map, String.class), listType);
+    protected List<T> getListByProperties(String path, Map<String, String> map) {
+        String jsonString = restTemplate.postForObject(uriServer + path, map, String.class);
+        return listTByJsonString(jsonString);
 
     }
 
-    boolean saveByMap(String path, Map<String, Object> map) {
-//        HttpHeaders headers = new HttpHeaders();
-//        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
-//
-//
-//        HttpEntity<Map<String, String>> request = new HttpEntity<Map<String, String>>(map, headers);
-//
-//        restTemplate.postForEntity(uriServer+path, request , String.class );
-        restTemplate.postForObject(uriServer + path, map, String.class);
-        return true;
+    private List<T> listTByJsonString(String jsonString) {
+        List<T> list = new ArrayList<T>();
+        try {
+            Gson gson = new Gson();
+            JsonArray arry = new JsonParser().parse(jsonString).getAsJsonArray();
+            for (JsonElement jsonElement : arry) {
+                list.add(gson.fromJson(jsonElement, (Type) persistentClass));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
     }
 
-    boolean save(String path, T entity) {
-
-//set your headers
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-
-////set your entity to send
-        HttpEntity<T> entit = new HttpEntity<>(entity, headers);
-
-// send it!
-        restTemplate.exchange(uriServer + path, HttpMethod.POST, entit
-                , persistentClass);
-//        ResponseEntity<?>  res = restTemplate.postForEntity(uriServer + path, gson.fromJson(gson.toJson(entity),persistentClass), persistentClass);
-//        System.out.println("res is :"+res);
-//        Type listType = new TypeToken<Boolean>() {
-//        }.getType();
-//        return gson.fromJson(String.valueOf(restTemplate.postForEntity(uriServer+path,entity,persistentClass)), listType);
-        return true;
+    protected List<T> getListByListProperties(String path, List<Map<String, Object>> map) {
+        String jsonString = restTemplate.postForObject(uriServer + path, map, String.class);
+        return listTByJsonString(jsonString);
     }
 
-    T saveAndReturnId(String path, T entity) {
-        return gson.fromJson(restTemplate.postForObject(uriServer + path, entity, String.class), persistentClass);
+    protected T saveByMap(String path, Map<String, Object> map) {
+        String result = restTemplate.postForObject(uriServer + path, map, String.class);
+        return gson.fromJson(result, persistentClass);
     }
 
-    void delete(String path) {
-        restTemplate.delete(uriServer + path);
+
+    protected T saveAndReturnId(String path, T entity) {
+        T t = restTemplate.postForObject(uriServer + path, entity, persistentClass);
+        return t;
     }
 
-    void update(String path, T entity) {
-        restTemplate.put(uriServer + path, entity);
+    protected boolean delete(String path) {
+        try {
+            restTemplate.delete(uriServer + path);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
-    void updateByMap(String path, Map<String, Object> map) {
-        restTemplate.put(uriServer + path, map);
+    protected boolean update(String path, T entity) {
+        try {
+            restTemplate.put(uriServer + path, entity);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    boolean updateByMap(String path, Map<String, Object> map) {
+        try {
+            restTemplate.put(uriServer + path, map);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 }

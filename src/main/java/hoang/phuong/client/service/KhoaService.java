@@ -9,9 +9,9 @@ public interface KhoaService {
 
     List<Khoa> getListKhoa();
 
-    boolean saveKhoa(Khoa khoa);
+    Khoa saveKhoa(Khoa khoa);
 
-    void deleteKhoa(int id);
+    boolean deleteKhoa(int id);
 
-    void update(Khoa khoa);
+    boolean update(Khoa khoa);
 }

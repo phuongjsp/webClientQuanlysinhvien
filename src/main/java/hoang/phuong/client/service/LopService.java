@@ -5,11 +5,13 @@ import hoang.phuong.client.model.Lopsv;
 import java.util.List;
 
 public interface LopService {
-    void saveLop(Lopsv lopsv);
+    Lopsv saveLop(Lopsv lopsv);
 
-    void deleteLop(String maLop);
+    Lopsv getbyId(int id);
 
-    void updateLop(Lopsv lopsv);
+    boolean deleteLop(String maLop);
+
+    boolean updateLop(Lopsv lopsv);
 
     Lopsv getByMaLop(String maLop);
 

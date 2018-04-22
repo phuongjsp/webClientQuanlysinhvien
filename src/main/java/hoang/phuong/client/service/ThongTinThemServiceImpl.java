@@ -10,18 +10,18 @@ import java.util.List;
 @Transactional(readOnly = true)
 public class ThongTinThemServiceImpl extends AbstractService<Thongtinthem> implements ThongTinThemService {
     @Override
-    public void saveTTT(Thongtinthem thongtinthem) {
-        save("thongtinthem", thongtinthem);
+    public Thongtinthem saveTTT(Thongtinthem thongtinthem) {
+        return saveAndReturnId("thongtinthem", thongtinthem);
     }
 
     @Override
-    public void updateTTT(Thongtinthem thongtinthem) {
-        update("/thongtinthem/" + thongtinthem.getId(), thongtinthem);
+    public boolean updateTTT(Thongtinthem thongtinthem) {
+        return update("/thongtinthem/" + thongtinthem.getId(), thongtinthem);
     }
 
     @Override
-    public void deleteTTT(int id) {
-        delete("/thongtinthem/" + id);
+    public boolean deleteTTT(int id) {
+        return delete("/thongtinthem/" + id);
     }
 
     @Override
