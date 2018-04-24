@@ -15,6 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
     <style>
+
         body {
             font-family: Arial, Helvetica, sans-serif;
         }
@@ -62,21 +63,66 @@
 </head>
 <body>
 
-
+<jsp:include page="../HEADER.jsp"/>
+<div class="btn bg-light text-md-center ">
+    <a class="mr-sm-5" href="javascript:history.back()">Quay Lại</a>
+</div>
 <!-- The Modal -->
 <div id="noisinhModal" class="modal">
 
     <!-- Modal content -->
     <div class="modal-content">
         <form action="/diachi/addAjax" id="diachinoisinh">
-            <ul>
-                <li>tinh <input type="text" id="tinhns" value="${thongtinsinhvien.diachiByNoiSinh.tinh}"/></li>
-                <li> quan Huyen <input type="text" id="quanHuyenns" value="${thongtinsinhvien.diachiByNoiSinh.quanHuyen}"/></li>
-                <li> xa Phuong <input type="text" id="xaPhuongns" value="${thongtinsinhvien.diachiByNoiSinh.xaPhuong}"/></li>
-                <li> thon xom <input type="text" id="thonXomns" value="${thongtinsinhvien.diachiByNoiSinh.thonXom}"/></li>
-                <li><input type="submit" value="save"></li>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <div class="input-group input-group-sm mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Tỉnh</span>
+                        </div>
+                        <input id="tinhns" value="${thongtinsinhvien.diachiByNoiSinh.tinh}"
+                               type="text" class="form-control" aria-label="Small"
+                               aria-describedby="inputGroup-sizing-sm">
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="input-group input-group-sm mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Quận Huyện</span>
+                        </div>
+                        <input id="quanHuyenns"
+                               value="${thongtinsinhvien.diachiByNoiSinh.quanHuyen}"
+                               type="text" class="form-control" aria-label="Small"
+                               aria-describedby="inputGroup-sizing-sm">
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="input-group input-group-sm mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Xã Phường</span>
+                        </div>
+                        <input id="xaPhuongns" value="${thongtinsinhvien.diachiByNoiSinh.xaPhuong}"
+                               type="text" class="form-control" aria-label="Small"
+                               aria-describedby="inputGroup-sizing-sm">
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="input-group input-group-sm mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Thôn Xóm</span>
+                        </div>
+                        <input id="thonXomns" value="${thongtinsinhvien.diachiByNoiSinh.thonXom}"
+                               type="text" class="form-control" aria-label="Small"
+                               aria-describedby="inputGroup-sizing-sm">
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <input class="list-group-item-action active text-center" type="submit" value="Lưu"/>
+                </li>
             </ul>
         </form>
+        <ul class="list-group list-group-item-action active">
+            <button class="list-group-item-action active text-center" id="noisinhBtnClose">Hủy</button>
+        </ul>
     </div>
 
 </div>
@@ -88,21 +134,76 @@
     <!-- Modal content -->
     <div class="modal-content">
         <form action="/diachi/addAjax" id="diachihktc">
-            <ul>
-                <li>tinh <input type="text" id="tinhhk" value="${thongtinsinhvien.diachiByHoKhauThuongChu.tinh}"/></li>
-                <li> quan Huyen <input type="text" id="quanHuyenhk" value="${thongtinsinhvien.diachiByHoKhauThuongChu.quanHuyen}"/></li>
-                <li> xa Phuong <input type="text" id="xaPhuonghk" value="${thongtinsinhvien.diachiByHoKhauThuongChu.xaPhuong}"/></li>
-                <li> thon xom <input type="text" id="thonXomhk" value="${thongtinsinhvien.diachiByHoKhauThuongChu.thonXom}"/></li>
-                <li><input type="submit" value="save"></li>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <div class="input-group input-group-sm mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Tỉnh</span>
+                        </div>
+                        <input id="tinhhk" value="${thongtinsinhvien.diachiByHoKhauThuongChu.tinh}"
+                               type="text" class="form-control" aria-label="Small"
+                               aria-describedby="inputGroup-sizing-sm">
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="input-group input-group-sm mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Quận Huyện</span>
+                        </div>
+                        <input id="quanHuyenhk"
+                               value="${thongtinsinhvien.diachiByHoKhauThuongChu.quanHuyen}"
+                               type="text" class="form-control" aria-label="Small"
+                               aria-describedby="inputGroup-sizing-sm">
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="input-group input-group-sm mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Xã Phường</span>
+                        </div>
+                        <input id="xaPhuonghk" value="${thongtinsinhvien.diachiByHoKhauThuongChu.xaPhuong}"
+                               type="text" class="form-control" aria-label="Small"
+                               aria-describedby="inputGroup-sizing-sm">
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="input-group input-group-sm mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Thôn Xóm</span>
+                        </div>
+                        <input id="thonXomhk" value="${thongtinsinhvien.diachiByHoKhauThuongChu.thonXom}"
+                               type="text" class="form-control" aria-label="Small"
+                               aria-describedby="inputGroup-sizing-sm">
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <input class="list-group-item-action active text-center" type="submit" value="Lưu"/>
+                </li>
             </ul>
         </form>
+        <ul class="list-group">
+            <button class="list-group-item-action active text-center" id="hktcBtnClose">Huy</button>
+        </ul>
     </div>
 
 </div>
 
 <script>
+
     $(document).ready(function () {
 
+        $('#hktcBtn').click(function () {
+            $('#hktcModal').modal('show');
+        });
+        $('#hktcBtnClose').click(function () {
+            $('#hktcModal').modal('hide');
+        });
+        $('#noisinhBtn').click(function () {
+            $('#noisinhModal').modal('show');
+        });
+        $('#noisinhBtnClose').click(function () {
+            $('#noisinhModal').modal('hide');
+        });
         $('#diachinoisinh').submit(function (event) {
 
             var tinh = $('#tinhns').val();
@@ -124,17 +225,15 @@
                     var respContent = "";
                     respContent = diachi.tinh + " | " + diachi.quanHuyen + " | " + diachi.xaPhuong + " | " + diachi.thonXom;
                     $("#noisinhchitiet").html(respContent);
-                    var modal = document.getElementById('noisinhModal');
-                    modal.style.display = "none";
-                    var btn = document.getElementById("noisinhBtn");
+                    $('#noisinhModal').modal('hide');
                     var ns = document.getElementById("noiSinh");
-                    btn.disabled = true;
                     ns.value = diachi.id;
                 }
             });
 
             event.preventDefault();
         });
+
         $('#diachihktc').submit(function (event) {
 
             var tinh = $('#tinhhk').val();
@@ -156,11 +255,8 @@
                     var respContent = "";
                     respContent = diachi.tinh + " | " + diachi.quanHuyen + " | " + diachi.xaPhuong + " | " + diachi.thonXom;
                     $("#hktcchitiet").html(respContent);
-                    var modal = document.getElementById('hktcModal');
-                    modal.style.display = "none";
-                    var btn = document.getElementById("hktcBtn");
+                    $('#hktcModal').modal('hide');
                     var hk = document.getElementById("hoKhauThuongChu");
-                    btn.disabled = true;
                     hk.value = diachi.id;
                 }
             });
@@ -169,96 +265,163 @@
         });
 
     });
-    // Get the modal
-    var modalnoisinh = document.getElementById('noisinhModal');
-    var hktcModal = document.getElementById('hktcModal');
 
-    // When the user clicks the button, open the modal
-    function btnNoiSinhClick() {
-        modalnoisinh.style.display = "block";
-    }
-
-    function btnHoKhauClick() {
-        hktcModal.style.display = "block";
-    }
-
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function (event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
 </script>
+<div class="container row">
+    <div class="col-sm-12 ">
+        <form method="POST" name="thongtinsinhvien">
+            <ul class="list-group">
+                <input type="hidden" name="id" value="${thongtinsinhvien.id}"/>
+                <li class="list-group-item">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Mã Sinh Viên</span>
+                        </div>
+                        <input name="maSv" value="${thongtinsinhvien.maSv}"
+                               type="text" class="form-control" aria-label="Default"
+                               aria-describedby="inputGroup-sizing-default"/>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Họ</span>
+                        </div>
+                        <input name="ho" value="${thongtinsinhvien.ho}"
+                               type="text" class="form-control" aria-label="Default"
+                               aria-describedby="inputGroup-sizing-default"/>
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Tên</span>
+                        </div>
+                        <input name="ten" value="${thongtinsinhvien.ten}"
+                               type="text" class="form-control" aria-label="Default"
+                               aria-describedby="inputGroup-sizing-default"/>
+                    </div>
 
-<form method="POST"   name="thongtinsinhvien">
-    <ul><input type="hidden"  name="id" value="${thongtinsinhvien.id}"/>
-        <li> ma Sinh vien<input type="text" name="maSv" value="${thongtinsinhvien.maSv}"/></li>
-        <li> ho <input type="text" name="ho" value="${thongtinsinhvien.ho}"/>
-            Ten <input type="text" name="ten" value="${thongtinsinhvien.ten}"/></li>
-        <li>Anh The : <input type="text" name="anhThe" value="${thongtinsinhvien.anhThe}"/></li>
+                </li>
+                <li class="list-group-item">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Ảnh thẻ</span>
+                        </div>
+                        <input name="anhThe" value="${thongtinsinhvien.anhThe}"
+                               type="url" class="form-control" aria-label="Default"
+                               aria-describedby="inputGroup-sizing-default"/>
+                    </div>
+                </li>
 
-        <li> Ngay sinh <input type="date" name="ngaySinh" value="${thongtinsinhvien.ngaySinh}"/></li>
-        <li> Gioi tinh <select name="gioiTinh"  >
-            <c:if test="${thongtinsinhvien.gioiTinh==1}">
-                <option value="1" selected>nu</option>
-                <option value="0">nam</option>
-            </c:if>
-            <c:if test="${thongtinsinhvien.gioiTinh==0}">
-                <option value="1" >nu</option>
-                <option value="0" selected>nam</option>
-            </c:if>
-            <c:if test="${thongtinsinhvien.gioiTinh==null}">
-                <option value="1" >nu</option>
-                <option value="0" selected>nam</option>
-            </c:if>
-        </select></li>
-        <li><input type="button" id="noisinhBtn" onclick="btnNoiSinhClick()" value="Noi Sinh"/>
+                <li class="list-group-item">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Ngày Sinh</span>
+                        </div>
+                        <input name="ngaySinh" value="${thongtinsinhvien.ngaySinh}"
+                               type="date" class="form-control" aria-label="Default"
+                               aria-describedby="inputGroup-sizing-default"/>
+                    </div>
+                <li class="list-group-item mb-3">
+                    <div class="input-group-prepend">
+                        <label class="mr-sm-2 input-group-text" for="inlineFormgioitinh">Giới tính</label>
+                        <select name="gioiTinh" class="custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormgioitinh">
+                            <c:if test="${thongtinsinhvien.gioiTinh==1}">
+                                <option value="1" selected>nu</option>
+                                <option value="0">nam</option>
+                            </c:if>
+                            <c:if test="${thongtinsinhvien.gioiTinh==0}">
+                                <option value="1">nu</option>
+                                <option value="0" selected>nam</option>
+                            </c:if>
+                            <c:if test="${thongtinsinhvien.gioiTinh==null}">
+                                <option value="1">nu</option>
+                                <option value="0" selected>nam</option>
+                            </c:if>
+                        </select>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="input-group-prepend">
+                        <input type="button" class="btn btn-primary" id="noisinhBtn" value="Noi Sinh"/>
+                        <input type="hidden" name="noiSinh" id="noiSinh" value=""/>
+                        <span class="input-group-text" id="noisinhchitiet"> ${thongtinsinhvien.diachiByNoiSinh}</span>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Dân Tộc</span>
+                        </div>
+                        <input name="maSv" name="danToc" value="${thongtinsinhvien.danToc}"
+                               type="text" class="form-control" aria-label="Default"
+                               aria-describedby="inputGroup-sizing-default"/>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="input-group-prepend">
+                        <input type="button" class="btn btn-primary" id="hktcBtn" value="Ho Khau thuong chu"/>
+                        <input type="hidden" name="hoKhauThuongChu" value="" id="hoKhauThuongChu"/>
+                        <span class="input-group-text"
+                              id="hktcchitiet">${thongtinsinhvien.diachiByHoKhauThuongChu}</span>
+                    </div>
+                </li>
+                <li class="list-group-item">
 
-            <span id="noisinhchitiet"> ${thongtinsinhvien.diachiByNoiSinh}</span>
-        </li>
-        <li><input type="text" name="danToc" value="${thongtinsinhvien.danToc}"/>
-            <input  type="hidden" name="noiSinh" id="noiSinh" value=""/>
-            <input type="hidden"  name="hoKhauThuongChu" value="" id="hoKhauThuongChu" />
-        </li>
+                    <label class="mr-sm-2" for="inlineFormNDT">Ngành Đào Tạo</label>
+                    <select class="custom-select mb-2 mr-sm-2 mb-sm-0" name="nganhDk" id="inlineFormNDT">
+                        <c:forEach items="${nganhdaotao}" var="ndt">
+                            <c:if test="${thongtinsinhvien.nganhDk == ndt.id}">
+                                <option value="${ndt.id}" selected>${ndt.tenNganh} - ${ndt.maNganh}</option>
+                            </c:if>
+                            <c:if test="${thongtinsinhvien.nganhDk != ndt.id}">
+                                <option value="${ndt.id}">${ndt.tenNganh} - ${ndt.maNganh}</option>
+                            </c:if>
+                        </c:forEach>
 
-        <li>
-            <input type="button" id="hktcBtn" onclick="btnHoKhauClick()" value="Ho Khau thuong chu"/>
+                    </select>
+                </li>
+                <li class="list-group-item">
 
-            <span id="hktcchitiet">${thongtinsinhvien.diachiByHoKhauThuongChu}</span>
-        </li>
-        <li> Nganh dao tao <select name="nganhDk" >
-            <c:forEach items="${nganhdaotao}" var="ndt">
-                <c:if test="${thongtinsinhvien.nganhDk == ndt.id}">
-                    <option value="${ndt.id}" selected>${ndt.tenNganh} - ${ndt.maNganh}</option>
-                </c:if>
-                <c:if test="${thongtinsinhvien.nganhDk != ndt.id}">
-                    <option value="${ndt.id}" >${ndt.tenNganh} - ${ndt.maNganh}</option>
-                </c:if>
-            </c:forEach>
-        </select></li>
-        <li> Khoa <select  name="khoaHoc" >
-            <c:forEach items="${khoahoc}" var="k">
-                <c:if test="${thongtinsinhvien.khoaHoc==k.id}">
-                    <option  value="${k.id}" selected>${k.tenKhoa} - ${k.maKhoa}</option>
-                </c:if>
-                <c:if test="${thongtinsinhvien.khoaHoc!=k.id}">
-                    <option  value="${k.id}" >${k.tenKhoa} - ${k.maKhoa}</option>
-                </c:if>
-            </c:forEach>
-        </select></li>
-        <li> Lop <select name="lop" >
-            <c:forEach items="${lopsv}" var="l">
-                <c:if test="${thongtinsinhvien.lop==l.id}">
-                    <option value="${l.id}" selected>${l.tenLop} - ${l.maLop}</option>
-                </c:if>
-                <c:if test="${thongtinsinhvien.lop!=l.id}">
-                    <option value="${l.id}" >${l.tenLop} - ${l.maLop}</option>
-                </c:if>
-            </c:forEach>
-        </select></li>
-        <li><input name="ngayVaoHoc" type="date" value="${thongtinsinhvien.ngayVaoHoc}"/></li>
-        <li><input type="submit" value="Save"/></li>
-    </ul>
-</form>
+                    <label class="mr-sm-2" for="inlineFormKH">Khóa Học</label>
+                    <select class="custom-select mb-2 mr-sm-2 mb-sm-0" name="khoaHoc" id="inlineFormKH">
+                        <c:forEach items="${khoahoc}" var="k">
+                            <c:if test="${thongtinsinhvien.khoaHoc==k.id}">
+                                <option value="${k.id}" selected>${k.tenKhoa} - ${k.maKhoa}</option>
+                            </c:if>
+                            <c:if test="${thongtinsinhvien.khoaHoc!=k.id}">
+                                <option value="${k.id}">${k.tenKhoa} - ${k.maKhoa}</option>
+                            </c:if>
+                        </c:forEach>
+                    </select>
+                </li>
+                <li class="list-group-item">
+                    <label class="mr-sm-2" for="inlineFormLop">Lớp học</label>
+                    <select class="custom-select mb-2 mr-sm-2 mb-sm-0" name="lop" id="inlineFormLop">
+                        <c:forEach items="${lopsv}" var="l">
+                            <c:if test="${thongtinsinhvien.lop==l.id}">
+                                <option value="${l.id}" selected>${l.tenLop} - ${l.maLop}</option>
+                            </c:if>
+                            <c:if test="${thongtinsinhvien.lop!=l.id}">
+                                <option value="${l.id}">${l.tenLop} - ${l.maLop}</option>
+                            </c:if>
+                        </c:forEach>
+                    </select>
+                </li>
+                <li class="list-group-item">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Ngày Vào Học</span>
+                        </div>
+                        <input name="ngayVaoHoc" value="${thongtinsinhvien.ngayVaoHoc}"
+                               type="date" class="form-control" aria-label="Default"
+                               aria-describedby="inputGroup-sizing-default"/>
+                    </div>
+                </li>
+                <li class="list-group-item align-items-center">
+                    <input type="submit" class="list-group-item-action active text-center btn btn-success" value="Lưu"/>
+                </li>
+            </ul>
+        </form>
+    </div>
+</div>
+<jsp:include page="../FOOTER.jsp"/>
 </body>
 </html>

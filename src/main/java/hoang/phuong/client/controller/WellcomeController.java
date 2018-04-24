@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class WellcomeController {
     @RequestMapping(path = {""}, method = RequestMethod.GET)
     public String hello(Model model) {
-        return "index";
+        return "WellcomeFile";
     }
+
+
 }

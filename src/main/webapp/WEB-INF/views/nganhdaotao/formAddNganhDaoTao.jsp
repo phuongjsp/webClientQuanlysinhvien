@@ -13,13 +13,62 @@
     <title>Form add Khoa</title>
 </head>
 <body>
-<f:form method="POST" modelAttribute="nganhdaotao" name="nganhdaotao">
-    <f:hidden path="id"/>
-   ma Nganh <f:input path="maNganh"/> <br>
-    Ten Nganh <f:input path="tenNganh"/> <br>
-    Khoa <f:input path="khoa"/> <br>
-    Ghi Chu <f:input path="ghiChu"/> <br>
-    <input type="submit" value="Save"/>
-</f:form>
+<jsp:include page="../HEADER.jsp"/>
+<div class="btn bg-light text-md-center ">
+    <a class="mr-sm-5" href="javascript:history.back()">Quay Lại</a>
+</div>
+<div class="container row">
+    <div class="col-sm-12">
+
+        <f:form method="POST" modelAttribute="nganhdaotao" name="nganhdaotao">
+        <ul class="list-group">
+                <f:hidden path="id"/>
+            <li class="list-group-item">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Mã Ngành </span>
+                    </div>
+                    <f:input path="maNganh"
+                             type="text" class="form-control" aria-label="Default"
+                             aria-describedby="inputGroup-sizing-default"/>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Tên Ngành </span>
+                    </div>
+                    <f:input path="tenNganh"
+                             type="text" class="form-control" aria-label="Default"
+                             aria-describedby="inputGroup-sizing-default"/>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Khoa</span>
+                    </div>
+                    <f:input path="khoa"
+                             type="text" class="form-control" aria-label="Default"
+                             aria-describedby="inputGroup-sizing-default"/>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Ghi Chú </span>
+                    </div>
+                    <f:input path="ghiChu"
+                             type="text" class="form-control" aria-label="Default"
+                             aria-describedby="inputGroup-sizing-default"/>
+                </div>
+            </li>
+            <li class="list-group-item align-items-center">
+                <input type="submit" class="list-group-item-action active text-center btn btn-success" value="Lưu"/>
+            </li>
+            </f:form>
+    </div>
+</div>
+<jsp:include page="../FOOTER.jsp"/>
 </body>
 </html>

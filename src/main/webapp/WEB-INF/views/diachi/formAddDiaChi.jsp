@@ -13,6 +13,7 @@
     <title>Form add Khoa</title>
 </head>
 <body>
+<jsp:include page="../HEADER.jsp"/>
 <f:form method="POST" modelAttribute="diachi" name="diachi">
     <f:hidden path="id"/>
    Tinh <f:input path="tinh"/> <br>
@@ -21,5 +22,6 @@
     Thon Xom <f:input path="thonXom"/> <br>
     <input type="submit" value="Save"/>
 </f:form>
+<jsp:include page="../FOOTER.jsp"/>
 </body>
 </html>

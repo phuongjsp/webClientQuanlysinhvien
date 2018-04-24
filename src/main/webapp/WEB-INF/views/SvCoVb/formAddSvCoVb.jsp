@@ -15,20 +15,58 @@
     <title>Form add Thong tin gia dinh</title>
 </head>
 <body>
+<jsp:include page="../HEADER.jsp"/>
+<div class="btn bg-light text-md-center ">
+    <a class="mr-sm-5" href="javascript:history.back()">Quay Lại</a>
+</div>
+<div class="container row">
+    <div class="col-sm-12">
 <f:form method="POST" modelAttribute="svcovb" name="svcovb">
-    <f:hidden path="id"/>
-    <f:hidden path="idSv"/>
-    Loai VB <f:select path="loaiVb">
-    <c:forEach items="${VB}" var="vb">
-        <fmt:formatNumber var="idvb"
-                          type="number" value="${vb.id}"/>
-        <f:option value="${idvb}">${vb.tenVanBang}</f:option>
-    </c:forEach>
-</f:select> <br>
-    Ten thuoc tinh<f:input path="tenThuocTinh"/> <br>
-    Gia tri <f:input path="thuocTinh"/> <br>
+        <ul class="list-group">
+                <f:hidden path="id"/>
+                <f:hidden path="idSv"/>
+            <li class="list-group-item">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Loại Văn Bằng</span>
+                    </div>
+                    <f:select path="loaiVb"
+                              type="text" class="form-control" aria-label="Default"
+                              aria-describedby="inputGroup-sizing-default">
+                        <c:forEach items="${VB}" var="vb">
+                            <fmt:formatNumber var="idvb"
+                                              type="number" value="${vb.id}"/>
+                            <f:option value="${idvb}">${vb.tenVanBang}</f:option>
+                        </c:forEach>
+                    </f:select>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Thuộc tính</span>
+                    </div>
+                    <f:input path="tenThuocTinh"
+                             type="text" class="form-control" aria-label="Default"
+                             aria-describedby="inputGroup-sizing-default"/>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Dữ Liệu</span>
+                    </div>
+                    <f:input path="thuocTinh"/>
+                    type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"/>
+                </div>
+            </li>
 
-    <input type="submit" value="Save"/>
+            <li class="list-group-item align-items-center">
+                <input type="submit" class="list-group-item-action active text-center btn btn-success" value="Lưu"/>
+            </li>
 </f:form>
+    </div>
+</div>
+<jsp:include page="../FOOTER.jsp"/>
 </body>
 </html>

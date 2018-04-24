@@ -15,29 +15,59 @@
     <title>Form add Giay to</title>
 </head>
 <body>
+<jsp:include page="../HEADER.jsp"/>
+<div class="container row">
+    <div class="col-sm-12">
 <c:if test="${listGiayToKhongCo.size()!=0}">
-    <f:form method="POST" modelAttribute="sinhviencogiayto" name="sinhviencogiayto">
-        <f:hidden path="id"/>
-        <f:hidden path="idSv"/>
-        <c:if test="${update==null}">
-            <f:select path="idGiayTo">
-                <c:forEach items="${listGiayToKhongCo}" var="g">
-                    <fmt:formatNumber var="idgt"
-                                      type="number" value="${g.id}"/>
-                    <f:option value="${idgt}">${g.tenGiayTo}</f:option>
-                </c:forEach>
-            </f:select>
-        </c:if>
-        <c:if test="${update!=null}">
-            <f:hidden path="idGiayTo"/>
-            ${update}
-        </c:if>
-        Thong tin <f:input path="thongtin"/> <br>
-        <input type="submit" value="Save"/>
-    </f:form>
+        <f:form method="POST" modelAttribute="sinhviencogiayto" name="sinhviencogiayto">
+        <ul class="list-group">
+                <f:hidden path="id"/>
+                <f:hidden path="idSv"/>
+            <c:if test="${update==null}">
+            <li class="list-group-item">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Mã Khoa</span>
+                    </div>
+                    <f:select path="idGiayTo"
+                              type="text" class="form-control" aria-label="Default"
+                              aria-describedby="inputGroup-sizing-default">
+                        <c:forEach items="${listGiayToKhongCo}" var="g">
+                            <fmt:formatNumber var="idgt"
+                                              type="number" value="${g.id}"/>
+                            <f:option value="${idgt}">${g.tenGiayTo}</f:option>
+                        </c:forEach>
+                    </f:select>
+                </div>
+            </li>
+            </c:if>
+            <c:if test="${update!=null}">
+                <f:hidden path="idGiayTo"/>
+                ${update}
+            </c:if>
+            <li class="list-group-item">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Thông tin</span>
+                    </div>
+                    <f:input path="thongtin"
+                             type="text" class="form-control" aria-label="Default"
+                             aria-describedby="inputGroup-sizing-default"/>
+                </div>
+            </li>
+            <li class="list-group-item align-items-center">
+                <input type="submit" class="list-group-item-action active text-center btn btn-success" value="Lưu"/>
+            </li>
+            </f:form>
 </c:if>
 <c:if test="${listGiayToKhongCo.size()==0}">
-    Sinh vien da day du giay to
+            <h3 class="card-title">
+                Sinh Viên Này Đẫ có đầy đủ các giấy tờ
+            </h3>
+            <a href="javascript:history.back()">Quay Lại</a>
 </c:if>
+    </div>
+</div>
+<jsp:include page="../FOOTER.jsp"/>
 </body>
 </html>

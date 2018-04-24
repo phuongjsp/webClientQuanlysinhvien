@@ -1,83 +1,74 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: phuongjsp
-  Date: 4/22/2018
-  Time: 8:21 AM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <title>Form Search</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-        }
-
-        /* The Modal (background) */
-        .modal {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 1; /* Sit on top */
-            padding-top: 100px; /* Location of the box */
-            left: 0;
-            top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgb(0, 0, 0); /* Fallback color */
-            background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
-        }
-
-        /* Modal Content */
-        .modal-content {
-            background-color: #fefefe;
-            margin: auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-        }
-
-        /* The Close Button */
-        .close {
-            color: #aaaaaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: #000;
-            text-decoration: none;
-            cursor: pointer;
-        }
-    </style>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
 </head>
 <body>
+<jsp:include page="../HEADER.jsp"/>
+<div class="btn bg-light text-md-center ">
+    <a class="mr-sm-5" href="/thongtinsinhvien/add">Them Sinh vien</a>
+    <a class="mr-sm-5" href="javascript:history.back()">Quay Lại</a>
+</div>
+<div class="row">
+    <div class="col-sm-7">
 
-<c:forEach items="${properties}" var="p">
-    <input type="checkbox" id="${p}" onclick="${p}()">${p}</input> <br>
-    <div id="demo${p}"></div>
-</c:forEach>
-<form id="formorder">
-    sap xep theo : <select name="property">
-    <c:forEach items="${properties}" var="p">
-        <option value="${p}">${p}</option>
-    </c:forEach>
-</select>
-    thu tu <select name="order" id="">
-    <option value="asc"> Giam dan</option>
-    <option value="desc"> Tang dan</option>
-</select>
-</form>
-<form method="post">
+        <c:forEach items="${properties}" var="p">
+            <div class="input-group">
+                <div class="input-group-lg">
+                    <input type="checkbox" id="${p}" onclick="${p}()"/>
+                        ${mapproperties.get(p)}
+                </div>
+                <i id="propertyBy${p}" class="input-group-lg"></i>
+            </div>
 
-    <input type="hidden" name="list" id="listResult" value=""/>
-    <input type="submit" onclick="call()" value="TEST"/>
-</form>
+        </c:forEach>
+
+    </div>
+    <div class="col-sm-5">
+        <form id="formorder">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Sắp xếp theo :</span>
+                        </div>
+                        <select class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"
+                                name="property">
+                            <c:forEach items="${listSX}" var="p">
+                                <option value="${p}">${mapproperties.get(p)}</option>
+                            </c:forEach>
+                        </select>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Thứ tự :</span>
+                        </div>
+                        <select class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"
+                                name="order">
+                            <option value="asc"> Giảm Dần</option>
+                            <option value="desc"> Tăng Dần</option>
+                        </select>
+                    </div>
+                </li>
+            </ul>
+
+        </form>
+        <form method="post">
+            <input type="hidden" name="list" id="listResult" value=""/>
+            <input type="submit" class="btn btn-success mr-sm-auto" onclick="call()" value="Tìm Kiếm"/>
+        </form>
+    </div>
+
+</div>
 <script type="application/javascript">
     var json = "";
     <c:forEach items="${properties}" var="p">
@@ -86,57 +77,57 @@
         <c:if test="${p=='nganhDk'}" >
         if (document.getElementById('${p}').checked) {
 
-            var ht = "<form method='post' id='form${p}'>"
+            var ht = "<form method='post' class='form-check' id='form${p}'>"
                 + " <input type='hidden' name='property' value='${p}'/>"
                 + "<input type='hidden' name='type' value='eq'/>"
-                + "${p} :<select name='value'>";
+                + "<select name='value'>";
             <c:forEach items="${nganhdt}" var="n">
             ht += "<option type= value=${n.id}'>${n.tenNganh}</option>${kh}";
             </c:forEach>
             ht += "</select>"
                 + " </form>";
-            document.getElementById("demo${p}").innerHTML = ht;
+            document.getElementById("propertyBy${p}").innerHTML = ht;
         } else {
-            document.getElementById("demo${p}").innerHTML = "";
+            document.getElementById("propertyBy${p}").innerHTML = "";
         }
         </c:if>
         <c:if test="${p=='lop'}" >
         if (document.getElementById('${p}').checked) {
 
-            var ht = "<form method='post' id='form${p}'>"
+            var ht = "<form method='post' class='form-check' id='form${p}'>"
                 + " <input type='hidden' name='property' value='${p}'/>"
                 + "<input type='hidden' name='type' value='eq'/>"
-                + "${p} :<select name='value'>";
+                + " <select name='value'>";
             <c:forEach items="${lopsv}" var="l">
             ht += "<option  value='${l.id}'>${l.tenLop}</option>${kh}";
             </c:forEach>
             ht += "</select>"
                 + " </form>";
-            document.getElementById("demo${p}").innerHTML = ht;
+            document.getElementById("propertyBy${p}").innerHTML = ht;
         } else {
-            document.getElementById("demo${p}").innerHTML = "";
+            document.getElementById("propertyBy${p}").innerHTML = "";
         }
         </c:if>
         <c:if test="${p=='khoaHoc'}" >
         if (document.getElementById('${p}').checked) {
 
-            var ht = "<form method='post' id='form${p}'>"
+            var ht = "<form method='post' class='form-check' id='form${p}'>"
                 + " <input type='hidden' name='property' value='${p}'/>"
                 + "<input type='hidden' name='type' value='eq'/>"
-                + "${p} :<select name='value'>";
+                + " <select name='value'>";
             <c:forEach items="${khoahoc}" var="kh">
             ht += "<option value='${kh.id}'>${kh.tenKhoa}</option>${kh}";
             </c:forEach>
             ht += "</select>"
                 + " </form>";
-            document.getElementById("demo${p}").innerHTML = ht;
+            document.getElementById("propertyBy${p}").innerHTML = ht;
         } else {
-            document.getElementById("demo${p}").innerHTML = "";
+            document.getElementById("propertyBy${p}").innerHTML = "";
         }
         </c:if>
         <c:if test="${p=='NoiSinh' || p=='HoKhauThuongChu'}" >
         if (document.getElementById('${p}').checked) {
-            document.getElementById("demo${p}").innerHTML = "<ul><form method='post' id='form${p}'>"
+            document.getElementById("propertyBy${p}").innerHTML = "<ul><form method='post' class='form-check' id='form${p}'>"
                 + " <input type='hidden' name='diachi' value='${p}'/>"
                 + "<li>Tỉnh :<input type='text' name='tinh'  /></li>"
                 + "<li>Quận Huyện :<input type='text' name='quanHuyen'  /></li>"
@@ -144,43 +135,43 @@
                 + "<li>Thôn Xóm :<input type='text' name='thonXom'  /></li>"
                 + " </form></ul>";
         } else {
-            document.getElementById("demo${p}").innerHTML = "";
+            document.getElementById("propertyBy${p}").innerHTML = "";
         }
         </c:if>
         <c:if test="${p=='ngaySinh' || p=='ngayVaoHoc'}" >
         if (document.getElementById('${p}').checked) {
-            document.getElementById("demo${p}").innerHTML = "<form method='post' id='form${p}'>"
+            document.getElementById("propertyBy${p}").innerHTML = "<form class='form-check' method='post' id='form${p}'>"
                 + " <input type='hidden' name='property' value='${p}'/>"
                 + "<input type='hidden' name='type' value='between'/>"
-                + "${p} tu : <input type='date' name='valuelow'/>"
-                + "  den : <input type='date' name='valuehight'/>"
+                + "  Từ : <input type='date' name='valuelow'/>"
+                + "  Đến : <input type='date' name='valuehight'/>"
                 + " </form>";
         } else {
-            document.getElementById("demo${p}").innerHTML = "";
+            document.getElementById("propertyBy${p}").innerHTML = "";
         }
         </c:if>
         <c:if test="${p=='maSv' || p=='ho' || p=='ten' || p=='danToc'}" >
         if (document.getElementById('${p}').checked) {
-            document.getElementById("demo${p}").innerHTML = "<form method='post' id='form${p}'>"
+            document.getElementById("propertyBy${p}").innerHTML = "<form class='form-check' method='post' id='form${p}'>"
                 + " <input type='hidden' name='property' value='${p}'/>"
                 + "<input type='hidden' name='type' value='like'/>"
-                + "${p} : <input type='text' name='value'/>"
+                + " <input class='form-control' aria-label='Default' aria-describedby='inputGroup-sizing-default' type='text' name='value'/>"
                 + " </form>";
         } else {
-            document.getElementById("demo${p}").innerHTML = "";
+            document.getElementById("propertyBy${p}").innerHTML = "";
         }
         </c:if>
         <c:if test="${p=='gioiTinh'}" >
         if (document.getElementById('${p}').checked) {
-            document.getElementById("demo${p}").innerHTML = "<form method='post' id='form${p}'>"
+            document.getElementById("propertyBy${p}").innerHTML = "<form method='post' id='form${p}'>"
                 + " <input type='hidden' name='property' value='${p}'/>"
                 + "<input type='hidden' name='type' value='eq'/>"
-                + "${p} : <select>"
+                + "  <select name='value'>"
                 + "<option value='1'>Nam</option>"
-                + "<option value='0'>Nu</option>"
+                + "<option value='0'>Nữ</option>"
                 + " </select></form>";
         } else {
-            document.getElementById("demo${p}").innerHTML = "";
+            document.getElementById("propertyBy${p}").innerHTML = "";
         }
         </c:if>
 
@@ -198,8 +189,8 @@
             if (item.value.length > 0) obj[item.name] = item.value;
 
         }
-        json += JSON.stringify(obj);
-        ;
+        json += ',' + JSON.stringify(obj);
+
     }
 
     </c:forEach>
@@ -213,7 +204,7 @@
 
         }
         json = JSON.stringify(obj);
-        ;
+
     }
 
     function call() {
@@ -225,12 +216,10 @@
         </c:forEach>
         var list = [
             json
-        ];
+        ]
         document.getElementById("listResult").value = '[' + list + ']';
     }
 </script>
-<div>
-    ${messages}
-</div>
+<jsp:include page="../FOOTER.jsp"/>
 </body>
 </html>

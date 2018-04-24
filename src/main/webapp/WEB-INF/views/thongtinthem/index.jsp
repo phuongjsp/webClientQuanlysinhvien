@@ -26,31 +26,31 @@
     </style>
 </head>
 <body>
-
+<jsp:include page="../HEADER.jsp"/>
 
 <%--${khoa.tenKhoa}--%>
+<div class="btn bg-light text-md-center ">
+    <a class="mr-sm-5" href="/thongtinthem/add/${maSv}">Thêm Thông Tin cho sinh viên này</a>
+    <a class="mr-sm-5" href="javascript:history.back()">Quay Lại</a>
+</div>
 
-<a href="/thongtinthem//add">Them Khoa</a> <br>
-
+<div class="row">
+    <div class="col-form-label-sm">
 <c:forEach items="${thongtinthem}" var="t">
-    <ul>
-        <li>Giay to : ${t.tenThongTin} </li>
-        <li> Thong tin :
+    <ul class="list-group float-sm-left text-center">
+        <li class="list-group-item "> ${t.tenThongTin} </li>
+        <li class="list-group-item ">
             ${t.thongTin}
-        <li>
-        <li><a href="/thongtinthem/update/${t.thongtinsinhvien.maSv}-${t.id}">Update</a>
-        <li>
-        <li><a href="/thongtinthem/del/${t.thongtinsinhvien.maSv}-${t.id}">Delete</a>
-        <li>
-
+        </li>
+        <li class="list-group-item "><a href="/thongtinthem/update/${t.thongtinsinhvien.maSv}-${t.id}">Update</a>
+        </li>
+        <li class="list-group-item "><a href="/thongtinthem/del/${t.thongtinsinhvien.maSv}-${t.id}">Delete</a>
+        </li>
     </ul>
 </c:forEach>
-<c:if test="${model == 'showOnly' }">
-    <a href="/khoa">Show All</a>
-</c:if>
+    </div>
+</div>
 
-<br>
-
-
+<jsp:include page="../FOOTER.jsp"/>
 </body>
 </html>

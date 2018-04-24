@@ -34,55 +34,59 @@
 </head>
 <body>
 <%--${khoa.tenKhoa}--%>
+<jsp:include page="../HEADER.jsp"/>
 
-<a href="/thongtinsinhvien/add">Them Khoa</a> <br>
-
+<div class="btn bg-light text-md-center ">
+    <a class="mr-sm-5" href="javascript:history.back()">Quay Lại</a>
+</div>
 <c:forEach items="${thongtinsinhvien}" var="t">
-    <ul>
-        <li>ma SV ${t.maSv}</li>
-        <li>Ho : ${t.ho}</li>
-        <li>Ten : ${t.ten}</li>
-        <li><img id="andthe" src="${t.anhThe}" alt="${t.maSv}"></li>
-        <li>Gioi tinh : ${t.gioiTinh==1?'nam':'nu'}</li>
-        <li>Dan toc : ${t.danToc}</li>
-        <li>Ngay Sinh :
-            <fmt:formatDate value="${t.ngaySinh}" pattern="dd - MM - yyyy"/>
-        </li>
-        <li>noi sinh : ${t.diachiByNoiSinh.tinh} -${t.diachiByNoiSinh.quanHuyen}
-            -${t.diachiByNoiSinh.xaPhuong}-${t.diachiByNoiSinh.thonXom}</li>
-        <li>Ho Khau thuong chu : ${t.diachiByHoKhauThuongChu.tinh} -${t.diachiByHoKhauThuongChu.quanHuyen}
-            -${t.diachiByHoKhauThuongChu.xaPhuong}-${t.diachiByHoKhauThuongChu.thonXom}</li>
-        <li>Nganh dk : ${t.nganhdaotaoByNganhDk.tenNganh} -${t.nganhdaotaoByNganhDk.maNganh}  </li>
-        <li>Khoa : ${t.khoaByKhoaHoc.tenKhoa} - ${t.khoaByKhoaHoc.maKhoa} </li>
-        <li>Lop : ${t.lopsvByLop.tenLop} -${t.lopsvByLop.maLop}</li>
-        <li>Ngay vao hoc : ${t.ngayVaoHoc}</li>
-        <c:forEach items="${listTTT}" var="listttt">
-            <c:if test="${listttt.idSv==t.id}">
-                <li>${listttt.tenThongTin} :${listttt.thongTin} </li>
-            </c:if>
-        </c:forEach>
-        <c:forEach items="${listTTGD}" var="listttgd">
-            <c:if test="${listttgd.idSv==t.id}">
-                <li>Quan he : ${listttgd.quanHe}  </li>
-                <li>Ten : ${listttgd.sdt}</li>
-                <li>nghe Nghie : ${listttgd.ngheNghiep}</li>
-            </c:if>
-        </c:forEach>
-        <li><a href="/SvCoVb/maSv-${t.maSv}">Van Bang</a></li>
-        <li><a href="/thongtinsinhvien/update/${t.maSv}">Update</a></li>
+    <div class="row" style="border: black 2px dotted;">
+        <ul class="col-sm-6 bg-light">
+            <li>ma SV ${t.maSv}</li>
+            <li>Ho : ${t.ho}</li>
+            <li>Ten : ${t.ten}</li>
+            <li><img id="andthe" src="${t.anhThe}" alt="${t.maSv}"></li>
+            <li>Gioi tinh : ${t.gioiTinh==1?'nam':'nu'}</li>
+            <li>Dan toc : ${t.danToc}</li>
+            <li>Ngay Sinh :
+                <fmt:formatDate value="${t.ngaySinh}" pattern="dd - MM - yyyy"/>
+            </li>
+            <li>noi sinh : ${t.diachiByNoiSinh.tinh} -${t.diachiByNoiSinh.quanHuyen}
+                -${t.diachiByNoiSinh.xaPhuong}-${t.diachiByNoiSinh.thonXom}</li>
+            <li>Ho Khau thuong chu : ${t.diachiByHoKhauThuongChu.tinh} -${t.diachiByHoKhauThuongChu.quanHuyen}
+                -${t.diachiByHoKhauThuongChu.xaPhuong}-${t.diachiByHoKhauThuongChu.thonXom}</li>
+        </ul>
+        <ul class="col-sm-6 bg-light">
+            <li>Nganh dk : ${t.nganhdaotaoByNganhDk.tenNganh} -${t.nganhdaotaoByNganhDk.maNganh}  </li>
+            <li>Khoa : ${t.khoaByKhoaHoc.tenKhoa} - ${t.khoaByKhoaHoc.maKhoa} </li>
+            <li>Lop : ${t.lopsvByLop.tenLop} -${t.lopsvByLop.maLop}</li>
+            <li>Ngay vao hoc : ${t.ngayVaoHoc}</li>
+            <c:forEach items="${listTTT}" var="listttt">
+                <c:if test="${listttt.idSv==t.id}">
+                    <li>${listttt.tenThongTin} :${listttt.thongTin} </li>
+                </c:if>
+            </c:forEach>
+            <c:forEach items="${listTTGD}" var="listttgd">
+                <c:if test="${listttgd.idSv==t.id}">
+                    <li>Quan he : ${listttgd.quanHe}  </li>
+                    <li>Ten : ${listttgd.sdt}</li>
+                    <li>nghe Nghie : ${listttgd.ngheNghiep}</li>
+                </c:if>
+            </c:forEach>
+            <li><a href="/thongtingiadinh/maSv/${t.maSv}">Thông Tin Gia Đình</a></li>
+            <li><a href="/SvCoVb/maSv-${t.maSv}">Văn Bằng</a></li>
+            <li><a href="/thongtinsinhvien/update/${t.maSv}">Cập Nhật</a></li>
 
-        <li><a href="/thongtinsinhvien/del/${t.maSv}">Delete</a></li>
-        <li><a href="/sinhviencogiayto/maSv-${t.maSv}">Thong tin giay to</a></li>
-        <li><a href="/thongtinthem/add/${t.maSv}">Them thong tin</a></li>
+            <li><a href="/sinhviencogiayto/maSv-${t.maSv}">Thông Tin Giấy Tờ</a></li>
+            <li><a href="/thongtinthem/maSv/${t.maSv}">Thông Tin Thêm</a></li>
+            <c:if test="${model != 'only' }">
+                <li><a href="/thongtinsinhvien/maSv/${t.maSv}">Xem Riêng Sinh Viên Này</a></li>
+            </c:if>
 
-    </ul>
+        </ul>
+
+    </div>
 </c:forEach>
-<c:if test="${model == 'only' }">
-    <a href="/thongtinsinhvien/">Show All</a>
-</c:if>
-
-<br>
-
-
+<jsp:include page="../FOOTER.jsp"/>
 </body>
 </html>

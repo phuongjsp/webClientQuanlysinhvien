@@ -26,29 +26,23 @@
     </style>
 </head>
 <body>
-
-
-<%--${khoa.tenKhoa}--%>
-
-<a href="/giayto/add">Them Khoa</a> <br>
-
+<jsp:include page="../HEADER.jsp"/>
+<div class="btn bg-light text-md-center ">
+    <a class="mr-sm-5" href="/giayto/add">Thêm Giấy Tờ</a>
+    <a class="mr-sm-5" href="javascript:history.back()">Quay Lại</a>
+</div>
+<div class="row">
+    <div class="col-form-label-sm">
 <c:forEach items="${giayto}" var="t">
-    <ul>
-        <li>Ma Giay To ${t.maGiayTo} </li>
-        <li> Ten giay To
-                ${t.tenGiayTo}
-        <li>
-        <li><a href="/giayto/update/${t.maGiayTo}">Update</a>
-        <li>
-        <li><a href="/giayto/del/${t.id}">Delete</a>
-        <li>
-
+    <ul class="list-group float-lg-left text-center">
+        <li class="list-group-item ">Mã : ${t.maGiayTo} </li>
+        <li class="list-group-item "> Tên : ${t.tenGiayTo}</li>
+        <li class="list-group-item "><a href="/giayto/update/${t.maGiayTo}">Update</a></li>
+        <li class="list-group-item "><a href="/giayto/del/${t.id}">Delete</a></li>
     </ul>
 </c:forEach>
-
-
-<br>
-
-
+    </div>
+</div>
+<jsp:include page="../FOOTER.jsp"/>
 </body>
 </html>

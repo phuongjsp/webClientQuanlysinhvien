@@ -13,11 +13,42 @@
     <title>Form add Lop</title>
 </head>
 <body>
+<jsp:include page="../HEADER.jsp"/>
+<div class="btn bg-light text-md-center ">
+    <a class="mr-sm-5" href="javascript:history.back()">Quay Lại</a>
+</div>
+<div class="container row">
+    <div class="col-sm-12">
 <f:form method="POST" modelAttribute="lopsv" name="lopsv">
-    <f:hidden path="id"/>
-    ma Lop <f:input path="maLop"/> <br>
-    ten Lop <f:input path="tenLop"/> <br>
-    <input type="submit" value="Save"/>
+    <ul class="list-group">
+        <f:hidden path="id"/>
+        <li class="list-group-item">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Mã Lớp</span>
+                </div>
+                <f:input path="maLop"
+                         type="text" class="form-control" aria-label="Default"
+                         aria-describedby="inputGroup-sizing-default"/>
+            </div>
+        </li>
+        <li class="list-group-item">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Tên Lớp</span>
+                </div>
+                <f:input path="tenLop"
+                         type="text" class="form-control" aria-label="Default"
+                         aria-describedby="inputGroup-sizing-default"/>
+            </div>
+        </li>
+        <li class="list-group-item align-items-center">
+            <input type="submit" class="list-group-item-action active text-center btn btn-success" value="Lưu"/>
+        </li>
+    </ul>
 </f:form>
+    </div>
+</div>
+<jsp:include page="../FOOTER.jsp"/>
 </body>
 </html>

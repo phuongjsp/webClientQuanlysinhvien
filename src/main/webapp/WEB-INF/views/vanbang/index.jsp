@@ -10,47 +10,33 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Danh sach Khoa</title>
-    <style>
-        ul{
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            border-bottom-color: red  ;
-        }
-       li {
-            float: left;
-           margin-left: 20px;
-        }
-    </style>
 </head>
 <body>
-
-
-
-
-<%--${khoa.tenKhoa}--%>
-
-<a href="/vanbang//add">Them Khoa</a> <br>
-
-	<c:forEach items="${vanbang}" var="v">
-<ul>
-    <li>Ma Van Bang	${v.maVanBang} </li>
-        <li>	Ten Van Bang	${v.tenVanBang}<li>
-        <li> <a href="/vanbang/update/${v.maVanBang}">Update</a><li>
-        <li>	<a href="/vanbang/del/${v.maVanBang}">Delete</a><li>
-        <c:if test="${model == null }">
-    <li>   <a href="/vanbang/maVanBang/${v.maVanBang}">Show Only</a><li>
-    </c:if>
-</ul>
-	</c:forEach>
-<c:if test="${model == 'showOnly' }">
-    <a href="/vanbang">Show All</a>
-</c:if>
-
-<br>
-
-
-
+<jsp:include page="../HEADER.jsp"/>
+<div class="btn bg-light text-md-center ">
+    <a class="mr-sm-5" href="/vanbang//add">Thêm Văn Bằng</a>
+    <a class="mr-sm-5" href="javascript:history.back()">Quay Lại</a>
+</div>
+<div class="row">
+    <div class="col-form-label-sm">
+        <c:forEach items="${vanbang}" var="v">
+            <ul class="list-group float-sm-left text-center">
+                <li class="list-group-item ">
+                    Mã Văn Bằng : ${v.maVanBang}
+                </li>
+                <li class="list-group-item ">
+                    Tên Văn Bằng : ${v.tenVanBang}
+                </li>
+                <li class="list-group-item">
+                    <a href="/vanbang/update/${v.maVanBang}">Update</a>
+                </li>
+                <li class="list-group-item ">
+                    <a href="/vanbang/del/${v.maVanBang}">Delete</a>
+                </li>
+            </ul>
+        </c:forEach>
+    </div>
+</div>
+<jsp:include page="../FOOTER.jsp"/>
 </body>
 </html>

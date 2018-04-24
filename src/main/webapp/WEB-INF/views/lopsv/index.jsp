@@ -9,43 +9,36 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Danh sach Khoa</title>
-    <style>
-        ul{
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            border-bottom-color: red  ;
-        }
-       li {
-            float: left;
-           margin-left: 20px;
-        }
-    </style>
+    <title>Danh Sách Lớp</title>
+
 </head>
 <body>
-
-<a href="/lopsv/add">Them Khoa</a> <br>
-
+<jsp:include page="../HEADER.jsp"/>
+<div class="btn bg-light text-md-center ">
+    <a class="mr-sm-5" href="/lopsv/add">Thêm Lớp</a>
+    <a class="mr-sm-5" href="javascript:history.back()">Quay Lại</a>
+</div>
+<div class="row">
+    <div class="col-form-label-sm ">
 	<c:forEach items="${lopsv}" var="l">
-<ul>
-    <li>ma lop : ${l.maLop} </li>
-        <li>	ten lop :	${l.tenLop}<li>
-        <li> <a href="/lopsv/update/${l.maLop}">Update</a><li>
-        <li>	<a href="/lopsv/del/${l.maLop}">Delete</a><li>
-        <c:if test="${model == null }">
-    <li>   <a href="/lopsv/maLop/${l.maLop}">Show Only</a><li>
-    </c:if>
-</ul>
+        <ul class="list-group float-sm-left text-center ">
+            <li class="list-group-item ">
+                Mã Lớp : ${l.maLop}
+            </li>
+            <li class="list-group-item ">
+                Tên Lớp : ${l.tenLop}
+            </li>
+            <li class="list-group-item">
+                <a href="/lopsv/update/${l.maLop}">Update</a>
+            </li>
+            <li class="list-group-item ">
+                <a href="/lopsv/del/${l.maLop}">Delete</a>
+            </li>
+        </ul>
 	</c:forEach>
-<c:if test="${model == 'showOnly' }">
-    <a href="/lopsv">Show All</a>
-</c:if>
+    </div>
+</div>
 
-<br>
-
-
-
+<jsp:include page="../FOOTER.jsp"/>
 </body>
 </html>

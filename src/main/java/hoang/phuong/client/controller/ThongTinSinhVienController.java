@@ -81,21 +81,7 @@ public class ThongTinSinhVienController {
     }
 
     //
-    @RequestMapping(path = {""}, method = RequestMethod.GET)
-    public String sayHello(Model model) {
-        List<Map<String, Object>> listCall = new ArrayList<>();
-        Map<String, Object> map = new HashMap<>();
-        map.put("order", "desc");
-        map.put("property", "id");
-        listCall.add(map);
 
-        List<Thongtinsinhvien> thongtinsinhvienList = new ArrayList<>();
-        thongtinsinhvienList = thongTinSinhVienService.listOrderBy(listCall, 0, 0);
-        model.addAttribute("diachi", diaChiService.listDiaChi());
-        model.addAttribute("listTTT", thongTinThemService.list());
-        model.addAttribute("thongtinsinhvien", thongtinsinhvienList);
-        return "thongtinsinhvien/index";
-    }
 
     /*
     *
@@ -111,44 +97,53 @@ public class ThongTinSinhVienController {
     * */
     @RequestMapping(path = {"/maSv/{maSv}"}, method = RequestMethod.GET)
     public String getOnly(Model model, @PathVariable("maSv") String maSv) {
-        List<Map<String, Object>> listCall = new ArrayList<>();
-        Map<String, Object> map = new HashMap<>();
-        map.put("order", "desc");
-        map.put("property", "id");
-        Map<String, Object> map2 = new HashMap<>();
-        map2.put("property", "maSv");
-        map2.put("type", "eq");
-        map2.put("value", maSv);
-        listCall.add(map);
-        List<Thongtinsinhvien> thongtinsinhvienList = new ArrayList<>();
-        thongtinsinhvienList = thongTinSinhVienService.listOrderBy(listCall, 0, 0);
-        model.addAttribute("listTTT", thongTinThemService.listByMaSv(maSv));
-        model.addAttribute("listTTGD", thongtingiadinhService.listByIdSv(thongTinSinhVienService.getByMaSv(maSv).getId()));
-        model.addAttribute("thongtinsinhvien", thongtinsinhvienList);
+        List<Thongtinsinhvien> lstTTSV = new ArrayList<>();
+        Thongtinsinhvien thongtinsinhvien = thongTinSinhVienService.getByMaSv(maSv);
+        lstTTSV.add(thongtinsinhvien);
+        model.addAttribute("thongtinsinhvien", lstTTSV);
         model.addAttribute("model", "only");
         return "thongtinsinhvien/index";
     }
 
-    @RequestMapping(path = {"search"}, method = RequestMethod.GET)
+    @RequestMapping(path = {""}, method = RequestMethod.GET)
     public String doGet(Model model) {
         List<String> listProperties = new ArrayList<>();
-        //String : eq,like
+        List<String> listSX = new ArrayList<>();
+        Map<String, String> map = new HashMap<>();
         listProperties.add("maSv");
+        map.put("maSv", "Mã Sinh Viên");
         listProperties.add("ho");
+        map.put("ho", "Họ");
         listProperties.add("ten");
+        map.put("ten", "Tên");
         listProperties.add("danToc");
-        //eq
+        map.put("danToc", "Dân Tộc");
         listProperties.add("gioiTinh");
+        map.put("gioiTinh", "Giới Tính");
         listProperties.add("khoaHoc");
+        map.put("khoaHoc", "Khóa Học");
         listProperties.add("lop");
+        map.put("lop", "Lớp");
         listProperties.add("nganhDk");
-        //can tim 1 phuong phap moi
-
+        map.put("nganhDk", "Ngành Đào Tạo");
         listProperties.add("HoKhauThuongChu");
+        map.put("HoKhauThuongChu", "Hộ Khẩu thường chú");
         listProperties.add("NoiSinh");
-//      eq beetwen
+        map.put("NoiSinh", "Nơi sinh");
         listProperties.add("ngayVaoHoc");
+        map.put("ngayVaoHoc", "Ngày Vào Học");
         listProperties.add("ngaySinh");
+        map.put("ngaySinh", "Ngày Sinh");
+
+        listSX.add("maSv");
+        listSX.add("ho");
+        listSX.add("ten");
+        listSX.add("danToc");
+        listSX.add("gioiTinh");
+        listSX.add("ngayVaoHoc");
+        listSX.add("ngaySinh");
+        model.addAttribute("listSX", listSX);
+        model.addAttribute("mapproperties", map);
         model.addAttribute("khoahoc", khoaService.getListKhoa());
         model.addAttribute("lopsv", lopService.listLop());
         lopService.listLop().forEach(System.out::println);
@@ -157,21 +152,28 @@ public class ThongTinSinhVienController {
         return "thongtinsinhvien/formSearch";
     }
 
-    @RequestMapping(path = {"search"}, method = RequestMethod.POST)
+    @RequestMapping(path = {""}, method = RequestMethod.POST)
     public String doPost(Model model, @RequestParam("list") String list) {
-        List<Map<String, Object>> lst = new ArrayList<>();
-        lst = listTByJsonString(list);
-        lst.forEach(stringObjectMap -> {
-            if (stringObjectMap.get("property").equals("lop") ||
-                    stringObjectMap.get("property").equals("nganhDk") ||
-                    stringObjectMap.get("property").equals("khoaHoc")) {
-                if (stringObjectMap.get("value") != null)
-                    stringObjectMap.replace("value", Integer.valueOf(stringObjectMap.get("value").toString()));
-            }
-        });
-        model.addAttribute("messages", list);
-        model.addAttribute("thongtinsinhvien", thongTinSinhVienService.listOrderBy(lst, 0, 0));
-        return "thongtinsinhvien/index";
+        if (list.length() == 0) {
+            return "redirect:/thongtinsinhvien/";
+        } else {
+
+
+            List<Map<String, Object>> lst = new ArrayList<>();
+            lst = listTByJsonString(list);
+            lst.forEach(stringObjectMap -> {
+                if (stringObjectMap.get("property") != null) if (stringObjectMap.get("property").equals("lop") ||
+                        stringObjectMap.get("property").equals("nganhDk") ||
+                        stringObjectMap.get("property").equals("khoaHoc") ||
+                        stringObjectMap.get("property").equals("gioiTinh")) {
+                    if (stringObjectMap.get("value") != null)
+                        stringObjectMap.replace("value", Integer.valueOf(stringObjectMap.get("value").toString()));
+                }
+            });
+            model.addAttribute("messages", list);
+            model.addAttribute("thongtinsinhvien", thongTinSinhVienService.listOrderBy(lst, 0, 0));
+            return "thongtinsinhvien/index";
+        }
     }
 
     private List<Map<String, Object>> listTByJsonString(String jsonString) {

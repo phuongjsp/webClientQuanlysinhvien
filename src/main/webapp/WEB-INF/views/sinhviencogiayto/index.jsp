@@ -26,15 +26,16 @@
     </style>
 </head>
 <body>
-
-
-<%--${khoa.tenKhoa}--%>
-
-<a href="/sinhviencogiayto/add/maSv-${maSv}">Them </a> <br>
-
-<ul>
+<jsp:include page="../HEADER.jsp"/>
+<div class="btn bg-light text-md-center ">
+    <a class="mr-sm-5" href="/sinhviencogiayto/add/maSv-${maSv}">Thêm Giấy tờ cho sinh viên này</a>
+    <a class="mr-sm-5" href="javascript:history.back()">Quay Lại</a>
+</div>
+<div class="row">
+    <div class="col-form-label-sm ">
     <c:forEach items="${giayto}" var="g">
-        <li> ${g.tenGiayTo} :
+        <ul class="list-group float-sm-left text-center">
+            <li class="list-group-item "> ${g.tenGiayTo} :
             <c:set var="co" scope="session" value="${false}"/>
             <c:forEach items="${sinhviencogiayto}" var="sv">
                 <c:if test="${sv.idGiayTo==g.id}">
@@ -48,15 +49,13 @@
 
             </c:forEach>
             <c:if test="${!co}">
-                <span style="color: blueviolet;"> Khong</span>
+                <span style="color: blueviolet;"> Không</span>
             </c:if>
         </li>
+        </ul>
     </c:forEach>
-</ul>
-
-
-<br>
-
-
+    </div>
+</div>
+<jsp:include page="../FOOTER.jsp"/>
 </body>
 </html>

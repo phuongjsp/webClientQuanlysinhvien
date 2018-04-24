@@ -26,32 +26,28 @@
     </style>
 </head>
 <body>
-
-
+<jsp:include page="../HEADER.jsp"/>
+<div class="btn bg-light text-md-center ">
+    <a class="mr-sm-5" href="/thongtingiadinh/add/${maSv}">Thêm Thông Tin Gia Đình Cho Sinh Viên Này</a>
+    <a class="mr-sm-5" href="javascript:history.back()">Quay Lại</a>
+</div>
 <%--${khoa.tenKhoa}--%>
-
-<a href="/thongtingiadinh/add/${maSv}">Them Khoa</a> <br>
-
+<div class="row">
+    <div class="col-form-label-sm">
 <c:forEach items="${thongtingiadinh}" var="t">
-    <ul>
-        <li>${t.quanHe} </li>
-        <li> Thong tin :</li>
-
-        <li>Ten : ${t.ten}</li>
-        <li>Nghe Nghiep : ${t.ngheNghiep}</li>
-        <li>SDT : ${t.sdt}</li>
-        <li><a href="/thongtingiadinh/update/${maSv}-${t.id}">Update</a></li>
-        <li><a href="/thongtingiadinh/del/${maSv}-${t.id}">Delete</a>
+    <ul class="list-group float-sm-left text-center">
+        <li class="list-group-item ">${t.quanHe} </li>
+        <li class="list-group-item "> Thông tin :</li>
+        <li class="list-group-item ">Tên : ${t.ten}</li>
+        <li class="list-group-item ">Nghề Nghiệp : ${t.ngheNghiep}</li>
+        <li class="list-group-item ">SDT : ${t.sdt}</li>
+        <li class="list-group-item "><a href="/thongtingiadinh/update/${maSv}-${t.id}">Update</a></li>
+        <li class="list-group-item "><a href="/thongtingiadinh/del/${maSv}-${t.id}">Delete</a>
         </li>
-
     </ul>
 </c:forEach>
-<c:if test="${model == 'showOnly' }">
-    <a href="/th">Show All</a>
-</c:if>
-
-<br>
-
-
+    </div>
+</div>
+<jsp:include page="../FOOTER.jsp"/>
 </body>
 </html>

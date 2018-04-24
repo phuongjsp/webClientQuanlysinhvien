@@ -25,7 +25,7 @@
     </style>
 </head>
 <body>
-
+<jsp:include page="../HEADER.jsp"/>
 
 
 
@@ -62,6 +62,6 @@
 <br>
 
 
-
+<jsp:include page="../FOOTER.jsp"/>
 </body>
 </html>
