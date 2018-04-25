@@ -36,11 +36,15 @@
 
 <div class="row">
     <div class="col-form-label-sm">
+        <c:if test="${thongtinthem==null}">
+            Thông tin không tồn tại
+        </c:if>
+        <c:if test="${thongtinthem!=null}">
 <c:forEach items="${thongtinthem}" var="t">
     <ul class="list-group float-sm-left text-center">
         <li class="list-group-item "> ${t.tenThongTin} </li>
         <li class="list-group-item ">
-            ${t.thongTin}
+                ${t.thongTin}
         </li>
         <li class="list-group-item "><a href="/thongtinthem/update/${t.thongtinsinhvien.maSv}-${t.id}">Update</a>
         </li>
@@ -48,6 +52,7 @@
         </li>
     </ul>
 </c:forEach>
+        </c:if>
     </div>
 </div>
 

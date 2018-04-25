@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping(path = "giayto")
-public class GiayToController {
+public class GiayToController extends ExceptionHandlerController {
     @Autowired
     private GiayToService giayToService;
 
@@ -54,5 +54,4 @@ public class GiayToController {
         giayToService.updateGiayto(giayto);
         return "redirect:/giayto/";
     }
-
 }

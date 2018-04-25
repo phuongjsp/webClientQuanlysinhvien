@@ -1,4 +1,5 @@
 <%@ taglib prefix="f" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: phuongjsp
@@ -19,34 +20,40 @@
 </div>
 <div class="container row">
     <div class="col-sm-12">
-<f:form method="POST" modelAttribute="lopsv" name="lopsv">
-    <ul class="list-group">
-        <f:hidden path="id"/>
-        <li class="list-group-item">
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">Mã Lớp</span>
-                </div>
-                <f:input path="maLop"
-                         type="text" class="form-control" aria-label="Default"
-                         aria-describedby="inputGroup-sizing-default"/>
-            </div>
-        </li>
-        <li class="list-group-item">
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">Tên Lớp</span>
-                </div>
-                <f:input path="tenLop"
-                         type="text" class="form-control" aria-label="Default"
-                         aria-describedby="inputGroup-sizing-default"/>
-            </div>
-        </li>
-        <li class="list-group-item align-items-center">
-            <input type="submit" class="list-group-item-action active text-center btn btn-success" value="Lưu"/>
-        </li>
-    </ul>
-</f:form>
+        <c:if test="${lopsv!=null}">
+            Mã Lớp Không tồn tại vui lòng kiểm tra lại
+        </c:if>
+        <c:if test="${lopsv!=null}">
+            <f:form method="POST" modelAttribute="lopsv" name="lopsv">
+                <ul class="list-group">
+                    <f:hidden path="id"/>
+                    <li class="list-group-item">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Mã Lớp</span>
+                            </div>
+                            <f:input path="maLop"
+                                     type="text" class="form-control" aria-label="Default"
+                                     aria-describedby="inputGroup-sizing-default"/>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Tên Lớp</span>
+                            </div>
+                            <f:input path="tenLop"
+                                     type="text" class="form-control" aria-label="Default"
+                                     aria-describedby="inputGroup-sizing-default"/>
+                        </div>
+                    </li>
+                    <li class="list-group-item align-items-center">
+                        <input type="submit" class="list-group-item-action active text-center btn btn-success"
+                               value="Lưu"/>
+                    </li>
+                </ul>
+            </f:form>
+        </c:if>
     </div>
 </div>
 <jsp:include page="../FOOTER.jsp"/>

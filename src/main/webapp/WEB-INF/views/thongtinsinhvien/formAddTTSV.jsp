@@ -269,157 +269,165 @@
 </script>
 <div class="container row">
     <div class="col-sm-12 ">
-        <form method="POST" name="thongtinsinhvien">
-            <ul class="list-group">
-                <input type="hidden" name="id" value="${thongtinsinhvien.id}"/>
-                <li class="list-group-item">
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">Mã Sinh Viên</span>
-                        </div>
-                        <input name="maSv" value="${thongtinsinhvien.maSv}"
-                               type="text" class="form-control" aria-label="Default"
-                               aria-describedby="inputGroup-sizing-default"/>
-                    </div>
-                </li>
-                <li class="list-group-item">
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">Họ</span>
-                        </div>
-                        <input name="ho" value="${thongtinsinhvien.ho}"
-                               type="text" class="form-control" aria-label="Default"
-                               aria-describedby="inputGroup-sizing-default"/>
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">Tên</span>
-                        </div>
-                        <input name="ten" value="${thongtinsinhvien.ten}"
-                               type="text" class="form-control" aria-label="Default"
-                               aria-describedby="inputGroup-sizing-default"/>
-                    </div>
 
-                </li>
-                <li class="list-group-item">
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">Ảnh thẻ</span>
+        <c:if test="${thongtinsinhvien==null}">
+            Thông tin sinh viên không tồn tại
+        </c:if>
+        <c:if test="${thongtinsinhvien!=null}">
+            <form method="POST" name="thongtinsinhvien">
+                <ul class="list-group">
+                    <input type="hidden" name="id" value="${thongtinsinhvien.id}"/>
+                    <li class="list-group-item">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Mã Sinh Viên</span>
+                            </div>
+                            <input name="maSv" value="${thongtinsinhvien.maSv}"
+                                   type="text" class="form-control" aria-label="Default"
+                                   aria-describedby="inputGroup-sizing-default"/>
                         </div>
-                        <input name="anhThe" value="${thongtinsinhvien.anhThe}"
-                               type="url" class="form-control" aria-label="Default"
-                               aria-describedby="inputGroup-sizing-default"/>
-                    </div>
-                </li>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Họ</span>
+                            </div>
+                            <input name="ho" value="${thongtinsinhvien.ho}"
+                                   type="text" class="form-control" aria-label="Default"
+                                   aria-describedby="inputGroup-sizing-default"/>
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Tên</span>
+                            </div>
+                            <input name="ten" value="${thongtinsinhvien.ten}"
+                                   type="text" class="form-control" aria-label="Default"
+                                   aria-describedby="inputGroup-sizing-default"/>
+                        </div>
 
-                <li class="list-group-item">
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">Ngày Sinh</span>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Ảnh thẻ</span>
+                            </div>
+                            <input name="anhThe" value="${thongtinsinhvien.anhThe}"
+                                   type="url" class="form-control" aria-label="Default"
+                                   aria-describedby="inputGroup-sizing-default"/>
                         </div>
-                        <input name="ngaySinh" value="${thongtinsinhvien.ngaySinh}"
-                               type="date" class="form-control" aria-label="Default"
-                               aria-describedby="inputGroup-sizing-default"/>
-                    </div>
-                <li class="list-group-item mb-3">
-                    <div class="input-group-prepend">
-                        <label class="mr-sm-2 input-group-text" for="inlineFormgioitinh">Giới tính</label>
-                        <select name="gioiTinh" class="custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormgioitinh">
-                            <c:if test="${thongtinsinhvien.gioiTinh==1}">
-                                <option value="1" selected>nu</option>
-                                <option value="0">nam</option>
-                            </c:if>
-                            <c:if test="${thongtinsinhvien.gioiTinh==0}">
-                                <option value="1">nu</option>
-                                <option value="0" selected>nam</option>
-                            </c:if>
-                            <c:if test="${thongtinsinhvien.gioiTinh==null}">
-                                <option value="1">nu</option>
-                                <option value="0" selected>nam</option>
-                            </c:if>
+                    </li>
+
+                    <li class="list-group-item">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Ngày Sinh</span>
+                            </div>
+                            <input name="ngaySinh" value="${thongtinsinhvien.ngaySinh}"
+                                   type="date" class="form-control" aria-label="Default"
+                                   aria-describedby="inputGroup-sizing-default"/>
+                        </div>
+                    <li class="list-group-item mb-3">
+                        <div class="input-group-prepend">
+                            <label class="mr-sm-2 input-group-text" for="inlineFormgioitinh">Giới tính</label>
+                            <select name="gioiTinh" class="custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormgioitinh">
+                                <c:if test="${thongtinsinhvien.gioiTinh==1}">
+                                    <option value="1" selected>nu</option>
+                                    <option value="0">nam</option>
+                                </c:if>
+                                <c:if test="${thongtinsinhvien.gioiTinh==0}">
+                                    <option value="1">nu</option>
+                                    <option value="0" selected>nam</option>
+                                </c:if>
+                                <c:if test="${thongtinsinhvien.gioiTinh==null}">
+                                    <option value="1">nu</option>
+                                    <option value="0" selected>nam</option>
+                                </c:if>
+                            </select>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="input-group-prepend">
+                            <input type="button" class="btn btn-primary" id="noisinhBtn" value="Noi Sinh"/>
+                            <input type="hidden" name="noiSinh" id="noiSinh" value=""/>
+                            <span class="input-group-text"
+                                  id="noisinhchitiet"> ${thongtinsinhvien.diachiByNoiSinh}</span>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Dân Tộc</span>
+                            </div>
+                            <input name="maSv" name="danToc" value="${thongtinsinhvien.danToc}"
+                                   type="text" class="form-control" aria-label="Default"
+                                   aria-describedby="inputGroup-sizing-default"/>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="input-group-prepend">
+                            <input type="button" class="btn btn-primary" id="hktcBtn" value="Ho Khau thuong chu"/>
+                            <input type="hidden" name="hoKhauThuongChu" value="" id="hoKhauThuongChu"/>
+                            <span class="input-group-text"
+                                  id="hktcchitiet">${thongtinsinhvien.diachiByHoKhauThuongChu}</span>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+
+                        <label class="mr-sm-2" for="inlineFormNDT">Ngành Đào Tạo</label>
+                        <select class="custom-select mb-2 mr-sm-2 mb-sm-0" name="nganhDk" id="inlineFormNDT">
+                            <c:forEach items="${nganhdaotao}" var="ndt">
+                                <c:if test="${thongtinsinhvien.nganhDk == ndt.id}">
+                                    <option value="${ndt.id}" selected>${ndt.tenNganh} - ${ndt.maNganh}</option>
+                                </c:if>
+                                <c:if test="${thongtinsinhvien.nganhDk != ndt.id}">
+                                    <option value="${ndt.id}">${ndt.tenNganh} - ${ndt.maNganh}</option>
+                                </c:if>
+                            </c:forEach>
+
                         </select>
-                    </div>
-                </li>
-                <li class="list-group-item">
-                    <div class="input-group-prepend">
-                        <input type="button" class="btn btn-primary" id="noisinhBtn" value="Noi Sinh"/>
-                        <input type="hidden" name="noiSinh" id="noiSinh" value=""/>
-                        <span class="input-group-text" id="noisinhchitiet"> ${thongtinsinhvien.diachiByNoiSinh}</span>
-                    </div>
-                </li>
-                <li class="list-group-item">
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">Dân Tộc</span>
+                    </li>
+                    <li class="list-group-item">
+
+                        <label class="mr-sm-2" for="inlineFormKH">Khóa Học</label>
+                        <select class="custom-select mb-2 mr-sm-2 mb-sm-0" name="khoaHoc" id="inlineFormKH">
+                            <c:forEach items="${khoahoc}" var="k">
+                                <c:if test="${thongtinsinhvien.khoaHoc==k.id}">
+                                    <option value="${k.id}" selected>${k.tenKhoa} - ${k.maKhoa}</option>
+                                </c:if>
+                                <c:if test="${thongtinsinhvien.khoaHoc!=k.id}">
+                                    <option value="${k.id}">${k.tenKhoa} - ${k.maKhoa}</option>
+                                </c:if>
+                            </c:forEach>
+                        </select>
+                    </li>
+                    <li class="list-group-item">
+                        <label class="mr-sm-2" for="inlineFormLop">Lớp học</label>
+                        <select class="custom-select mb-2 mr-sm-2 mb-sm-0" name="lop" id="inlineFormLop">
+                            <c:forEach items="${lopsv}" var="l">
+                                <c:if test="${thongtinsinhvien.lop==l.id}">
+                                    <option value="${l.id}" selected>${l.tenLop} - ${l.maLop}</option>
+                                </c:if>
+                                <c:if test="${thongtinsinhvien.lop!=l.id}">
+                                    <option value="${l.id}">${l.tenLop} - ${l.maLop}</option>
+                                </c:if>
+                            </c:forEach>
+                        </select>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Ngày Vào Học</span>
+                            </div>
+                            <input name="ngayVaoHoc" value="${thongtinsinhvien.ngayVaoHoc}"
+                                   type="date" class="form-control" aria-label="Default"
+                                   aria-describedby="inputGroup-sizing-default"/>
                         </div>
-                        <input name="maSv" name="danToc" value="${thongtinsinhvien.danToc}"
-                               type="text" class="form-control" aria-label="Default"
-                               aria-describedby="inputGroup-sizing-default"/>
-                    </div>
-                </li>
-                <li class="list-group-item">
-                    <div class="input-group-prepend">
-                        <input type="button" class="btn btn-primary" id="hktcBtn" value="Ho Khau thuong chu"/>
-                        <input type="hidden" name="hoKhauThuongChu" value="" id="hoKhauThuongChu"/>
-                        <span class="input-group-text"
-                              id="hktcchitiet">${thongtinsinhvien.diachiByHoKhauThuongChu}</span>
-                    </div>
-                </li>
-                <li class="list-group-item">
-
-                    <label class="mr-sm-2" for="inlineFormNDT">Ngành Đào Tạo</label>
-                    <select class="custom-select mb-2 mr-sm-2 mb-sm-0" name="nganhDk" id="inlineFormNDT">
-                        <c:forEach items="${nganhdaotao}" var="ndt">
-                            <c:if test="${thongtinsinhvien.nganhDk == ndt.id}">
-                                <option value="${ndt.id}" selected>${ndt.tenNganh} - ${ndt.maNganh}</option>
-                            </c:if>
-                            <c:if test="${thongtinsinhvien.nganhDk != ndt.id}">
-                                <option value="${ndt.id}">${ndt.tenNganh} - ${ndt.maNganh}</option>
-                            </c:if>
-                        </c:forEach>
-
-                    </select>
-                </li>
-                <li class="list-group-item">
-
-                    <label class="mr-sm-2" for="inlineFormKH">Khóa Học</label>
-                    <select class="custom-select mb-2 mr-sm-2 mb-sm-0" name="khoaHoc" id="inlineFormKH">
-                        <c:forEach items="${khoahoc}" var="k">
-                            <c:if test="${thongtinsinhvien.khoaHoc==k.id}">
-                                <option value="${k.id}" selected>${k.tenKhoa} - ${k.maKhoa}</option>
-                            </c:if>
-                            <c:if test="${thongtinsinhvien.khoaHoc!=k.id}">
-                                <option value="${k.id}">${k.tenKhoa} - ${k.maKhoa}</option>
-                            </c:if>
-                        </c:forEach>
-                    </select>
-                </li>
-                <li class="list-group-item">
-                    <label class="mr-sm-2" for="inlineFormLop">Lớp học</label>
-                    <select class="custom-select mb-2 mr-sm-2 mb-sm-0" name="lop" id="inlineFormLop">
-                        <c:forEach items="${lopsv}" var="l">
-                            <c:if test="${thongtinsinhvien.lop==l.id}">
-                                <option value="${l.id}" selected>${l.tenLop} - ${l.maLop}</option>
-                            </c:if>
-                            <c:if test="${thongtinsinhvien.lop!=l.id}">
-                                <option value="${l.id}">${l.tenLop} - ${l.maLop}</option>
-                            </c:if>
-                        </c:forEach>
-                    </select>
-                </li>
-                <li class="list-group-item">
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">Ngày Vào Học</span>
-                        </div>
-                        <input name="ngayVaoHoc" value="${thongtinsinhvien.ngayVaoHoc}"
-                               type="date" class="form-control" aria-label="Default"
-                               aria-describedby="inputGroup-sizing-default"/>
-                    </div>
-                </li>
-                <li class="list-group-item align-items-center">
-                    <input type="submit" class="list-group-item-action active text-center btn btn-success" value="Lưu"/>
-                </li>
-            </ul>
-        </form>
+                    </li>
+                    <li class="list-group-item align-items-center">
+                        <input type="submit" class="list-group-item-action active text-center btn btn-success"
+                               value="Lưu"/>
+                    </li>
+                </ul>
+            </form>
+        </c:if>
     </div>
 </div>
 <jsp:include page="../FOOTER.jsp"/>

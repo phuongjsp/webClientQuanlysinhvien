@@ -18,9 +18,7 @@ public abstract class AbstractService<T> {
     private Gson gson = gsonb.create();
 
     public AbstractService() {
-
         this.persistentClass = (Class<T>) ((ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments()[0];
-        ;
     }
 
 
@@ -29,6 +27,7 @@ public abstract class AbstractService<T> {
         return gson.fromJson(restTemplate.getForObject(uriServer + path, String.class), persistentClass);
     }
 
+    //TOTO add try catch http exeption
     protected List<T> getListEntity(String path) {
         String jsonString = restTemplate.getForObject(uriServer + path, String.class);
         return listTByJsonString(jsonString);

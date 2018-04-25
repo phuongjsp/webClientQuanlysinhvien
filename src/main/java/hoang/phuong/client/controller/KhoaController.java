@@ -16,7 +16,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping(path = "khoa")
-public class KhoaController {
+public class KhoaController extends ExceptionHandlerController {
     @Autowired
     private KhoaService khoaService;
 

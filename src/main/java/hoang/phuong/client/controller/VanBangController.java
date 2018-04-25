@@ -16,7 +16,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping(path = "vanbang")
-public class VanBangController {
+public class VanBangController extends ExceptionHandlerController {
 
     @Autowired
     private VanBangService vanBangService;

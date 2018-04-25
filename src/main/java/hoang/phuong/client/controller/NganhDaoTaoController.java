@@ -16,7 +16,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping(path = "nganhdaotao")
-public class NganhDaoTaoController {
+public class NganhDaoTaoController extends ExceptionHandlerController {
     @Autowired
     private NganhDaoTaoService nganhDaoTaoService;
 

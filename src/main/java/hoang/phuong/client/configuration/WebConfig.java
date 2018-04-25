@@ -1,5 +1,6 @@
 package hoang.phuong.client.configuration;
 
+import hoang.phuong.client.BL.ExcelBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -7,6 +8,7 @@ import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.ViewResolver;
+import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -24,7 +26,10 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
     }
 
-
+    @Override
+    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
+        configurer.enable();
+    }
 
     @Bean
     public ViewResolver viewResolver() {
@@ -33,10 +38,13 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         viewResolver.setContentType("text/html;charset=UTF-8");
         viewResolver.setPrefix("/WEB-INF/views/");
         viewResolver.setSuffix(".jsp");
-
         return viewResolver;
     }
 
+    @Bean
+    public ExcelBuilder excelView() {
+        return new ExcelBuilder();
+    }
     @Bean
     public MultipartResolver multipartResolver() {
         CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
@@ -49,4 +57,20 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         return new StringHttpMessageConverter(Charset.forName("UTF-8"));
     }
 
+//    @Bean(name="simpleMappingExceptionResolver")
+//    public SimpleMappingExceptionResolver
+//    createSimpleMappingExceptionResolver() {
+//        SimpleMappingExceptionResolver r =
+//                new SimpleMappingExceptionResolver();
+//
+//        Properties mappings = new Properties();
+//        mappings.setProperty("DatabaseException", "databaseError");
+//        mappings.setProperty("InvalidCreditCardException", "creditCardError");
+//
+//        r.setExceptionMappings(mappings);  // None by default
+//        r.setDefaultErrorView("error");    // No default
+//        r.setExceptionAttribute("ex");     // Default is "exception"
+//        r.setWarnLogCategory("example.MvcLogger");     // No default
+//        return r;
+//    }
 }

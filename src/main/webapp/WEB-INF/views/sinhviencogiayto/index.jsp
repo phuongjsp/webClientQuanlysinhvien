@@ -33,27 +33,32 @@
 </div>
 <div class="row">
     <div class="col-form-label-sm ">
-    <c:forEach items="${giayto}" var="g">
-        <ul class="list-group float-sm-left text-center">
-            <li class="list-group-item "> ${g.tenGiayTo} :
-            <c:set var="co" scope="session" value="${false}"/>
-            <c:forEach items="${sinhviencogiayto}" var="sv">
-                <c:if test="${sv.idGiayTo==g.id}">
-                    <span style="color: red;"> ${sv.thongtin}</span>
-                    <span style="color: chartreuse;"><a
-                            href="/sinhviencogiayto/del/maSv-${maSv}-${sv.id}">Del</a></span>
-                    <span style="color: chartreuse;"><a
-                            href="/sinhviencogiayto/update/maSv-${maSv}-${sv.id}">Upd</a></span>
-                    <c:set var="co" scope="session" value="${true}"/>
-                </c:if>
+        <c:if test="${giayto!=null}">
+            Thông tin không hợp lệ vui lòng kiểm tra lại
+        </c:if>
+        <c:if test="${giayto!=null}">
+            <c:forEach items="${giayto}" var="g">
+                <ul class="list-group float-sm-left text-center">
+                    <li class="list-group-item "> ${g.tenGiayTo} :
+                        <c:set var="co" scope="session" value="${false}"/>
+                        <c:forEach items="${sinhviencogiayto}" var="sv">
+                            <c:if test="${sv.idGiayTo==g.id}">
+                                <span style="color: red;"> ${sv.thongtin}</span>
+                                <span style="color: chartreuse;"><a
+                                        href="/sinhviencogiayto/del/maSv-${maSv}-${sv.id}">Del</a></span>
+                                <span style="color: chartreuse;"><a
+                                        href="/sinhviencogiayto/update/maSv-${maSv}-${sv.id}">Upd</a></span>
+                                <c:set var="co" scope="session" value="${true}"/>
+                            </c:if>
 
+                        </c:forEach>
+                        <c:if test="${!co}">
+                            <span style="color: blueviolet;"> Không</span>
+                        </c:if>
+                    </li>
+                </ul>
             </c:forEach>
-            <c:if test="${!co}">
-                <span style="color: blueviolet;"> Không</span>
-            </c:if>
-        </li>
-        </ul>
-    </c:forEach>
+        </c:if>
     </div>
 </div>
 <jsp:include page="../FOOTER.jsp"/>

@@ -33,14 +33,14 @@
 </div>
 <div class="row">
     <div class="col-form-label-sm">
-<c:forEach items="${giayto}" var="t">
-    <ul class="list-group float-lg-left text-center">
-        <li class="list-group-item ">Mã : ${t.maGiayTo} </li>
-        <li class="list-group-item "> Tên : ${t.tenGiayTo}</li>
-        <li class="list-group-item "><a href="/giayto/update/${t.maGiayTo}">Update</a></li>
-        <li class="list-group-item "><a href="/giayto/del/${t.id}">Delete</a></li>
-    </ul>
-</c:forEach>
+        <c:forEach items="${giayto}" var="t">
+            <ul class="list-group float-lg-left text-center">
+                <li class="list-group-item ">Mã : ${t.maGiayTo} </li>
+                <li class="list-group-item "> Tên : ${t.tenGiayTo}</li>
+                <li class="list-group-item "><a href="/giayto/update/${t.maGiayTo}">Update</a></li>
+                <li class="list-group-item "><a href="/giayto/del/${t.id}">Delete</a></li>
+            </ul>
+        </c:forEach>
     </div>
 </div>
 <jsp:include page="../FOOTER.jsp"/>

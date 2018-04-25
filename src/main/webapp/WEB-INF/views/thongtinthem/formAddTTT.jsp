@@ -21,6 +21,10 @@
 </div>
 <div class="container row">
     <div class="col-sm-12">
+        <c:if test="${thongtinthem==null}">
+            Thông tin không tồn tại
+        </c:if>
+        <c:if test="${thongtinthem!=null}">
 <f:form method="POST" modelAttribute="thongtinthem" name="thongtinthem">
     <ul class="list-group">
         <f:hidden path="id"/>
@@ -50,6 +54,7 @@
         </li>
     </ul>
 </f:form>
+        </c:if>
     </div>
 </div>
 <jsp:include page="../FOOTER.jsp"/>

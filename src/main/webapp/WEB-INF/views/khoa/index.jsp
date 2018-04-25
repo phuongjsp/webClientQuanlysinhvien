@@ -22,7 +22,11 @@
 </div>
 <div class="row">
     <div class="col-form-label-sm">
-<c:forEach items="${khoa}" var="k">
+        <c:if test="${khoa==null}">
+            Thông tin không hợp lệ vui lòng kiểm tra lại
+        </c:if>
+        <c:if test="${khoa==null}">
+            <c:forEach items="${khoa}" var="k">
     <ul class="list-group float-sm-left text-center">
         <li class="list-group-item ">
             Mã Khoa : ${k.maKhoa}
@@ -42,6 +46,7 @@
         </li>
     </ul>
 </c:forEach>
+        </c:if>
     </div>
 </div>
 

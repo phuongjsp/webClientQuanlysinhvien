@@ -20,54 +20,61 @@
 </div>
 <div class="container row">
     <div class="col-sm-12">
+        <c:if test="${thongtingiadinh==null}">
+            Thông tin không hợp lệ vui lòng kiểm tra lại
+        </c:if>
+        <c:if test="${thongtingiadinh!=null}">
 <f:form method="POST" modelAttribute="thongtingiadinh" name="thongtingiadinh">
-        <ul class="list-group">
-                <f:hidden path="id"/>
-                <f:hidden path="idSv"/>
-            <li class="list-group-item">
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">Quan Hệ</span>
-                    </div>
-                    <f:input path="quanHe"
-                             type="text" class="form-control" aria-label="Default"
-                             aria-describedby="inputGroup-sizing-default"/>
+    <ul class="list-group">
+        <f:hidden path="id"/>
+        <f:hidden path="idSv"/>
+        <li class="list-group-item">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Quan Hệ</span>
                 </div>
-            </li>
-            <li class="list-group-item">
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">Họ Tên</span>
-                    </div>
-                    <f:input path="ten"
-                             type="text" class="form-control" aria-label="Default"
-                             aria-describedby="inputGroup-sizing-default"/>
+                <f:input path="quanHe"
+                         type="text" class="form-control" aria-label="Default"
+                         aria-describedby="inputGroup-sizing-default"/>
+            </div>
+        </li>
+        <li class="list-group-item">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Họ Tên</span>
                 </div>
-            </li>
-            <li class="list-group-item">
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">Số Điện Thoại</span>
-                    </div>
-                    <f:input path="sdt"
-                             type="text" class="form-control" aria-label="Default"
-                             aria-describedby="inputGroup-sizing-default"/>
+                <f:input path="ten"
+                         type="text" class="form-control" aria-label="Default"
+                         aria-describedby="inputGroup-sizing-default"/>
+            </div>
+        </li>
+        <li class="list-group-item">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Số Điện Thoại</span>
                 </div>
-            </li>
-            <li class="list-group-item">
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">Nghề Nghiệp</span>
-                    </div>
-                    <f:input path="ngheNghiep"
-                             type="text" class="form-control" aria-label="Default"
-                             aria-describedby="inputGroup-sizing-default"/>
+                <f:input path="sdt"
+                         type="text" class="form-control" aria-label="Default"
+                         aria-describedby="inputGroup-sizing-default"/>
+            </div>
+        </li>
+        <li class="list-group-item">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Nghề Nghiệp</span>
                 </div>
-            </li>
-            <li class="list-group-item align-items-center">
-                <input type="submit" class="list-group-item-action active text-center btn btn-success" value="Lưu"/>
-            </li>
+                <f:input path="ngheNghiep"
+                         type="text" class="form-control" aria-label="Default"
+                         aria-describedby="inputGroup-sizing-default"/>
+            </div>
+        </li>
+        <li class="list-group-item align-items-center">
+            <input type="submit" class="list-group-item-action active text-center btn btn-success" value="Lưu"/>
+        </li>
+    </ul>
 </f:form>
+        </c:if>
+
     </div>
 </div>
 <jsp:include page="../FOOTER.jsp"/>

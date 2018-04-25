@@ -19,7 +19,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping(path = "SvCoVb")
-public class SvCoVbController {
+public class SvCoVbController extends ExceptionHandlerController {
     @Autowired
     private SvCoVbService svCoVbService;
     @Autowired

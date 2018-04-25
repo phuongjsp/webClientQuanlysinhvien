@@ -19,6 +19,10 @@
 <div class="container row">
     <div class="col-sm-12">
 <c:if test="${listGiayToKhongCo.size()!=0}">
+        <c:if test="${sinhviencogiayto==null}">
+            Thông tin không hợp lệ vui lòng kiểm tra lại
+        </c:if>
+        <c:if test="${sinhviencogiayto!=null}">
         <f:form method="POST" modelAttribute="sinhviencogiayto" name="sinhviencogiayto">
         <ul class="list-group">
                 <f:hidden path="id"/>
@@ -59,6 +63,7 @@
                 <input type="submit" class="list-group-item-action active text-center btn btn-success" value="Lưu"/>
             </li>
             </f:form>
+            </c:if>
 </c:if>
 <c:if test="${listGiayToKhongCo.size()==0}">
             <h3 class="card-title">

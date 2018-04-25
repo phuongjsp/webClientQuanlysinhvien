@@ -19,22 +19,27 @@
 </div>
 <div class="row">
     <div class="col-form-label-sm">
-        <c:forEach items="${vanbang}" var="v">
-            <ul class="list-group float-sm-left text-center">
-                <li class="list-group-item ">
-                    Mã Văn Bằng : ${v.maVanBang}
-                </li>
-                <li class="list-group-item ">
-                    Tên Văn Bằng : ${v.tenVanBang}
-                </li>
-                <li class="list-group-item">
-                    <a href="/vanbang/update/${v.maVanBang}">Update</a>
-                </li>
-                <li class="list-group-item ">
-                    <a href="/vanbang/del/${v.maVanBang}">Delete</a>
-                </li>
-            </ul>
-        </c:forEach>
+        <c:if test="${vanbang==null}">
+            Thông tin không tồn tại
+        </c:if>
+        <c:if test="${vanbang!=null}">
+            <c:forEach items="${vanbang}" var="v">
+                <ul class="list-group float-sm-left text-center">
+                    <li class="list-group-item ">
+                        Mã Văn Bằng : ${v.maVanBang}
+                    </li>
+                    <li class="list-group-item ">
+                        Tên Văn Bằng : ${v.tenVanBang}
+                    </li>
+                    <li class="list-group-item">
+                        <a href="/vanbang/update/${v.maVanBang}">Update</a>
+                    </li>
+                    <li class="list-group-item ">
+                        <a href="/vanbang/del/${v.maVanBang}">Delete</a>
+                    </li>
+                </ul>
+            </c:forEach>
+        </c:if>
     </div>
 </div>
 <jsp:include page="../FOOTER.jsp"/>

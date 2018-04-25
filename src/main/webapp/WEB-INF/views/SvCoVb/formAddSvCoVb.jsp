@@ -21,50 +21,58 @@
 </div>
 <div class="container row">
     <div class="col-sm-12">
+        <c:if test="${svcovb==null}">
+            Thông tin không hợp lệ vui lòng kiểm tra lại
+        </c:if>
+        <c:if test="${svcovb!=null}">
 <f:form method="POST" modelAttribute="svcovb" name="svcovb">
-        <ul class="list-group">
-                <f:hidden path="id"/>
-                <f:hidden path="idSv"/>
-            <li class="list-group-item">
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">Loại Văn Bằng</span>
-                    </div>
-                    <f:select path="loaiVb"
-                              type="text" class="form-control" aria-label="Default"
-                              aria-describedby="inputGroup-sizing-default">
-                        <c:forEach items="${VB}" var="vb">
-                            <fmt:formatNumber var="idvb"
-                                              type="number" value="${vb.id}"/>
-                            <f:option value="${idvb}">${vb.tenVanBang}</f:option>
-                        </c:forEach>
-                    </f:select>
+    <ul class="list-group">
+        <f:hidden path="id"/>
+        <f:hidden path="idSv"/>
+        <li class="list-group-item">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Loại Văn Bằng</span>
                 </div>
-            </li>
-            <li class="list-group-item">
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">Thuộc tính</span>
-                    </div>
-                    <f:input path="tenThuocTinh"
-                             type="text" class="form-control" aria-label="Default"
-                             aria-describedby="inputGroup-sizing-default"/>
+                <f:select path="loaiVb"
+                          type="text" class="form-control" aria-label="Default"
+                          aria-describedby="inputGroup-sizing-default">
+                    <c:forEach items="${VB}" var="vb">
+                        <fmt:formatNumber var="idvb"
+                                          type="number" value="${vb.id}"/>
+                        <f:option value="${idvb}">${vb.tenVanBang}</f:option>
+                    </c:forEach>
+                </f:select>
+            </div>
+        </li>
+        <li class="list-group-item">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Thuộc tính</span>
                 </div>
-            </li>
-            <li class="list-group-item">
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">Dữ Liệu</span>
-                    </div>
-                    <f:input path="thuocTinh"/>
-                    type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"/>
+                <f:input path="tenThuocTinh"
+                         type="text" class="form-control" aria-label="Default"
+                         aria-describedby="inputGroup-sizing-default"/>
+            </div>
+        </li>
+        <li class="list-group-item">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Dữ Liệu</span>
                 </div>
-            </li>
+                <f:input path="thuocTinh"
+                         type="text" class="form-control" aria-label="Default"
+                         aria-describedby="inputGroup-sizing-default"/>
+            </div>
+        </li>
 
-            <li class="list-group-item align-items-center">
-                <input type="submit" class="list-group-item-action active text-center btn btn-success" value="Lưu"/>
-            </li>
+        <li class="list-group-item align-items-center">
+            <input type="submit" class="list-group-item-action active text-center btn btn-success" value="Lưu"/>
+        </li>
+    </ul>
 </f:form>
+
+        </c:if>
     </div>
 </div>
 <jsp:include page="../FOOTER.jsp"/>

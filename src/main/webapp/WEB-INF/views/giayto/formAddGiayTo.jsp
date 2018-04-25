@@ -1,4 +1,5 @@
 <%@ taglib prefix="f" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: phuongjsp
@@ -19,34 +20,40 @@
 </div>
 <div class="container row">
     <div class="col-sm-12">
-<f:form method="POST" modelAttribute="giayto" name="giayto">
-    <ul class="list-group">
-        <f:hidden path="id"/>
-        <li class="list-group-item">
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">Mã Giấy tờ</span>
-                </div>
-                <f:input path="maGiayTo"
-                         type="text" class="form-control" aria-label="Default"
-                         aria-describedby="inputGroup-sizing-default"/>
-            </div>
-        </li>
-        <li class="list-group-item">
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">Tên Giấy tờ</span>
-                </div>
-                <f:input path="tenGiayTo"
-                         type="text" class="form-control" aria-label="Default"
-                         aria-describedby="inputGroup-sizing-default"/>
-            </div>
-        </li>
-        <li class="list-group-item align-items-center">
-            <input type="submit" class="list-group-item-action active text-center btn btn-success" value="Lưu"/>
-        </li>
-    </ul>
-</f:form>
+        <c:if test="${giayto==null}">
+            Mã giấy tờ không tồn tại vui lòng kiểm tra lại
+        </c:if>
+        <c:if test="${giayto!=null}">
+            <f:form method="POST" modelAttribute="giayto" name="giayto">
+                <ul class="list-group">
+                    <f:hidden path="id"/>
+                    <li class="list-group-item">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Mã Giấy tờ</span>
+                            </div>
+                            <f:input path="maGiayTo"
+                                     type="text" class="form-control" aria-label="Default"
+                                     aria-describedby="inputGroup-sizing-default"/>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Tên Giấy tờ</span>
+                            </div>
+                            <f:input path="tenGiayTo"
+                                     type="text" class="form-control" aria-label="Default"
+                                     aria-describedby="inputGroup-sizing-default"/>
+                        </div>
+                    </li>
+                    <li class="list-group-item align-items-center">
+                        <input type="submit" class="list-group-item-action active text-center btn btn-success"
+                               value="Lưu"/>
+                    </li>
+                </ul>
+            </f:form>
+        </c:if>
     </div>
 </div>
 <jsp:include page="../FOOTER.jsp"/>

@@ -4,9 +4,13 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
+import hoang.phuong.client.BL.ExcelBuilder;
 import hoang.phuong.client.model.Diachi;
 import hoang.phuong.client.model.Thongtinsinhvien;
-import hoang.phuong.client.service.*;
+import hoang.phuong.client.service.KhoaService;
+import hoang.phuong.client.service.LopService;
+import hoang.phuong.client.service.NganhDaoTaoService;
+import hoang.phuong.client.service.ThongTinSinhVienService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -23,11 +28,8 @@ import java.util.Map;
 
 @Controller
 @RequestMapping(path = "thongtinsinhvien")
-public class ThongTinSinhVienController {
-    @Autowired
-    private ThongtingiadinhService thongtingiadinhService;
-    @Autowired
-    private DiaChiService diaChiService;
+public class ThongTinSinhVienController extends ExceptionHandlerController {
+
     @Autowired
     private NganhDaoTaoService nganhDaoTaoService;
     @Autowired
@@ -36,8 +38,6 @@ public class ThongTinSinhVienController {
     private LopService lopService;
     @Autowired
     private ThongTinSinhVienService thongTinSinhVienService;
-    @Autowired
-    private ThongTinThemService thongTinThemService;
     @RequestMapping(path = {"/add"}, method = RequestMethod.GET)
     public String addKhoa(Model model) {
         Diachi diachi = new Diachi();
@@ -51,7 +51,6 @@ public class ThongTinSinhVienController {
 
     @RequestMapping(path = {"/add"}, method = RequestMethod.POST)
     public String addSuccess(@RequestParam Map<String, String> map) {
-
         thongTinSinhVienService.saveTT(map);
         return "redirect:/thongtinsinhvien/";
     }
@@ -152,26 +151,16 @@ public class ThongTinSinhVienController {
         return "thongtinsinhvien/formSearch";
     }
 
+    @Autowired
+    private ExcelBuilder excelBuilder;
+
     @RequestMapping(path = {""}, method = RequestMethod.POST)
     public String doPost(Model model, @RequestParam("list") String list) {
         if (list.length() == 0) {
             return "redirect:/thongtinsinhvien/";
         } else {
-
-
-            List<Map<String, Object>> lst = new ArrayList<>();
-            lst = listTByJsonString(list);
-            lst.forEach(stringObjectMap -> {
-                if (stringObjectMap.get("property") != null) if (stringObjectMap.get("property").equals("lop") ||
-                        stringObjectMap.get("property").equals("nganhDk") ||
-                        stringObjectMap.get("property").equals("khoaHoc") ||
-                        stringObjectMap.get("property").equals("gioiTinh")) {
-                    if (stringObjectMap.get("value") != null)
-                        stringObjectMap.replace("value", Integer.valueOf(stringObjectMap.get("value").toString()));
-                }
-            });
-            model.addAttribute("messages", list);
-            model.addAttribute("thongtinsinhvien", thongTinSinhVienService.listOrderBy(lst, 0, 0));
+            model.addAttribute("listBy", list);
+            model.addAttribute("thongtinsinhvien", thongTinSinhVienService.listOrderBy(listTByJsonString(list), 0, 0));
             return "thongtinsinhvien/index";
         }
     }
@@ -188,7 +177,23 @@ public class ThongTinSinhVienController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        list.forEach(stringObjectMap -> {
+            if (stringObjectMap.get("property") != null) if (stringObjectMap.get("property").equals("lop") ||
+                    stringObjectMap.get("property").equals("nganhDk") ||
+                    stringObjectMap.get("property").equals("khoaHoc") ||
+                    stringObjectMap.get("property").equals("gioiTinh")) {
+                if (stringObjectMap.get("value") != null)
+                    stringObjectMap.replace("value", Integer.valueOf(stringObjectMap.get("value").toString()));
+            }
+        });
         return list;
+    }
+
+    @RequestMapping(value = "/download/Thongtinsinhvien", method = RequestMethod.POST)
+    public ModelAndView downloadExcel(@RequestParam("list") String list) {
+        List<Thongtinsinhvien> thongtinsinhvienList = thongTinSinhVienService.listOrderBy(listTByJsonString(list), 0, 0);
+        // return a view which will be resolved by an excel view resolver
+        return new ModelAndView(excelBuilder, "listTTSV", thongtinsinhvienList);
     }
 //    @RequestMapping(path = {"/del/{maVanBang}"}, method = RequestMethod.GET)
 //    public String del(Model model,@PathVariable("maVanBang") String maVanBang) {

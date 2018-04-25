@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping(path = "thongtingiadinh")
-public class ThongtingiadinhController {
+public class ThongtingiadinhController extends ExceptionHandlerController {
     @Autowired
     private ThongtingiadinhService thongtingiadinhService;
     @Autowired
@@ -59,4 +59,6 @@ public class ThongtingiadinhController {
         model.addAttribute("thongtingiadinh", thongtingiadinhService.listByIdSv(thongTinSinhVienService.getByMaSv(maSv).getId()));
         return "thongtingiadinh/index";
     }
+
+
 }

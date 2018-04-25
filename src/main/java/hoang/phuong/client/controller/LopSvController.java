@@ -16,7 +16,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping(path = "lopsv")
-public class LopSvController {
+public class LopSvController extends ExceptionHandlerController {
     @Autowired
     private LopService lopService;
 

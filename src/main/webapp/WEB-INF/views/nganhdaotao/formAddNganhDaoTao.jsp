@@ -1,4 +1,5 @@
 <%@ taglib prefix="f" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: phuongjsp
@@ -19,7 +20,10 @@
 </div>
 <div class="container row">
     <div class="col-sm-12">
-
+        <c:if test="${nganhdaotao==null}">
+            Mã Ngành đào tạo không tồn tại
+        </c:if>
+        <c:if test="${nganhdaotao!=null}">
         <f:form method="POST" modelAttribute="nganhdaotao" name="nganhdaotao">
         <ul class="list-group">
                 <f:hidden path="id"/>
@@ -67,6 +71,7 @@
                 <input type="submit" class="list-group-item-action active text-center btn btn-success" value="Lưu"/>
             </li>
             </f:form>
+            </c:if>
     </div>
 </div>
 <jsp:include page="../FOOTER.jsp"/>

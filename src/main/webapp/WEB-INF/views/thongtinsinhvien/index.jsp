@@ -39,6 +39,21 @@
 <div class="btn bg-light text-md-center ">
     <a class="mr-sm-5" href="javascript:history.back()">Quay Lại</a>
 </div>
+<c:if test="${thongtinsinhvien==null}">
+    Thông tin sinh viên không tồn tại
+</c:if>
+<c:if test="${thongtinsinhvien!=null}">
+    <c:if test="${listBy!=null}">
+        <form action="/thongtinsinhvien/download/Thongtinsinhvien" method="post">
+            <input type="hidden" name="list" id="listResult"/>
+            <script type="application/javascript">
+                function setList() {
+                    document.getElementById("listResult").value = '${listBy}';
+                }
+            </script>
+            <input type="submit" class="btn btn-link" onclick="setList()" value="Download file exel"/>
+        </form>
+    </c:if>
 <c:forEach items="${thongtinsinhvien}" var="t">
     <div class="row" style="border: black 2px dotted;">
         <ul class="col-sm-6 bg-light">
@@ -87,6 +102,7 @@
 
     </div>
 </c:forEach>
+</c:if>
 <jsp:include page="../FOOTER.jsp"/>
 </body>
 </html>

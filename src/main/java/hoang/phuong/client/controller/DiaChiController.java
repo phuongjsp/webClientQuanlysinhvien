@@ -14,7 +14,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping(path = "diachi")
-public class DiaChiController {
+public class DiaChiController extends ExceptionHandlerController {
     @Autowired
     DiaChiService diaChiService;
 
@@ -81,4 +81,5 @@ public class DiaChiController {
         model.addAttribute("diachi", diaChiService.listByPropertiesDiaChi(diachi));
         return "diachi/index";
     }
+
 }
