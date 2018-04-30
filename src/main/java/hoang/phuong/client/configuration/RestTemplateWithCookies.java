@@ -49,13 +49,20 @@ public class RestTemplateWithCookies extends RestTemplate {
         final List<String> cookies = getCoookies();
 
         return super.doExecute(url, method, new RequestCallback() {
+            String TOKEN = "";
             @Override
             public void doWithRequest(ClientHttpRequest chr) throws IOException {
                 if (cookies != null) {
                     for (String cookie : cookies) {
+                        if (cookie.contains("XSRF-TOKEN")) {
+                            String cut1[] = cookie.split(";");
+                            String cut2[] = cut1[0].split("=");
+                            TOKEN = cut2[1];
+                        }
                         chr.getHeaders().add("Cookie", cookie);
                     }
                 }
+                chr.getHeaders().add("X-XSRF-TOKEN", TOKEN);
                 requestCallback.doWithRequest(chr);
             }
 

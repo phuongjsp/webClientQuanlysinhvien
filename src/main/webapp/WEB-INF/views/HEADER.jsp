@@ -24,8 +24,21 @@
                     <a class="nav-item nav-link " href="/giayto/">Giay To</a>
                 </div>
                 <div class="navbar-nav">
-                    <a href="/login" class="btn-success">LOGIN</a>
+                    <a href="/login" class="btn-success">${idUserAPI}</a>
                 </div>
+                <c:if test="${idUserAPI==null}">
+                    <div class="navbar-nav">
+                        <a href="/login" class="btn-success">LOGIN</a>
+                    </div>
+                </c:if>
+                <c:if test="${idUserAPI!=null}">
+                    <div class="navbar-nav">
+                        <a href="/logout" class="btn-success">Profile</a>
+                    </div>
+                    <div class="navbar-nav">
+                        <a href="/logout" class="btn-success">Logout</a>
+                    </div>
+                </c:if>
             </div>
 
         </div>
