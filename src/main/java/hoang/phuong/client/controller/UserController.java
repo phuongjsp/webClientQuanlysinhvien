@@ -1,0 +1,7 @@
+package hoang.phuong.client.controller;
+
+import org.springframework.stereotype.Controller;
+
+@Controller
+public class UserController {
+}

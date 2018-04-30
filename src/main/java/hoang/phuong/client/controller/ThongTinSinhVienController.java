@@ -11,7 +11,6 @@ import hoang.phuong.client.service.KhoaService;
 import hoang.phuong.client.service.LopService;
 import hoang.phuong.client.service.NganhDaoTaoService;
 import hoang.phuong.client.service.ThongTinSinhVienService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,13 +29,9 @@ import java.util.Map;
 @RequestMapping(path = "thongtinsinhvien")
 public class ThongTinSinhVienController extends ExceptionHandlerController {
 
-    @Autowired
     private NganhDaoTaoService nganhDaoTaoService;
-    @Autowired
     private KhoaService khoaService;
-    @Autowired
     private LopService lopService;
-    @Autowired
     private ThongTinSinhVienService thongTinSinhVienService;
     @RequestMapping(path = {"/add"}, method = RequestMethod.GET)
     public String addKhoa(Model model) {
@@ -49,10 +44,12 @@ public class ThongTinSinhVienController extends ExceptionHandlerController {
         return "thongtinsinhvien/formAddTTSV";
     }
 
-    @RequestMapping(path = {"/add"}, method = RequestMethod.POST)
-    public String addSuccess(@RequestParam Map<String, String> map) {
-        thongTinSinhVienService.saveTT(map);
-        return "redirect:/thongtinsinhvien/";
+    public ThongTinSinhVienController(NganhDaoTaoService nganhDaoTaoService, KhoaService khoaService, LopService lopService, ThongTinSinhVienService thongTinSinhVienService, ExcelBuilder excelBuilder) {
+        this.nganhDaoTaoService = nganhDaoTaoService;
+        this.khoaService = khoaService;
+        this.lopService = lopService;
+        this.thongTinSinhVienService = thongTinSinhVienService;
+        this.excelBuilder = excelBuilder;
     }
 
     @RequestMapping(path = {"/update/{maSv}"}, method = RequestMethod.GET)
@@ -67,10 +64,10 @@ public class ThongTinSinhVienController extends ExceptionHandlerController {
         return "thongtinsinhvien/formAddTTSV";
     }
 
-    @RequestMapping(path = {"/update/{maSv}"}, method = RequestMethod.POST)
-    public String updateTTSVSuccess(@RequestParam Map<String, String> map) {
-        thongTinSinhVienService.updateTT(map);
-        return "redirect:/thongtinsinhvien/";
+    @RequestMapping(path = {"/add"}, method = RequestMethod.POST)
+    public String addSuccess(@RequestParam Map<String, String> map) {
+        Thongtinsinhvien ttsv = thongTinSinhVienService.saveTT(map);
+        return "redirect:/thongtinsinhvien/maSv/" + ttsv.getMaSv();
     }
 
     @RequestMapping(path = {"/del/{maSv}"}, method = RequestMethod.GET)
@@ -145,13 +142,17 @@ public class ThongTinSinhVienController extends ExceptionHandlerController {
         model.addAttribute("mapproperties", map);
         model.addAttribute("khoahoc", khoaService.getListKhoa());
         model.addAttribute("lopsv", lopService.listLop());
-        lopService.listLop().forEach(System.out::println);
         model.addAttribute("nganhdt", nganhDaoTaoService.listNganhDT());
         model.addAttribute("properties", listProperties);
         return "thongtinsinhvien/formSearch";
     }
 
-    @Autowired
+    @RequestMapping(path = {"/update/{maSv}"}, method = RequestMethod.POST)
+    public String updateTTSVSuccess(@PathVariable("maSv") String maSv, @RequestParam Map<String, String> map) {
+        thongTinSinhVienService.updateTT(map);
+        return "redirect:/thongtinsinhvien/maSv/" + maSv;
+    }
+
     private ExcelBuilder excelBuilder;
 
     @RequestMapping(path = {""}, method = RequestMethod.POST)
@@ -166,7 +167,6 @@ public class ThongTinSinhVienController extends ExceptionHandlerController {
     }
 
     private List<Map<String, Object>> listTByJsonString(String jsonString) {
-        System.out.println(jsonString);
         List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
         try {
             Gson gson = new Gson();

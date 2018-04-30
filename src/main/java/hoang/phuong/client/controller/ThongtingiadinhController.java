@@ -3,7 +3,6 @@ package hoang.phuong.client.controller;
 import hoang.phuong.client.model.Thongtingiadinh;
 import hoang.phuong.client.service.ThongTinSinhVienService;
 import hoang.phuong.client.service.ThongtingiadinhService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
@@ -15,10 +14,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 @RequestMapping(path = "thongtingiadinh")
 public class ThongtingiadinhController extends ExceptionHandlerController {
-    @Autowired
     private ThongtingiadinhService thongtingiadinhService;
-    @Autowired
     private ThongTinSinhVienService thongTinSinhVienService;
+
+    public ThongtingiadinhController(ThongtingiadinhService thongtingiadinhService, ThongTinSinhVienService thongTinSinhVienService) {
+        this.thongtingiadinhService = thongtingiadinhService;
+        this.thongTinSinhVienService = thongTinSinhVienService;
+    }
 
     @RequestMapping(path = {"/add/{maSv}"}, method = RequestMethod.GET)
     public String addKhoa(Model model, @PathVariable("maSv") String maSv) {
@@ -42,13 +44,13 @@ public class ThongtingiadinhController extends ExceptionHandlerController {
     }
 
     @RequestMapping(path = {"/update/{maSv}-{id}"}, method = RequestMethod.GET)
-    public String update(Model model, @PathVariable("id") int id) {
+    public String update(Model model, @PathVariable("id") int id, @PathVariable("maSv") String maSv) {
         model.addAttribute("thongtingiadinh", thongtingiadinhService.getById(id));
         return "thongtingiadinh/formAddTTGD";
     }
 
     @RequestMapping(path = {"/update/{maSv}-{id}"}, method = RequestMethod.POST)
-    public String updateSuccess(@PathVariable("maSv") String maSv, @ModelAttribute("thongtinthem") @Validated Thongtingiadinh thongtingiadinh) {
+    public String updateSuccess(@PathVariable("maSv") String maSv, @ModelAttribute("thongtingiadinh") @Validated Thongtingiadinh thongtingiadinh, @PathVariable("id") String id) {
         thongtingiadinhService.updateTTGD(thongtingiadinh);
         return "redirect:/thongtinsinhvien/maSv/" + maSv;
     }

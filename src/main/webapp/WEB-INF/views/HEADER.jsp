@@ -4,7 +4,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 
 <link rel="stylesheet" href="<c:url value="/resources/bootstrap4/css/bootstrap.css" />">
-
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
 <script src="<c:url value="/resources/bootstrap4/js/bootstrap.min.js" />"></script>
 <nav class="navbar navbar-light navbar-expand-xl fixed-top " style="background-color: #e3f2fd;">
     <div class="container">
@@ -23,7 +23,11 @@
                     <a class="nav-item nav-link " href="/vanbang">Van Bang</a>
                     <a class="nav-item nav-link " href="/giayto/">Giay To</a>
                 </div>
+                <div class="navbar-nav">
+                    <a href="/login" class="btn-success">LOGIN</a>
+                </div>
             </div>
+
         </div>
     </div>
 </nav>

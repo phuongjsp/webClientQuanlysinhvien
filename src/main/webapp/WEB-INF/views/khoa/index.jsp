@@ -25,7 +25,7 @@
         <c:if test="${khoa==null}">
             Thông tin không hợp lệ vui lòng kiểm tra lại
         </c:if>
-        <c:if test="${khoa==null}">
+        <c:if test="${khoa!=null}">
             <c:forEach items="${khoa}" var="k">
     <ul class="list-group float-sm-left text-center">
         <li class="list-group-item ">

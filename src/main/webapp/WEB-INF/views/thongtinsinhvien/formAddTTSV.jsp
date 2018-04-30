@@ -13,7 +13,7 @@
 <head>
     <title>Form add Khoa</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+
     <style>
 
         body {
@@ -59,7 +59,7 @@
             cursor: pointer;
         }
     </style>
-
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
 </head>
 <body>
 
@@ -67,12 +67,14 @@
 <div class="btn bg-light text-md-center ">
     <a class="mr-sm-5" href="javascript:history.back()">Quay Lại</a>
 </div>
+<script src="<c:url value="/resources/custom/js/diaChiAjax.js"/>"></script>
 <!-- The Modal -->
+
 <div id="noisinhModal" class="modal">
 
     <!-- Modal content -->
     <div class="modal-content">
-        <form action="/diachi/addAjax" id="diachinoisinh">
+        <form id="diachinoisinh" action="/diachi">
             <ul class="list-group">
                 <li class="list-group-item">
                     <div class="input-group input-group-sm mb-3">
@@ -133,7 +135,7 @@
 
     <!-- Modal content -->
     <div class="modal-content">
-        <form action="/diachi/addAjax" id="diachihktc">
+        <form action="/diachi" id="diachihktc">
             <ul class="list-group">
                 <li class="list-group-item">
                     <div class="input-group input-group-sm mb-3">
@@ -188,88 +190,10 @@
 
 </div>
 
-<script>
 
-    $(document).ready(function () {
-
-        $('#hktcBtn').click(function () {
-            $('#hktcModal').modal('show');
-        });
-        $('#hktcBtnClose').click(function () {
-            $('#hktcModal').modal('hide');
-        });
-        $('#noisinhBtn').click(function () {
-            $('#noisinhModal').modal('show');
-        });
-        $('#noisinhBtnClose').click(function () {
-            $('#noisinhModal').modal('hide');
-        });
-        $('#diachinoisinh').submit(function (event) {
-
-            var tinh = $('#tinhns').val();
-            var quanHuyen = $('#quanHuyenns').val();
-            var xaPhuong = $('#xaPhuongns').val();
-            var thonXom = $('#thonXomns').val();
-            var json = {"tinh": tinh, "quanHuyen": quanHuyen, "xaPhuong": xaPhuong, "thonXom": thonXom};
-
-            $.ajax({
-                url: $("#diachinoisinh").attr("action"),
-                data: JSON.stringify(json),
-                type: "POST",
-
-                beforeSend: function (xhr) {
-                    xhr.setRequestHeader("Accept", "application/json");
-                    xhr.setRequestHeader("Content-Type", "application/json");
-                },
-                success: function (diachi) {
-                    var respContent = "";
-                    respContent = diachi.tinh + " | " + diachi.quanHuyen + " | " + diachi.xaPhuong + " | " + diachi.thonXom;
-                    $("#noisinhchitiet").html(respContent);
-                    $('#noisinhModal').modal('hide');
-                    var ns = document.getElementById("noiSinh");
-                    ns.value = diachi.id;
-                }
-            });
-
-            event.preventDefault();
-        });
-
-        $('#diachihktc').submit(function (event) {
-
-            var tinh = $('#tinhhk').val();
-            var quanHuyen = $('#quanHuyenhk').val();
-            var xaPhuong = $('#xaPhuonghk').val();
-            var thonXom = $('#thonXomhk').val();
-            var json = {"tinh": tinh, "quanHuyen": quanHuyen, "xaPhuong": xaPhuong, "thonXom": thonXom};
-
-            $.ajax({
-                url: $("#diachihktc").attr("action"),
-                data: JSON.stringify(json),
-                type: "POST",
-
-                beforeSend: function (xhr) {
-                    xhr.setRequestHeader("Accept", "application/json");
-                    xhr.setRequestHeader("Content-Type", "application/json");
-                },
-                success: function (diachi) {
-                    var respContent = "";
-                    respContent = diachi.tinh + " | " + diachi.quanHuyen + " | " + diachi.xaPhuong + " | " + diachi.thonXom;
-                    $("#hktcchitiet").html(respContent);
-                    $('#hktcModal').modal('hide');
-                    var hk = document.getElementById("hoKhauThuongChu");
-                    hk.value = diachi.id;
-                }
-            });
-
-            event.preventDefault();
-        });
-
-    });
-
-</script>
 <div class="container row">
     <div class="col-sm-12 ">
-
+        <!-- TODO them ajax-->
         <c:if test="${thongtinsinhvien==null}">
             Thông tin sinh viên không tồn tại
         </c:if>
@@ -354,8 +278,9 @@
                     <li class="list-group-item">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
-                                <span class="input-group-text">Dân Tộc</span>
+                                <span class="input-group-text">Dân Tộc ${thongtinsinhvien}</span>
                             </div>
+                                <%--TODO fix this--%>
                             <input name="maSv" name="danToc" value="${thongtinsinhvien.danToc}"
                                    type="text" class="form-control" aria-label="Default"
                                    aria-describedby="inputGroup-sizing-default"/>

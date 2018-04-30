@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.StringHttpMessageConverter;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.ViewResolver;
@@ -21,6 +22,12 @@ import java.nio.charset.Charset;
 @EnableWebMvc
 @ComponentScan(basePackages = "hoang.phuong.client")
 public class WebConfig extends WebMvcConfigurerAdapter {
+
+
+    @Bean
+    public RestTemplate restTemplate() {
+        return new RestTemplateWithCookies();
+    }
     @Override
     public void addResourceHandlers(final ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
