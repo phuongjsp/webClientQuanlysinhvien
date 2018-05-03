@@ -9,7 +9,7 @@ import org.springframework.web.client.RestTemplate;
 import java.util.ArrayList;
 import java.util.List;
 
-@Service
+@Service("svCoVbService")
 @Transactional(readOnly = true)
 public class SvCoVbServiceImpl extends AbstractService<Svcovb> implements SvCoVbService {
     public SvCoVbServiceImpl(RestTemplate restTemplate) {

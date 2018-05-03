@@ -10,7 +10,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-@Service
+@Service("thongTinSinhVienService")
 @Transactional(readOnly = true)
 public class ThongTinSinhVienServiceImpl extends AbstractService<Thongtinsinhvien> implements ThongTinSinhVienService {
     public ThongTinSinhVienServiceImpl(RestTemplate restTemplate) {
@@ -69,7 +69,7 @@ public class ThongTinSinhVienServiceImpl extends AbstractService<Thongtinsinhvie
 
     @Override
     public List<Thongtinsinhvien> listOrderBy(List<Map<String, Object>> mapOrder, int min, int max) {
-
+        mapOrder.forEach(stringObjectMap -> stringObjectMap.forEach((k, v) -> System.out.println(k + " values " + v)));
         return getListByListProperties("qlsv/thongtinsinhvien/fliter/" + min + "/" + max, mapOrder);
     }
 }

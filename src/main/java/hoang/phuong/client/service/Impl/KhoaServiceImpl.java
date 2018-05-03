@@ -8,7 +8,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
-@Service
+@Service("khoaService")
 @Transactional(readOnly = true)
 public class KhoaServiceImpl extends AbstractService<Khoa> implements KhoaService {
 

@@ -8,11 +8,15 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>MESSAGES PAGE</title>
 </head>
 <body>
-<div class="text-center">
-    ${messages}
+<jsp:include page="HEADER.jsp"/>
+<div class="row text-center">
+    <div class="col-lg-12">
+        <p>${messages}</p>
+    </div>
 </div>
+<jsp:include page="FOOTER.jsp"/>
 </body>
 </html>

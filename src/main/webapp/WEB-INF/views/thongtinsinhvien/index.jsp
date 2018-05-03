@@ -54,17 +54,26 @@
             <input type="submit" class="btn btn-link" onclick="setList()" value="Download file exel"/>
         </form>
     </c:if>
-<c:forEach items="${thongtinsinhvien}" var="t">
-    <div class="row" style="border: black 2px dotted;">
+    <c:forEach items="${thongtinsinhvien}" var="t">
+        <div class="row" style="border: black 2px dotted">
         <ul class="col-sm-6 bg-light">
             <li>ma SV ${t.maSv}</li>
             <li>Ho : ${t.ho}</li>
             <li>Ten : ${t.ten}</li>
-            <li><img id="andthe" src="${t.anhThe}" alt="${t.maSv}"></li>
+            <li>
+                <c:if test="${t.anhThe!=null}">
+                    <img id="andthe" src="${t.anhThe}" alt="${t.maSv}">
+                </c:if>
+                <c:if test="${t.anhThe==null}">
+                    Không
+                </c:if>
+            </li>
             <li>Gioi tinh : ${t.gioiTinh==1?'nam':'nu'}</li>
             <li>Dan toc : ${t.danToc}</li>
             <li>Ngay Sinh :
-                <fmt:formatDate value="${t.ngaySinh}" pattern="dd - MM - yyyy"/>
+                <jsp:useBean id="ngaySinh" class="java.util.Date"/>
+                <jsp:setProperty name="ngaySinh" property="time" value="${t.ngaySinh}"/>
+                <fmt:formatDate value="${ngaySinh}" pattern="dd - MM - yyyy"/>
             </li>
             <li>noi sinh : ${t.diachiByNoiSinh.tinh} -${t.diachiByNoiSinh.quanHuyen}
                 -${t.diachiByNoiSinh.xaPhuong}-${t.diachiByNoiSinh.thonXom}</li>
@@ -75,7 +84,11 @@
             <li>Nganh dk : ${t.nganhdaotaoByNganhDk.tenNganh} -${t.nganhdaotaoByNganhDk.maNganh}  </li>
             <li>Khoa : ${t.khoaByKhoaHoc.tenKhoa} - ${t.khoaByKhoaHoc.maKhoa} </li>
             <li>Lop : ${t.lopsvByLop.tenLop} -${t.lopsvByLop.maLop}</li>
-            <li>Ngay vao hoc : ${t.ngayVaoHoc}</li>
+            <li>Ngay vao hoc :
+                <jsp:useBean id="ngayVaoHoc" class="java.util.Date"/>
+                <jsp:setProperty name="ngayVaoHoc" property="time" value="${t.ngayVaoHoc}"/>
+                <fmt:formatDate value="${ngayVaoHoc}" pattern="dd - MM - yyyy"/>
+            </li>
             <c:forEach items="${listTTT}" var="listttt">
                 <c:if test="${listttt.idSv==t.id}">
                     <li>${listttt.tenThongTin} :${listttt.thongTin} </li>
@@ -101,7 +114,8 @@
         </ul>
 
     </div>
-</c:forEach>
+
+    </c:forEach>
 </c:if>
 <jsp:include page="../FOOTER.jsp"/>
 </body>

@@ -8,7 +8,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
-@Service
+@Service("sinhviencogiaytoService")
 @Transactional
 public class SinhviencogiaytoServiceImpl extends AbstractService<Sinhviencogiayto> implements SinhviencogiaytoService {
     public SinhviencogiaytoServiceImpl(RestTemplate restTemplate) {

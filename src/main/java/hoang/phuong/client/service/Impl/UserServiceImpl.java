@@ -2,7 +2,8 @@ package hoang.phuong.client.service.Impl;
 
 import hoang.phuong.client.model.User;
 import hoang.phuong.client.service.UserService;
-import org.springframework.http.*;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
@@ -10,7 +11,7 @@ import org.springframework.web.client.RestTemplate;
 import java.util.List;
 import java.util.Map;
 
-@Service
+@Service("userService")
 @Transactional(readOnly = true)
 public class UserServiceImpl extends AbstractService<User> implements UserService {
     public UserServiceImpl(RestTemplate restTemplate) {
@@ -34,11 +35,8 @@ public class UserServiceImpl extends AbstractService<User> implements UserServic
     }
 
     @Override
-    public void confirmUser(Map<String, String> activeuserMap, String path) {
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
-        HttpEntity<Map<String, String>> request = new HttpEntity<Map<String, String>>(activeuserMap, headers);
-        ResponseEntity<String> response = restTemplate.postForEntity("http://localhost:9966/api/users", request, String.class);
+    public void confirmUser(Map<String, String> activeuserMap) {
+        ResponseEntity<String> response = restTemplate.postForEntity("http://localhost:9966/api/users?path=http://localhost:6696/registation/", activeuserMap, String.class);
     }
 
     @Override
@@ -49,8 +47,8 @@ public class UserServiceImpl extends AbstractService<User> implements UserServic
     }
 
     @Override
-    public User ActiveUser(String keyCode) {
-        return gson.fromJson(UserAPIReturn("api/users/active/" + keyCode, HttpMethod.POST), User.class);
+    public User ActiveUser(String keyCode, String password) {
+        return gson.fromJson(UserAPIReturn("api/users/active/" + keyCode + "?password=" + password, HttpMethod.POST), User.class);
 
     }
 
@@ -82,13 +80,17 @@ public class UserServiceImpl extends AbstractService<User> implements UserServic
 
 
     @Override
-    public void updatePassword(int id, String currentPassword, String newPassword) {
-        UserAPI("api/users/newpassword/" + id + "?currentPassword=" + currentPassword + "&newPassword=" + newPassword, HttpMethod.POST);
+    public boolean updatePassword(int id, String currentPassword, String newPassword) {
+        String body = UserAPIReturn("api/users/newpassword/" + id + "?currentPassword=" + currentPassword + "&newPassword=" + newPassword, HttpMethod.POST);
+        if (body.equals("true")) return true;
+        return false;
     }
 
     @Override
-    public User updateUser(User user) {
-        return null;
+    public User updateUser(int id, Map<String, String> userMap) {
+        ResponseEntity<String> response = restTemplate.postForEntity("http://localhost:9966/api/users/" + id, userMap, String.class);
+        String body = response.getBody();
+        return gson.fromJson(body, User.class);
     }
 
     @Override

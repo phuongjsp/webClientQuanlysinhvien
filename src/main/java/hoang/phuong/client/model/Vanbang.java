@@ -1,11 +1,20 @@
 package hoang.phuong.client.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.codehaus.jackson.annotate.JsonProperty;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "dinhchisinhvien")
+@JsonSerialize(include = JsonSerialize.Inclusion.ALWAYS)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Vanbang {
+    @JsonProperty(value = "id")
     private int id;
+    @JsonProperty(value = "maVanBang")
     private String maVanBang;
+    @JsonProperty(value = "tenVanBang")
     private String tenVanBang;
 
     public int getId() {

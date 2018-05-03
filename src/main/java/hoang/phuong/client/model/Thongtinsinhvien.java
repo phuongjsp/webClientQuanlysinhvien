@@ -2,12 +2,14 @@ package hoang.phuong.client.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.codehaus.jackson.annotate.JsonProperty;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
 
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-
+@XmlRootElement(name = "dinhchisinhvien")
+@JsonSerialize(include = JsonSerialize.Inclusion.ALWAYS)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Thongtinsinhvien {
     @JsonProperty(value = "id")
@@ -19,11 +21,11 @@ public class Thongtinsinhvien {
     @JsonProperty(value = "ten")
     private String ten;
     @JsonProperty(value = "ngayVaoHoc")
-    private Date ngayVaoHoc;
+    private Long ngayVaoHoc;
     @JsonProperty(value = "khoaHoc")
     private Integer khoaHoc;
     @JsonProperty(value = "ngaySinh")
-    private Date ngaySinh;
+    private Long ngaySinh;
     @JsonProperty(value = "nganhDk")
     private Integer nganhDk;
     @JsonProperty(value = "anhThe")
@@ -125,11 +127,11 @@ public class Thongtinsinhvien {
         this.ten = ten;
     }
 
-    public Date getNgayVaoHoc() {
+    public Long getNgayVaoHoc() {
         return ngayVaoHoc;
     }
 
-    public void setNgayVaoHoc(Date ngayVaoHoc) {
+    public void setNgayVaoHoc(Long ngayVaoHoc) {
         this.ngayVaoHoc = ngayVaoHoc;
     }
 
@@ -141,11 +143,11 @@ public class Thongtinsinhvien {
         this.khoaHoc = khoaHoc;
     }
 
-    public Date getNgaySinh() {
+    public Long getNgaySinh() {
         return ngaySinh;
     }
 
-    public void setNgaySinh(Date ngaySinh) {
+    public void setNgaySinh(Long ngaySinh) {
         this.ngaySinh = ngaySinh;
     }
 

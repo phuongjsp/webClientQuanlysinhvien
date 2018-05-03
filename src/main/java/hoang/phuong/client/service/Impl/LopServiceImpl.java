@@ -8,7 +8,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
-@Service
+@Service("lopService")
 @Transactional(readOnly = true)
 public class LopServiceImpl extends AbstractService<Lopsv> implements LopService {
     public LopServiceImpl(RestTemplate restTemplate) {

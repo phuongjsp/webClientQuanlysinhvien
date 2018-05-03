@@ -8,7 +8,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
-@Service
+@Service("thongtingiadinhService")
 @Transactional(readOnly = true)
 public class ThongtingiadinhServiceImpl extends AbstractService<Thongtingiadinh> implements ThongtingiadinhService {
     public ThongtingiadinhServiceImpl(RestTemplate restTemplate) {

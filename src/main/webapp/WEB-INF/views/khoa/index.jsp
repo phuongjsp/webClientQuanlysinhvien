@@ -50,9 +50,6 @@
     </div>
 </div>
 
-
-<br>
-
 <jsp:include page="../FOOTER.jsp"/>
 </body>
 </html>

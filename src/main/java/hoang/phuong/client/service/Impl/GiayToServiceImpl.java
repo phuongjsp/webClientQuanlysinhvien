@@ -8,7 +8,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
-@Service
+@Service("giayToService")
 @Transactional
 public class GiayToServiceImpl extends AbstractService<Giayto> implements GiayToService {
     public GiayToServiceImpl(RestTemplate restTemplate) {

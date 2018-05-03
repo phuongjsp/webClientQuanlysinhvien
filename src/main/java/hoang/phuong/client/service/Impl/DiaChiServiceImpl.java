@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
-@Service
+@Service("diaChiService")
 @Transactional(readOnly = true)
 public class DiaChiServiceImpl extends AbstractService<Diachi> implements DiaChiService {
 

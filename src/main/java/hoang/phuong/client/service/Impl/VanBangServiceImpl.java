@@ -8,7 +8,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
-@Service
+@Service("vanBangService")
 @Transactional(readOnly = true)
 public class VanBangServiceImpl extends AbstractService<Vanbang> implements VanBangService {
     public VanBangServiceImpl(RestTemplate restTemplate) {

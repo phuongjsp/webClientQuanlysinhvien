@@ -10,6 +10,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -18,7 +19,8 @@ public abstract class AbstractService<T> {
     private final String uriServer = "http://localhost:9966/";
     private final Class<T> persistentClass;
     protected RestTemplate restTemplate;
-    private GsonBuilder gsonb = new GsonBuilder().setDateFormat("yyyy-MM-dd");
+    private GsonBuilder gsonb = new GsonBuilder().registerTypeAdapter(Date.class, new ImprovedDateTypeAdapter());
+    ;
     protected Gson gson = gsonb.create();
 
     public AbstractService(RestTemplate restTemplate) {

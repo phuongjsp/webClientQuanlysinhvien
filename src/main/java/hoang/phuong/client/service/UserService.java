@@ -11,11 +11,11 @@ public interface UserService {
     void logout();
 
     //ADd new User
-    void confirmUser(Map<String, String> activeuserMap, String path);
+    void confirmUser(Map<String, String> activeuserMap);
 
     boolean isKeyCodeActive(String keyCode);
 
-    User ActiveUser(String keyCode);
+    User ActiveUser(String keyCode, String password);
 
 
     //forget password and reset
@@ -29,9 +29,9 @@ public interface UserService {
     User resetPassword(String keyCode, String password);
 
     //ROLE User
-    void updatePassword(int id, String currentPassword, String newPassword);
+    boolean updatePassword(int id, String currentPassword, String newPassword);
 
-    User updateUser(User user);
+    User updateUser(int id, Map<String, String> userMap);
 
     void deleteUser(int id, String password);
 

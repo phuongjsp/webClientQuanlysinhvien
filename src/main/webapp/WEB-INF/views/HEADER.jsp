@@ -15,28 +15,27 @@
         </button>
         <div class="container ">
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
-                    <a class="nav-item nav-link " href="/thongtinsinhvien">Thong tin sinh vien</a>
-                    <a class="nav-item nav-link " href="/nganhdaotao/">Nganh Dao Tao</a>
-                    <a class="nav-item nav-link " href="/khoa/">Khoa</a>
-                    <a class="nav-item nav-link " href="/lopsv/">Lop</a>
-                    <a class="nav-item nav-link " href="/vanbang">Van Bang</a>
-                    <a class="nav-item nav-link " href="/giayto/">Giay To</a>
-                </div>
-                <div class="navbar-nav">
-                    <a href="/login" class="btn-success">${idUserAPI}</a>
-                </div>
+
                 <c:if test="${idUserAPI==null}">
-                    <div class="navbar-nav">
-                        <a href="/login" class="btn-success">LOGIN</a>
+                    <div class="col-sm-9"></div>
+                    <div class="col-sm-3 form-inline my-2 my-lg-0">
+                        <a href="/login" class="nav-item nav-link btn-success">Signin</a>
+                        <a href="/registation" class="nav-item nav-link btn-success">Signup</a>
                     </div>
                 </c:if>
                 <c:if test="${idUserAPI!=null}">
-                    <div class="navbar-nav">
-                        <a href="/logout" class="btn-success">Profile</a>
+                    <div class="col-sm-9 navbar-nav  navbar-nav mr-auto">
+                        <a class="nav-item nav-link " href="/thongtinsinhvien">Thong tin sinh vien</a>
+                        <a class="nav-item nav-link " href="/nganhdaotao/">Nganh Dao Tao</a>
+                        <a class="nav-item nav-link " href="/khoa/">Khoa</a>
+                        <a class="nav-item nav-link " href="/lopsv/">Lop</a>
+                        <a class="nav-item nav-link " href="/vanbang">Van Bang</a>
+                        <a class="nav-item nav-link " href="/giayto/">Giay To</a>
+                        <a class="nav-item nav-link " href="/dinhchi/dangdinhchi">Sinh vien dang bi dinh chi</a>
                     </div>
-                    <div class="navbar-nav">
-                        <a href="/logout" class="btn-success">Logout</a>
+                    <div class="col-sm-3 form-inline my-2 my-lg-0">
+                        <a href="/profile?id=${idUserAPI}" class="nav-item nav-link btn-success border-dark">Profile</a>
+                        <a href="/logout" class="nav-item nav-link btn-success">Logout</a>
                     </div>
                 </c:if>
             </div>
