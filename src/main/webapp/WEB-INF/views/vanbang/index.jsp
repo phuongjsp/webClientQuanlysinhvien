@@ -37,6 +37,9 @@
                     <li class="list-group-item ">
                         <a href="/vanbang/del/${v.maVanBang}">Delete</a>
                     </li>
+                    <li class="list-group-item ">
+                        <a href="/SvCoVb/maVb-${v.maVanBang}">Danh sach sinh vien</a>
+                    </li>
                 </ul>
             </c:forEach>
         </c:if>

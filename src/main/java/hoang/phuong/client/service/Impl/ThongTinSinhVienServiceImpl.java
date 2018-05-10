@@ -64,7 +64,7 @@ public class ThongTinSinhVienServiceImpl extends AbstractService<Thongtinsinhvie
 
     @Override
     public Thongtinsinhvien getbyId(int id) {
-        return getObject("qlsv/thongtinthem/" + id);
+        return getObject("qlsv/thongtinsinhvien/" + id);
     }
 
     @Override

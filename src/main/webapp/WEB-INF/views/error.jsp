@@ -14,7 +14,7 @@
 <jsp:include page="HEADER.jsp"/>
 <div class="row">
     <div class="col-lg-12">
-        <p>Trang này không tồn tại hoặc đã bị xóa vui lòng liên hệ với quản trị viên để sử lý</p>
+        <p>${messages}</p>
     </div>
 </div>
 <jsp:include page="FOOTER.jsp"/>

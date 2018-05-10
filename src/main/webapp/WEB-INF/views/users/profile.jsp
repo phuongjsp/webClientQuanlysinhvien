@@ -18,10 +18,10 @@
 <div class="row">
     <div class="col-sm-12">
         <ul class="list-group float-sm-left text-center">
-            <li class="list-group-item ">${user.userName} </li>
-            <li class="list-group-item ">${user.userLastName} </li>
-            <li class="list-group-item ">${user.email} </li>
-            <li>
+            <li class="list-group-item ">Name :${user.userName} </li>
+            <li class="list-group-item ">Last Name : ${user.userLastName} </li>
+            <li class="list-group-item ">Email : ${user.email} </li>
+            <li class="list-group-item ">
                 <a href="/updatepassword">Update Password</a>
             </li>
         </ul>

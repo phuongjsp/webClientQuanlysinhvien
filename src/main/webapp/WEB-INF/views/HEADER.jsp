@@ -8,7 +8,7 @@
 <script src="<c:url value="/resources/bootstrap4/js/bootstrap.min.js" />"></script>
 <nav class="navbar navbar-light navbar-expand-xl fixed-top " style="background-color: #e3f2fd;">
     <div class="container">
-        <a class="navbar-brand" href="#">Quản lý sinh viên DEMO</a>
+        <a class="navbar-brand" href="/">Quản lý sinh viên DEMO</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -31,7 +31,6 @@
                         <a class="nav-item nav-link " href="/lopsv/">Lop</a>
                         <a class="nav-item nav-link " href="/vanbang">Van Bang</a>
                         <a class="nav-item nav-link " href="/giayto/">Giay To</a>
-                        <a class="nav-item nav-link " href="/dinhchi/dangdinhchi">Sinh vien dang bi dinh chi</a>
                     </div>
                     <div class="col-sm-3 form-inline my-2 my-lg-0">
                         <a href="/profile?id=${idUserAPI}" class="nav-item nav-link btn-success border-dark">Profile</a>

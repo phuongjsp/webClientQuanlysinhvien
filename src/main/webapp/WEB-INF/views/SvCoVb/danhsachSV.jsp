@@ -15,33 +15,24 @@
 <body>
 <jsp:include page="../HEADER.jsp"/>
 <div class="btn bg-light text-md-center ">
-    <a class="mr-sm-5" href="/SvCoVb/add/${maSv}"">Thêm Văn Bằng cho sinh viên này</a>
     <a class="mr-sm-5" href="javascript:history.back()">Quay Lại</a>
 </div>
 <div class="row">
     <div class="col-form-label-sm">
-
-        <c:forEach items="${VB}" var="vb">
-
+        <c:forEach items="${sv}" var="s">
             <ul class="list-group float-sm-left text-center">
-        <li class="list-group-item "><a href="/SvCoVb/only/maSv-${maSv}-maVb-${vb.maVanBang}">${vb.tenVanBang}</a></li>
-        <c:forEach items="${svcovb}" var="tt">
-            <c:if test="${vb.id==tt.loaiVb}">
-
-
-                <c:if test="${tt.loaiVb==vb.id}">
-                    <li class="list-group-item ">${tt.tenThuocTinh} : ${tt.thuocTinh}
-                        <ul style="list-style-type: none;">
-                            <li><a href="/SvCoVb/update/${maSv}-${tt.id}">Update</a></li>
-                            <li><a href="/SvCoVb/del/${maSv}-${tt.id}">Delete</a></li>
-                        </ul>
-                    </li>
-
-                </c:if>
-            </c:if>
+                <li class="list-group-item ">
+                        ${s.maSv} - ${s.ho} ${s.ten}
+                </li>
+                <c:forEach items="${vb}" var="v">
+                    <c:if test="${s.id==v.idSv}">
+                        <li class="list-group-item ">
+                                ${v.tenThuocTinh} : ${v.thuocTinh}
+                        </li>
+                    </c:if>
+                </c:forEach>
+            </ul>
         </c:forEach>
-    </ul>
-</c:forEach>
     </div>
 </div>
 <jsp:include page="../FOOTER.jsp"/>

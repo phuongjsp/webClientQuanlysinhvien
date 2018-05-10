@@ -22,7 +22,7 @@ public class KhenThuongServiceImpl extends AbstractService<Khenthuong> implement
 
     @Override
     public Khenthuong getbyId(int id) {
-        return getObject("qlsv/khenthuong/" + id);
+        return getObject("qlsv/khenthuong/id/" + id);
     }
 
     @Override

@@ -80,4 +80,15 @@ public class Khenthuong {
         result = 31 * result + (getNgay() != null ? getNgay().hashCode() : 0);
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "Khenthuong{" +
+                "id=" + id +
+                ", idSv=" + idSv +
+                ", lyDo='" + lyDo + '\'' +
+                ", ngay=" + ngay +
+                ", thongtinsinhvien=" + thongtinsinhvien +
+                '}';
+    }
 }

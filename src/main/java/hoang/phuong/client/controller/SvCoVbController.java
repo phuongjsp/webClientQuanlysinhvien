@@ -1,6 +1,7 @@
 package hoang.phuong.client.controller;
 
 import hoang.phuong.client.model.Svcovb;
+import hoang.phuong.client.model.Thongtinsinhvien;
 import hoang.phuong.client.model.Vanbang;
 import hoang.phuong.client.service.SvCoVbService;
 import hoang.phuong.client.service.ThongTinSinhVienService;
@@ -15,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 @RequestMapping(path = "SvCoVb")
@@ -37,13 +40,21 @@ public class SvCoVbController extends ExceptionHandlerController {
         return "SvCoVb/index";
     }
 
-    //TODO can phai suy nghi
-//    @RequestMapping(path = {"/maVb-{maVb}"}, method = RequestMethod.GET)
-//    public String indexMaVb(Model model,@PathVariable("maVb") String maVb){
-//        model.addAttribute("svcovb",svCoVbService.listBymaVb(maVb));
-//
-//        return "SvCoVb/index";
-//    }
+    @RequestMapping(path = {"/maVb-{maVb}"}, method = RequestMethod.GET)
+    public String indexMaVb(Model model, @PathVariable("maVb") String maVb) {
+        List<Thongtinsinhvien> thongtinsinhviens = new ArrayList<>();
+        List<Svcovb> svcovbList = svCoVbService.listBymaVb(maVb);
+        Set<Integer> listIDSv = new HashSet<>();
+        svcovbList.forEach(svcovb -> {
+            if (!listIDSv.contains(svcovb.getIdSv())) listIDSv.add(svcovb.getIdSv());
+        });
+        listIDSv.forEach(integer -> {
+            thongtinsinhviens.add(thongTinSinhVienService.getbyId(integer));
+        });
+        model.addAttribute("sv", thongtinsinhviens);
+        model.addAttribute("vb", svcovbList);
+        return "SvCoVb/danhsachSV";
+    }
     @RequestMapping(path = {"/only/maSv-{maSv}-maVb-{maVb}"}, method = RequestMethod.GET)
     public String indexMaSvMaVb(Model model, @PathVariable("maSv") String maSv,
                                 @PathVariable("maVb") String maVb) {

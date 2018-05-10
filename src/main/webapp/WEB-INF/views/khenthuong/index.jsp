@@ -53,9 +53,9 @@
                     <jsp:setProperty name="tungay" property="time" value="${kt.ngay}"/>
                     <fmt:formatDate value="${tungay}" pattern="dd - MM - yyyy"/>
                 </li>
-                <li class="list-group-item  "><a href="/dinhchi/update/${dc.id}">Update</a>
+                <li class="list-group-item  "><a href="/khenthuong/update/${kt.id}">Update</a>
                 </li>
-                <li class="list-group-item "><a href="/dinhchi/delete/${dc.id}"">Delete</a>
+                <li class="list-group-item "><a href="/khenthuong/delete/${kt.id}">Delete</a>
                 </li>
                 </ul>
             </c:forEach>

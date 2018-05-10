@@ -67,7 +67,39 @@
             <input type="submit" class="btn btn-success mr-sm-auto" onclick="call()" value="Tìm Kiếm"/>
         </form>
     </div>
+    <div class="col-sm-6 text-xl-center">
+        <p>Khen Thuong</p>
+        <div>
+            Tu <input type="date" id="stdate" onchange="setDate()"/> den <input type="date" id="eddate"
+                                                                                onchange="setDate()"/>
+            <script type="text/javascript">
+                function setDate() {
+                    var stdate = new Date(document.getElementById("stdate").value);
+                    var eddate = new Date(document.getElementById("eddate").value);
+                    var link = document.getElementById("khenthuongByYear");
+                    if (stdate != 'Invalid Date' && eddate != 'Invalid Date') {
 
+                        link.setAttribute("href", "/khenthuong/year/"
+                            + stdate.getDate() + "-" + stdate.getMonth() + "-" + stdate.getFullYear()
+                            + "/" + eddate.getDate() + "-" + eddate.getMonth() + "-" + eddate.getFullYear());
+                        link.removeAttribute("style");
+                    }
+                }
+            </script>
+            <a href="#" id="khenthuongByYear"
+               style="color: currentColor;
+              cursor: not-allowed;opacity: 0.5;display: inline-block;  /* For IE11/ MS Edge bug */
+              pointer-events: none;text-decoration: none;" class="btn btn-success">Xem</a>
+        </div>
+
+        <a href="/khenthuong/" class="btn btn-success">Danh sach toan bo</a>
+    </div>
+    <div class="col-sm-6 text-xl-center">
+        <p>Dinh chi</p>
+        <a href="/dinhchi/all" class="btn btn-info">Toan bo danh sach</a>
+        <a href="/dinhchi/dangdinhchi" class="btn btn-success">Dang bi dinh chi</a>
+
+    </div>
 </div>
 <script type="application/javascript">
     var json = "";
